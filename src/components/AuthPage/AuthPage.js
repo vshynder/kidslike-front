@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Styles
-import './normalize.css';
 import styles from './AuthPage.module.css';
 const {
   container,
@@ -25,7 +24,7 @@ function AuthPage() {
       <section className={authMenu}>
         <div>
           <div className={authMenu__logo}>
-            <h1>KidsLike</h1>
+            {/* <h1>KidsLike</h1> */}
           </div>
           <div className={main}>
             <h2 className={authMenu__title}>

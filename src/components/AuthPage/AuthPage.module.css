@@ -52,12 +52,15 @@
   box-sizing: border-box;
   border-radius: 20px;
   color: #ffffff;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .btn__in:hover,
 .btn__out:hover {
   background-color: #ffffff;
   color: #ff8626;
+  
 }
 
 .authDesktop {

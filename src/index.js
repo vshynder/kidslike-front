@@ -5,7 +5,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { rootReducer } from './redux';
 /* font Rubik */
-import './components/ProjectForm/AddChildFont.module.css'
+import './components/AddChildForm/AddChildFont.module.css'
+/* Style normalize */
+import './assets/normalize.css';
 
 const store = configureStore({
   reducer: rootReducer,
