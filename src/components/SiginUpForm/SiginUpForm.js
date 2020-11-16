@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-
 // Styles
 import styles from './SiginUpForm.module.css';
 
@@ -25,19 +24,18 @@ const {
 } = styles;
 
 function SiginUpForm() {
-
   const RegistrationSchema = yup.object().shape({
-      email: yup
-        .string()
-        .email('E-mail введено некоректно')
-        .required("Обов'язкове поле"),
-      password: yup
-        .string()
-        .min(6, 'Пароль повинен містити 6 символів')
-        .max(12, 'Максимальна кількість символів 12')
-        .required("Обов'язкове поле"),
-      name: yup.string(),
-    })
+    email: yup
+      .string()
+      .email('E-mail введено некоректно')
+      .required("Обов'язкове поле"),
+    password: yup
+      .string()
+      .min(6, 'Пароль повинен містити не менше 6-ти символів')
+      .max(20, 'Максимальна кількість символів 20')
+      .required("Обов'язкове поле"),
+    name: yup.string(),
+  });
 
   return (
     <div className={container}>
@@ -45,17 +43,6 @@ function SiginUpForm() {
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={RegistrationSchema}
-        // validate={(values) => {
-        //   const errors = {};
-        //   if (!values.email) {
-        //     errors.email = "Це обов'язкове поле";
-        //   } else if (
-        //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        //   ) {
-        //     errors.email = 'E-mail введено некоректно';
-        //   }
-        //   return errors;
-        // }}
         onSubmit={(values, { resetForm }) => {
           setTimeout(() => {
             console.log(JSON.stringify(values, null, 2));
@@ -84,7 +71,10 @@ function SiginUpForm() {
             </div>
             <p className={form__titel}>Введіть пароль</p>
             <Field
-              className={form__input}
+              className={[
+                form__input,
+                errors.password ? form__inputError : '',
+              ].join(' ')}
               type="password"
               name="password"
               placeholder="-----------"
