@@ -7,6 +7,10 @@ import { rootReducer } from './redux';
 /* font Rubik */
 import './components/AddChildForm/AddChildFont.module.css'
 
+/* Style normalize */
+import './assets/normalize.css';
+
+
 const store = configureStore({
   reducer: rootReducer,
 });
