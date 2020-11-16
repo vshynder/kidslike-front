@@ -40,11 +40,22 @@
   box-sizing: border-box;
   border-radius: 15px;
   background: #ffffff;
-  padding: 10px;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.form__inputError {
+  border: 1px solid #eb5757;
+  color: #eb5757;
+}
+
+.error {
+  position: relative;
   width: 100%;
 }
 
 .form__error {
+  position: absolute;
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(252, 103, 94, 0.4);
   border-radius: 10px;
@@ -54,6 +65,32 @@
   font-size: 12px;
   line-height: 14px;
   color: #828282;
+  width: 88%;
+  padding: 10px 20px;
+  top: 15px;
+}
+
+.form__error:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 13px;
+  top: -17px;
+  border: 8px solid;
+  border-color: transparent rgba(252, 103, 94, 0.1) rgba(252, 103, 94, 0.1)
+    transparent;
+}
+
+.form__error:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 14px;
+  top: -15px;
+  border: 8px solid;
+  border-color: transparent #fff #fff transparent;
 }
 
 .btnContainer {
