@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { NavLink } from 'react-router-dom';
+import * as yup from 'yup';
+
 
 // Styles
 import styles from './SiginUpForm.module.css'
@@ -21,26 +22,30 @@ const {container,
 } = styles
 
 function SiginUpForm() {
+
+  const RegistrationSchema = yup.object().shape({
+      email: yup
+        .string()
+        .email('E-mail введено некоректно')
+        .required("Обов'язкове поле"),
+      password: yup
+        .string()
+        .min(6, 'Пароль повинен містити 6 символів')
+        .max(12, 'Максимальна кількість символів 12')
+        .required("Обов'язкове поле"),
+      name: yup.string(),
+    })
+
   return (
     <div className={container}>
       <h2 className={siginUpTitel}>Реєстрація</h2>
       <Formik
-       initialValues={{ email: '', password: '' }}
-       validate={values => {
-         const errors = {};
-         if (!values.email) {
-           errors.email = "Це обов'язкове поле";
-         } else if (
-           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-         ) {
-           errors.email = 'E-mail введено некоректно';
-         }
-         return errors;
-       }}
-       onSubmit={(values, { setSubmitting }) => {
+       initialValues={{ email: '', password: '', name: '' }}
+       validationSchema={RegistrationSchema}
+       onSubmit={(RegistrationSchema, { resetForm }) => {
          setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
+           console.log(JSON.stringify(RegistrationSchema, null, 2));
+           resetForm();
          }, 400);
        }}
      >
@@ -50,7 +55,7 @@ function SiginUpForm() {
            <Field className={form__input} type="email" name="email" placeholder="E-mail" />
            <ErrorMessage className={form__error} name="email" component="div" />
            <p className={form__titel}>Введіть пароль</p>
-           <Field className={form__input} type="password" name="password" placeholder="-----------" />
+           <Field className={form__input} type="password" name="password" placeholder="-----------"/>
            <ErrorMessage className={form__error} name="password" component="div" />
            <p className={form__titel}>Ваше ім’я</p>
            <Field className={form__input} type="name" name="name" placeholder="Ім’я" />
@@ -58,7 +63,7 @@ function SiginUpForm() {
            <button className={btnContainer__formBtn} type="submit" disabled={isSubmitting}>
            Зареєструватись
            </button>
-           <a className={[btnContainer__socialBtn, google].join(' ')} href="#">Увійти за допомогою Google</a>
+           <a className={[btnContainer__socialBtn, google].join(' ')} href={"#"}>Увійти за допомогою Google</a>
            <a className={[btnContainer__socialBtn, facebook].join(' ')} href="#">Увійти за допомогою Facebook</a>
            </div>
          </Form>
@@ -68,29 +73,6 @@ function SiginUpForm() {
             Уже є аккаунт? <a className={login__link} href="#">Увійти</a>
             {/* <NavLink to="#">Увійти</NavLink> */}
           </p>
-      {/* <section className={}>
-        <h2 className={}>Реєстрація</h2>
-        <div className={}>
-          <form className={}>
-            <p className={}>Ваш E-mail</p>
-            <input className={}></input>
-            <p className={}>Введіть пароль</p>
-            <input className={}></input>
-            <p className={}>Ваше ім’я</p>
-            <input className={}></input>
-          </form>
-          <div className={}>
-            <button className={}>Зареєструватись</button>
-            <button className={}>Увійти за допомогою Google</button>
-            <button className={}>Увійти за допомогою Facebook</button>
-          </div>
-          <p>
-            Уже є аккаунт?
-            <a href="#">Увійти</a>
-            <NavLink to="#">Увійти</NavLink>
-          </p>
-        </div>
-      </section> */}
     </div>
   );
 }
