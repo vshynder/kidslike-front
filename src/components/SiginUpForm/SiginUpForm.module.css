@@ -1,10 +1,10 @@
 .container {
   max-width: 320px;
+  background-color: #ffffff;
   margin: 0 auto;
 }
 
 .siginUpTitel {
-  padding-top: 54px;
   font-family: Rubik;
   font-style: normal;
   font-weight: 900;
@@ -183,7 +183,6 @@
     border-radius: 20px;
   }
   .siginUpTitel {
-    padding-top: 50px;
     font-size: 26px;
     line-height: 31px;
   }
