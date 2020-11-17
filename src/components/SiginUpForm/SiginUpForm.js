@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 
 // Styles
 import styles from './SiginUpForm.module.css';
@@ -23,26 +24,29 @@ const {
 } = styles;
 
 function SiginUpForm() {
+  const RegistrationSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email('E-mail введено некоректно')
+      .required("Обов'язкове поле"),
+    password: yup
+      .string()
+      .min(6, 'Пароль повинен містити не менше 6-ти символів')
+      .max(20, 'Максимальна кількість символів 20')
+      .required("Обов'язкове поле"),
+    name: yup.string(),
+  });
+
   return (
     <div className={container}>
       <h2 className={siginUpTitel}>Реєстрація</h2>
       <Formik
         initialValues={{ email: '', password: '' }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Це обов'язкове поле";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'E-mail введено некоректно';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
+        validationSchema={RegistrationSchema}
+        onSubmit={(values, { resetForm }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
+            console.log(JSON.stringify(values, null, 2));
+            resetForm();
           }, 400);
         }}
       >
@@ -67,7 +71,10 @@ function SiginUpForm() {
             </div>
             <p className={form__titel}>Введіть пароль</p>
             <Field
-              className={form__input}
+              className={[
+                form__input,
+                errors.password ? form__inputError : '',
+              ].join(' ')}
               type="password"
               name="password"
               placeholder="-----------"
