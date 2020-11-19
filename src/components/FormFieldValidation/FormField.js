@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Form from './Form.js';
 
-class App extends Component {
+class FormField extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="
+      FormField">
 
         <Form />
 
@@ -13,4 +14,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default FormField;
