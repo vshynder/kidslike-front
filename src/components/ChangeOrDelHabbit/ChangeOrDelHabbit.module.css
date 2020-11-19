@@ -1,0 +1,12 @@
+.modal {
+  position: absolute;
+  top: 30px;
+  right: 12px;
+  width: auto;
+  height: 40px;
+  box-shadow: 0 0 10px black;
+  padding: 10px;
+}
+.btn__modal {
+  display: block;
+}

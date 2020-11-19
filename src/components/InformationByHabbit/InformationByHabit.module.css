@@ -1,0 +1,96 @@
+.canvas {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 690px;
+  height: 142px;
+  background: #ffffff;
+  padding: 30px;
+  opacity: 0.9;
+  border-radius: 20px;
+}
+.avatar_boy {
+  line-height: 75px;
+  text-align: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  background-image: url(./img/Ellipse_blue.svg);
+}
+.avatar_girl {
+  line-height: 75px;
+  text-align: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  background-image: url(./img/Ellipse_pink.svg);
+}
+
+.imgavatar {
+  vertical-align: middle;
+  margin: 0 auto;
+}
+.btnconfirm {
+  border: 2px solid #ffbe9d;
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background: url(./img/Vector_103_check_mark.svg) no-repeat center;
+}
+.btnfailure {
+  border: 2px solid #ffbe9d;
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+
+  background: url(./img/Vector_104_cross.svg) no-repeat center;
+}
+.btnchange {
+  position: absolute;
+  border: none;
+  padding: 0;
+  margin: 0;
+  /* box-sizing: border-box; */
+
+  background-color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  top: 2px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+}
+.conteiner {
+  padding: 15px 15px 0 15px;
+  display: flex;
+}
+
+.conteiner li {
+  text-align: center;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  background: #f6f7f9;
+  border: 1px solid #ffffff;
+}
+.conteiner li:nth-child(1) {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.conteiner li:nth-child(10) {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.title {
+  padding-left: 20px;
+}
+.titleconfirm {
+  margin-bottom: 15px;
+}
+.bonusx {
+  text-align: end;
+  padding-right: 28px;
+}
