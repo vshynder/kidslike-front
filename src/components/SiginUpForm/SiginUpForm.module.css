@@ -1,5 +1,6 @@
 .container {
   max-width: 320px;
+  background-color: #ffffff;
   margin: 0 auto;
 }
 
@@ -65,7 +66,7 @@
   font-size: 12px;
   line-height: 14px;
   color: #828282;
-  width: 88%;
+  width: 100%;
   padding: 10px 20px;
   top: 15px;
 }

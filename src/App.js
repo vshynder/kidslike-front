@@ -5,6 +5,9 @@ import Sidebar from './components/IformationOnChild_(sidebar)/InformationList';
 
 /* AuthPage*/
 import AuthPage from './components/AuthPage/AuthPage';
+import ChangeHabbitForm from './components/ChangeHabbitForm';
+
+import './assets/fonts.css';
 
 function App() {
   return <div className="App">Hello</div>;
