@@ -1,5 +1,6 @@
 .container {
     width: 300px;
+    margin: auto;
 }
 
 @media screen and (min-width: 320px) {
