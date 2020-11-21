@@ -8,6 +8,7 @@ import AuthPageNavigation from './components/AuthPageNavigation/AuthPageNavigati
 import ChangeHabbitForm from './components/ChangeHabbitForm';
 
 import './assets/fonts.css';
+import './assets/basic.css';
 
 function App() {
   return <div className="App">Hello</div>;
