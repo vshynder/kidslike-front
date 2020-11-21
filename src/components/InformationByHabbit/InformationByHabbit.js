@@ -14,8 +14,21 @@ class InformationByHabbit extends React.Component {
       showModalChangeOrDelHabbit: !this.state.showModalChangeOrDelHabbit,
     });
   };
+
+  renderCheckSprintHabbit = (el) => {
+    if (el === '+') {
+      return style.containerlicheck;
+    }
+    if (el === '1') {
+      return style.containerlinocheck;
+    }
+    if (el === '-') {
+      return style.containerlidischeck;
+    }
+  };
   render() {
     console.log('props: ', this.props);
+
     return (
       <div className={style.canvas}>
         <button
@@ -27,7 +40,7 @@ class InformationByHabbit extends React.Component {
         {/* {this.state.showModalChangeOrDelHabbit && <ChangeOrDelHabbit />} */}
         <div
           className={
-            this.props.arrHabbitsByUserTest[0].genderChild === 'male'
+            this.props.habbitUserTest.genderChild === 'male'
               ? style.avatar_boy
               : style.avatar_girl
           }
@@ -35,35 +48,29 @@ class InformationByHabbit extends React.Component {
           <img
             className={style.imgavatar}
             src={
-              this.props.arrHabbitsByUserTest[0].genderChild === 'male'
+              this.props.habbitUserTest.genderChild === 'male'
                 ? image_boy
                 : image_girl
             }
             alt={'pic'}
           />
+          <p className={style.name_hover}>
+            {this.props.habbitUserTest.ownerHabbits}
+          </p>
         </div>
         <div>
           <h3 className={style.title}>
-            {this.props.arrHabbitsByUserTest[0].nameHabbit}
+            {this.props.habbitUserTest.nameHabbit}
           </h3>
           <ul className={style.conteiner}>
-            {this.props.arrHabbitsByUserTest[0].sprintHabbit
-              .split('')
-              .map((el, idx) => {
-                console.log(el);
-                return (
-                  <li
-                    className={
-                      el === '+'
-                        ? style.containerlicheck
-                        : style.containerlinocheck
-                    }
-                    key={idx}
-                  >
-                    {this.props.arrHabbitsByUserTest[0].priceHabbit}
-                  </li>
-                );
-              })}
+            {this.props.habbitUserTest.sprintHabbit.split('').map((el, idx) => {
+              console.log(el);
+              return (
+                <li className={this.renderCheckSprintHabbit(el)} key={idx}>
+                  {this.props.habbitUserTest.priceHabbit}
+                </li>
+              );
+            })}
           </ul>
           <p className={style.bonusx}>x1.5</p>
         </div>
@@ -84,24 +91,14 @@ class InformationByHabbit extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  arrHabbitsByUserTest: [
-    {
-      sprintHabbit: '++-+111111',
-      idChild: '5fb4f73805dba90ca4fbf464',
-      nameHabbit: 'football4',
-      priceHabbit: 2,
-      ownerHabbits: '5fb4f73805dba90ca4fbf464',
-      genderChild: 'male',
-    },
-    {
-      sprintHabbit: '++11111111',
-      idChild: '5fb4f73805dba90ca4fbf464',
-      nameHabbit: 'football4',
-      priceHabbit: 3,
-      ownerHabbits: '5fb4f73805dba90ca4fbf464',
-      genderChild: 'female',
-    },
-  ],
+  habbitUserTest: {
+    sprintHabbit: '+-++111111',
+    idChild: '5fb4f73805dba90ca4fbf464',
+    nameHabbit: 'Play football',
+    priceHabbit: 2,
+    ownerHabbits: 'Sanchez',
+    genderChild: 'male',
+  },
 });
 
 export default connect(mapStateToProps)(InformationByHabbit);
