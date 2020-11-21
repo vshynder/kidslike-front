@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Styles
 import styles from './AuthPage.module.css';
@@ -36,8 +37,8 @@ function AuthPage() {
               подарунками виконувати їх і очікуйте результату!
             </p>
             <div className={btn}>
-              <button className={btn__in}>Вхід</button>
-              <button className={btn__out}>Зареєструватися</button>
+              <Link className={btn__in} to={"/login"}>Вхід</Link>
+              <Link className={btn__out} to={"/register"}>Зареєструватися</Link>
             </div>
           </div>
         </div>
