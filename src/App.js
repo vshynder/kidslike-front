@@ -10,10 +10,14 @@ import ChangeHabbitForm from './components/ChangeHabbitForm';
 import './assets/fonts.css';
 import './assets/basic.css';
 
-// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
+import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
 
 function App() {
-  return <div className="App">Hello</div>;
+  return (
+    <div className="App">
+      Hello <InformationByHabbit />
+    </div>
+  );
 }
 
 export default App;

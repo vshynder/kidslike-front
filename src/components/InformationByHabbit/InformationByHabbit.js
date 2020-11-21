@@ -5,13 +5,21 @@ import image_girl from './img/image_girl.svg';
 import iconconfirm from './img/Vector_103_check_mark.svg';
 import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
-// import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
+
+import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
 
 class InformationByHabbit extends React.Component {
-  state = { showModalChangeOrDelHabbit: false };
-  handleshowModalChangeOrDelHabbit = (e) => {
+  state = { showDropDownMenu: false, showModal: false };
+
+  handlesShowDropDownMenu = (e) => {
     this.setState({
-      showModalChangeOrDelHabbit: !this.state.showModalChangeOrDelHabbit,
+      showDropDownMenu: !this.state.showDropDownMenu,
+    });
+  };
+
+  handlesShowModal = (e) => {
+    this.setState({
+      showModal: !this.state.showModal,
     });
   };
 
@@ -31,13 +39,30 @@ class InformationByHabbit extends React.Component {
 
     return (
       <div className={style.canvas}>
+        {
+          /* {this.state.showModal && (
+          <Modal>
+            <ChangeHabbitForm  forCloseModal={this.handlesShowModal}/>
+          </Modal>
+        )} */
+          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
+            <div style={{ position: 'absolute', backgroundColor: '#ddd' }}>
+              MODAL WINDOW DUMMY
+            </div>
+          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
+        }
         <button
-          onClick={this.handleshowModalChangeOrDelHabbit}
+          onClick={this.handlesShowDropDownMenu}
           className={style.btnchange}
         >
           ...
         </button>
-        {/* {this.state.showModalChangeOrDelHabbit && <ChangeOrDelHabbit />} */}
+        {this.state.showDropDownMenu && (
+          <ChangeOrDelHabbit
+            onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
+            onHandlesShowModal={this.handlesShowModal}
+          />
+        )}
         <div
           className={
             this.props.habbitUserTest.genderChild === 'male'
