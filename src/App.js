@@ -7,10 +7,10 @@ import Sidebar from './components/IformationOnChild_(sidebar)/InformationList';
 import AuthPageNavigation from './components/AuthPageNavigation/AuthPageNavigation';
 import ChangeHabbitForm from './components/ChangeHabbitForm';
 
+// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
+
 import './assets/fonts.css';
 import './assets/basic.css';
-
-// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
 
 function App() {
   return <div className="App">Hello</div>;
