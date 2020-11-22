@@ -10,7 +10,7 @@ import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
 
 class InformationByHabbit extends React.Component {
   state = { showDropDownMenu: false, showModal: false };
-
+  btnchange = React.createRef();
   handlesShowDropDownMenu = (e) => {
     this.setState({
       showDropDownMenu: !this.state.showDropDownMenu,
@@ -52,6 +52,7 @@ class InformationByHabbit extends React.Component {
           ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
         }
         <button
+          ref={this.btnchange}
           onClick={this.handlesShowDropDownMenu}
           className={style.btnchange}
         >
@@ -61,6 +62,7 @@ class InformationByHabbit extends React.Component {
           <ChangeOrDelHabbit
             onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
             onHandlesShowModal={this.handlesShowModal}
+            refBtnChange={this.btnchange.current}
           />
         )}
         <div
@@ -89,7 +91,6 @@ class InformationByHabbit extends React.Component {
           </h3>
           <ul className={style.conteiner}>
             {this.props.habbitUserTest.sprintHabbit.split('').map((el, idx) => {
-              console.log(el);
               return (
                 <li className={this.renderCheckSprintHabbit(el)} key={idx}>
                   {this.props.habbitUserTest.priceHabbit}
