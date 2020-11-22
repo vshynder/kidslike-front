@@ -67,7 +67,7 @@ class InformationByHabbit extends React.Component {
         )}
         <div
           className={
-            this.props.habbitUserTest.genderChild === 'male'
+            this.props.habbitUser.genderChild === 'male'
               ? style.avatar_boy
               : style.avatar_girl
           }
@@ -75,25 +75,23 @@ class InformationByHabbit extends React.Component {
           <img
             className={style.imgavatar}
             src={
-              this.props.habbitUserTest.genderChild === 'male'
+              this.props.habbitUser.genderChild === 'male'
                 ? image_boy
                 : image_girl
             }
             alt={'pic'}
           />
           <p className={style.name_hover}>
-            {this.props.habbitUserTest.ownerHabbits}
+            {this.props.habbitUser.ownerHabbits}
           </p>
         </div>
         <div>
-          <h3 className={style.title}>
-            {this.props.habbitUserTest.nameHabbit}
-          </h3>
+          <h3 className={style.title}>{this.props.habbitUser.nameHabbit}</h3>
           <ul className={style.conteiner}>
-            {this.props.habbitUserTest.sprintHabbit.split('').map((el, idx) => {
+            {this.props.habbitUser.sprintHabbit.split('').map((el, idx) => {
               return (
                 <li className={this.renderCheckSprintHabbit(el)} key={idx}>
-                  {this.props.habbitUserTest.priceHabbit}
+                  {this.props.habbitUser.priceHabbit}
                 </li>
               );
             })}
@@ -117,7 +115,7 @@ class InformationByHabbit extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  habbitUserTest: {
+  habbitUser: {
     sprintHabbit: '+-++111111',
     idChild: '5fb4f73805dba90ca4fbf464',
     nameHabbit: 'Play football',
@@ -125,6 +123,7 @@ const mapStateToProps = (state) => ({
     ownerHabbits: 'Sanchez',
     genderChild: 'male',
   },
-});
+}); // Заглушка - компонет InformationByHabbit получит пропсом обьект habbitUser
+// при рендере коллекции  всех привычек детей пользователя
 
 export default connect(mapStateToProps)(InformationByHabbit);
