@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import useFetch from './fetch/useFetch';
 
@@ -9,18 +8,17 @@ function UserAuth() {
     if (result) {
       setUsers(result);
 
-      debugger;
     }
   }, [result]);
   useEffect(() => {
     if (fetchError) {
-      debugger;
+
     }
   }, [fetchError]);
 
   useEffect(() => {
     if (users.length > 0) {
-      debugger;
+
     }
   }, [users]);
   function getJson() {
