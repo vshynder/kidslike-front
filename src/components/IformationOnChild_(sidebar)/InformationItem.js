@@ -32,11 +32,11 @@ const InformationItem = ({
         <ul className={style.informItem_list__tasks}>
           <li className={style.informItem_oneTask}>
             <p className={style.informItem_text}>{firstTask}</p>
-            <p className={style.informItem_text}>+{costFirstTask}</p>
+            <p className={style.informItem_text}>{costFirstTask}</p>
           </li>
           <li className={style.informItem_oneTask}>
             <p className={style.informItem_text}>{secondTask}</p>
-            <p className={style.informItem_text}>+{costSecondTask}</p>
+            <p className={style.informItem_text}>{costSecondTask}</p>
           </li>
         </ul>
       </li>
