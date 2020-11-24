@@ -21,6 +21,12 @@
 .main {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+.extendMain {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .familynfo {
@@ -30,13 +36,19 @@
   text-align: center;
 }
 
-.tasksinfo {
+.habitsInfo {
   width: 280px;
 
   display: block;
   text-align: center;
   border: 3px solid blue;
   padding: 2px 2px 2px 2px;
+}
+
+.tasksinfo {
+  display: block;
+  text-align: end;
+  border: 3px solid green;
 }
 
 @media (min-width: 768px) {
@@ -48,7 +60,14 @@
     width: 687px;
   }
 
+  .habitsInfo {
+    display: none;
+    width: 687px;
+  }
+
   .tasksinfo {
+    display: none;
+
     width: 687px;
   }
 }
@@ -68,7 +87,13 @@
     width: 345px;
   }
 
+  .habitsInfo {
+    display: block;
+    width: 690px;
+  }
+
   .tasksinfo {
+    display: block;
     width: 690px;
   }
 }
