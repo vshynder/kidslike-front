@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './ChangeOrDelHabbit.module.css';
 
-// import ChangeHabbitForm from '../ChangeHabbitForm/index';
-// import Modal from '../';
-
 class ChangeOrDelHabbit extends React.Component {
   refModalmini = React.createRef();
 
