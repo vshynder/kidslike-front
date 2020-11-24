@@ -151,7 +151,7 @@
   }
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1200px) {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -184,6 +184,7 @@
 
   .btn__in,
   .btn__out {
+    text-align: center;
     width: 184px;
   }
   .authDesktop {

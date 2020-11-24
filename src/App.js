@@ -8,7 +8,10 @@ import AuthPageNavigation from './components/AuthPageNavigation/AuthPageNavigati
 import ChangeHabbitForm from './components/ChangeHabbitForm';
 import Main from './components/MainPage/MainPage';
 
+// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
+
 import './assets/fonts.css';
+import './assets/basic.css';
 
 function App() {
   return <Main></Main>;

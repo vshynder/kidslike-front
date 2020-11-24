@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 
 // Styles
@@ -119,9 +120,9 @@ function SiginUpForm() {
       </Formik>
       <p className={login}>
         Уже є аккаунт?{' '}
-        <a className={login__link} href="#">
+        <Link className={login__link} to={"/login"}>
           Увійти
-        </a>
+        </Link>
       </p>
     </div>
   );

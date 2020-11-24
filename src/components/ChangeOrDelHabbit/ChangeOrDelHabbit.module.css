@@ -1,0 +1,30 @@
+.modalmini {
+  position: absolute;
+  font-family: Rubik, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  top: 30px;
+  right: 12px;
+  width: 133px;
+  height: 88px;
+  background-color: #fff;
+  box-shadow: 0 0 10px black;
+  padding: 10px 6px 6px 6px;
+  border-radius: 10px;
+}
+.btn__modal {
+  display: block;
+  text-align: center;
+  width: 123px;
+  height: 34px;
+  border: none;
+  padding: 0;
+  background: #fff;
+  margin: 0;
+  border-radius: 3px;
+}
+.btn__modal:hover {
+  cursor: pointer;
+  background-color: #ffbe9d;
+  color: #fff;
+}
