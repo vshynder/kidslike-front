@@ -1,19 +1,16 @@
 import React from 'react';
-/* AddChildForm & Sidebar */
-import AddChildForm from './components/AddChildForm/Form';
-import Sidebar from './components/IformationOnChild_(sidebar)/InformationList';
+import { Switch, Route } from 'react-router-dom';
 
-/* AuthPage*/
-import AuthPageNavigation from './components/AuthPageNavigation/AuthPageNavigation';
-import ChangeHabbitForm from './components/ChangeHabbitForm';
-
-// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
+import Main from './components/MainPage/MainPage';
+import PrivateRouter from './components/MainPage/PrivateRoutes';
 
 import './assets/fonts.css';
 import './assets/basic.css';
 
-function App() {
-  return <div className="App">Hello</div>;
-}
+const App = () => (
+  <Switch>
+    <PrivateRouter path="/main" exact component={Main} />
+  </Switch>
+);
 
 export default App;
