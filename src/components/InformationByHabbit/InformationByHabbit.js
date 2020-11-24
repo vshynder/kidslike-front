@@ -7,6 +7,7 @@ import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
 
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
+import checkHabbit from '../../redux/operations/habbitOperation';
 
 class InformationByHabbit extends React.Component {
   state = { showDropDownMenu: false, showModal: false };
@@ -16,6 +17,15 @@ class InformationByHabbit extends React.Component {
       showDropDownMenu: !this.state.showDropDownMenu,
     });
   };
+
+  clickConfirmedDay = (e) => {
+    this.props.onCheckHabbit({
+      confirmed: true,
+      idHabbit: '5fbad10a4e5958241c581f31',
+    });
+  };
+
+  // clickUnConfirmedDay = (e) => {};
 
   handlesShowModal = (e) => {
     this.setState({
@@ -101,7 +111,10 @@ class InformationByHabbit extends React.Component {
         <div className={style.btn_wrap}>
           <h4 className={style.titleconfirm}>Підтвердження</h4>
           <div className={style.conf_cont}>
-            <button className={style.btnconfirm}>
+            <button
+              className={style.btnconfirm}
+              onClick={this.clickConfirmedDay}
+            >
               <img src={iconconfirm} alt={'pic'}></img>
             </button>
             <button className={style.btnfailure}>
@@ -126,4 +139,9 @@ const mapStateToProps = (state) => ({
 }); // Заглушка - компонет InformationByHabbit получит пропсом обьект habbitUser
 // при рендере коллекции  всех привычек детей пользователя
 
-export default connect(mapStateToProps)(InformationByHabbit);
+const mapDispatchToProps = { onCheckHabbit: checkHabbit };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(InformationByHabbit);

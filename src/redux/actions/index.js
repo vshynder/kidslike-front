@@ -1,5 +1,6 @@
 // импортим все экшнс сюда
+import checkHabbit from './habbitAction';
 
-const actions = {};
+const actions = { checkHabbit };
 
 export default actions;
