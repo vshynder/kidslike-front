@@ -1,0 +1,161 @@
+#wrapper {
+  background-color: #ffffff;
+}
+
+.taskTitel {
+  padding-top: 54px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  color: #333333;
+}
+
+.siginUpTitel {
+  padding-top: 54px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  color: #333333;
+}
+
+.form {
+  margin: 0 auto;
+  width: 280px;
+}
+
+.form__titel {
+  display: block;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #828282;
+  padding: 20px 0 10px;
+}
+
+.form__input {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #828282;
+  border: 1px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: #ffffff;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.btnContainer {
+  margin: 0 auto;
+  margin-top: 40px;
+  display: grid;
+  max-width: 220px;
+  grid-row-gap: 15px;
+  /* flex-direction: column; */
+}
+
+.btnContainer__formBtn {
+  font-family: Rubik;
+  width: 100%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  border: none;
+  background-color: #ff8626;
+  box-sizing: border-box;
+  border-radius: 20px;
+  color: #ffffff;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+/* .btnContainer__formBtn:first-child{
+      margin-bottom: 15px;
+  } */
+
+.btnContainer__formBtn:hover {
+  background: #ffdfcf;
+  color: #ff8626;
+}
+.сhangeTaskForm__delete {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 150px;
+}
+
+.сhangeTaskForm__deleteBucket {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.сhangeTaskForm__deleteText {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #828282;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+.deleteBucket {
+  fill: #bdbdbd;
+  transition: 250ms;
+}
+
+.сhangeTaskForm__delete:hover .deleteBucket,
+.сhangeTaskForm__delete:hover .сhangeTaskForm__deleteText {
+  fill: black;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  #wrapper {
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+  .siginUpTitel {
+    padding-top: 50px;
+    font-size: 26px;
+    line-height: 31px;
+  }
+
+  .form {
+    margin: 0 auto;
+    width: 340px;
+  }
+
+  .form__titel {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .btnContainer {
+    max-width: 440px;
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 60px;
+    grid-gap: 15px;
+    /* flex-direction: column; */
+  }
+
+  .btnContainer__formBtn {
+    width: 100%;
+  }
+}
