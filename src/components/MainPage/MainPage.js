@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
-import Slider from '../IformationOnChild_(sidebar)/InformationList.js';
+import Slider from '../IformationOnChild_(sidebar)/InformationList';
 import './MainPage.css';
 
 export default class MainPosition extends Component {
   state = {};
+
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   render() {
     return (
