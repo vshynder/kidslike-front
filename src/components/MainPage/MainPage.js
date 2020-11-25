@@ -19,9 +19,11 @@ export default class MainPosition extends Component {
             <Slider></Slider>
           </div>
           <div className="habitsInfo">ofcoues</div>
-          <div className="extendMain">
-            <div className="tasksinfo">oops</div>
-          </div>
+          {window.innerWidth > 1200 && (
+            <div className="extendMain">
+              <div className="tasksinfo">oops</div>
+            </div>
+          )}
         </div>
       </div>
     );
