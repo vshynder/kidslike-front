@@ -5,9 +5,11 @@ import image_girl from './img/image_girl.svg';
 import iconconfirm from './img/Vector_103_check_mark.svg';
 import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
-
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
 import checkHabbit from '../../redux/operations/habbitOperation';
+
+// import ChangeHabbitForm from '../ChangeHabbitForm/index'; // Иморт формы редактирования
+// import Modal from '../'; // Модальное окно
 
 class InformationByHabbit extends React.Component {
   state = { showDropDownMenu: false, showModal: false, complitedHabbit: false };
