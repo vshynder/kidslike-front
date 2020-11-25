@@ -15,6 +15,11 @@ class InformationByHabbit extends React.Component {
   state = { showDropDownMenu: false, showModal: false, complitedHabbit: false };
 
   btnchange = React.createRef();
+  componentDidMount() {
+    if (!this.props.allHabbits[0].sprintHabbit.includes('1')) {
+      this.setState({ complitedHabbit: true });
+    }
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (
