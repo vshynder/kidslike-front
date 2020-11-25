@@ -12,9 +12,10 @@ import InformationItem from './components/IformationOnChild_(sidebar)/Informatio
 // import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
 
 const App = () => (
-  <Switch>
-    <PrivateRouter path="/main" exact component={Main} />
-  </Switch>
+  // <Switch>
+  //   <PrivateRouter path="/main" exact component={Main} />
+  // </Switch>
+  <InformationByTask />
 );
 
 export default App;

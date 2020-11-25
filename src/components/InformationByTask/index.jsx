@@ -46,7 +46,12 @@ function InformationByTask() {
             </span>
           </span>
         </span>
+
         <button className={styles.additionButton}>...</button>
+        <ul className={styles.submenu}>
+          <li className={styles.submenuItem}>Редагувати</li>
+          <li className={styles.submenuItem}>Видалити</li>
+        </ul>
       </div>
     </>
   );
