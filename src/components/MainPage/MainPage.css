@@ -61,7 +61,7 @@
   }
 
   .habitsInfo {
-    display: none;
+    display: block;
     width: 687px;
   }
 
