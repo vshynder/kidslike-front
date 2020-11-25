@@ -6,9 +6,10 @@ import PrivateRouter from './components/MainPage/PrivateRoutes';
 
 import './assets/fonts.css';
 import './assets/basic.css';
-
+import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
 const App = () => (
   <Switch>
+    <InformationByHabbit />
     <PrivateRouter path="/main" exact component={Main} />
   </Switch>
 );
