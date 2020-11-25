@@ -135,7 +135,7 @@ a {
   color: #ff8626;
 }
 
-@media (min-width: 748px) {
+@media (min-width: 768px) {
   .informItem_container {
     width: 336px;
   }
