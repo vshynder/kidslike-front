@@ -7,17 +7,13 @@ import Sidebar from './components/IformationOnChild_(sidebar)/InformationList';
 import AuthPageNavigation from './components/AuthPageNavigation/AuthPageNavigation';
 import ChangeHabbitForm from './components/ChangeHabbitForm';
 
-import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
+// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
 
 import './assets/fonts.css';
 import './assets/basic.css';
 
 function App() {
-  return (
-    <div className="App">
-      Hello <InformationByHabbit />
-    </div>
-  );
+  return <div className="App">Hello</div>;
 }
 
 export default App;

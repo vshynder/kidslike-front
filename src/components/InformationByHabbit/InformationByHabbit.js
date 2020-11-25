@@ -15,10 +15,6 @@ class InformationByHabbit extends React.Component {
   btnchange = React.createRef();
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(
-      'sprintHabbit.include(1): ',
-      this.props.allHabbits[0].sprintHabbit.includes('1'),
-    );
     if (
       !this.props.allHabbits[0].sprintHabbit.includes('1') &&
       prevState.complitedHabbit === false
@@ -65,7 +61,6 @@ class InformationByHabbit extends React.Component {
     }
   };
   render() {
-    console.log('complitedHabbit ', this.state.complitedHabbit);
     return (
       <div className={style.canvas}>
         {
