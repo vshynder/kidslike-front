@@ -44,6 +44,14 @@
         margin-bottom: 30px;
         color: #828282;
         position: relative;
+        // &_change_child {
+        //     position: absolute;
+        //     top: 40px;
+        //     right: 20px;
+        //     width: 16px;
+        //     height: 14px;
+        //     z-index: 2;
+        // }
     };
     &__input {
         position: relative;
@@ -55,8 +63,29 @@
         width:280px;
         height: 44px;
         padding-left: 20px;
+        padding-right: 20px;
         font-size: 16px;
     };
+
+    &__change_child {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        width: 16px;
+        height: 14px;
+        z-index: 1;
+        &_block {
+            position: absolute;
+            background-color: #fff;
+            top: 40px;
+            right: 4px;
+            width: 10px;
+            height: 10px;
+            z-index:1 ;
+        }
+    }
+
+
     &__ball {
         position: relative;
         top: 10px;
@@ -78,6 +107,18 @@
         }
     };
 
+    &__delete_btn{
+        border: none;
+        background-color: transparent;
+        color: #828282;
+        font-size: 14px;
+    };
+
+    &__delete_img {
+        width: 15px;
+        height: 15px;
+        margin-right: 18px;
+    }
     &__upload_box {
         position: relative;
         top: 10px;
