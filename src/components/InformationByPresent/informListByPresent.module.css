@@ -1,25 +1,25 @@
-.childrenSidebar_header {
+.presentItem_header {
   display: flex;
   flex-direction: row;
   height: 30px;
   margin-bottom: 30px;
 }
 
-.childrenSidebar_container {
+.presentItem_container {
   width: 280px;
   display: flex;
   flex-direction: column;
 }
 
-.childrenSidebar_childrens .childrenSidebar_item:not(:last-child) {
+.presentItem_childrens .presentItem_item:not(:last-child) {
   margin-bottom: 10px;
 }
 
-.childrenSidebar_house {
+.presentItem_present {
   margin-right: 15px;
 }
 
-.childrenSidebar_title {
+.presentItem_title {
   align-self: flex-end;
   font-family: Rubik;
   font-style: normal;
@@ -31,7 +31,7 @@
   margin: 0;
 }
 
-.childrenSidebar_button {
+.presentItem_button {
   align-self: center;
   margin-top: 60px;
   border: 1px solid #bdbdbd;
@@ -48,54 +48,41 @@
   height: 44px;
   cursor: pointer;
   outline: none;
+  background: #ff8626;
+  color: #ffffff;
 }
 
-.childrenSidebar_button:hover {
-  color: #ff8626;
-  background: #ffffff;
+.presentItem_button:hover {
+  color: #ffffff;
+  background: #ffa273;
   transition: 250ms;
 }
 
 @media (min-width: 768px) {
-  .childrenSidebar_container {
-    width: 687px;
+  .presentItem_container {
+    width: 690px;
   }
 
-  .childrenSidebar_house {
+  .presentItem_present {
     width: 40px;
     height: 40px;
   }
 
-  .childrenSidebar_button {
+  .presentItem_button {
     align-self: flex-start;
     margin-top: 15px;
   }
 
-  .childrenSidebar_childrens {
+  .presentItem_childrens {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .childrenSidebar_childrens .childrenSidebar_item:not(:last-child) {
+  .presentItem_childrens .presentItem_item:not(:last-child) {
     margin-bottom: 15px;
   }
 
-  .childrenSidebar_childrens .childrenSidebar_item:nth-child(2n + 1) {
+  .presentItem_childrens .presentItem_item:nth-child(2n + 1) {
     margin-right: 15px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .childrenSidebar_container {
-    width: 345px;
-  }
-
-  .childrenSidebar_childrens {
-    flex-direction: column;
-  }
-
-  .childrenSidebar_button {
-    align-self: center;
-    margin-top: 92px;
   }
 }
