@@ -9,6 +9,8 @@ import './assets/fonts.css';
 import './assets/basic.css';
 import InformationItem from './components/IformationOnChild_(sidebar)/InformationItem';
 
+// import InformationByHabbit from './components/InformationByHabbit/InformationByHabbit';
+
 const App = () => (
   <Switch>
     <PrivateRouter path="/main" exact component={Main} />
