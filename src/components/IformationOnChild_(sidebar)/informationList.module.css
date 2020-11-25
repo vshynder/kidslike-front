@@ -56,7 +56,7 @@
   transition: 250ms;
 }
 
-@media (min-width: 748px) {
+@media (min-width: 768px) {
   .childrenSidebar_container {
     width: 687px;
   }
@@ -80,7 +80,7 @@
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   .childrenSidebar_container {
     width: 345px;
   }
