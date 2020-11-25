@@ -10,10 +10,9 @@ import './assets/basic.css';
 import InformationItem from './components/IformationOnChild_(sidebar)/InformationItem';
 
 const App = () => (
-  // <Switch>
-  //   <PrivateRouter path="/main" exact component={Main} />
-  // </Switch>
-  <InformationByTask />
+  <Switch>
+    <PrivateRouter path="/main" exact component={Main} />
+  </Switch>
 );
 
 export default App;
