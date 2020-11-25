@@ -1,18 +1,26 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, createAction } from '@reduxjs/toolkit';
 import action from '../actions/index';
 
-export const checkHabbits = createReducer(null, {
-  [action.checkHabbits]: (state, action) => {},
-});
-
-// export const dummyReducerAllHabbits = createReducer(initialState, {
-//   test: (state) => state,
-// });
 export const dummyReducerAllHabbits = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case 'check/habbit':
+      // let updatedState = [...state];
+      // updatedState[0].sprintHabbit = '++++111111';
+      let updatedState = state.map((el) => {
+        if (el._id === action.payload.idHabbit) {
+          el.sprintHabbit = action.payload.newSprintHabbit;
+          return el;
+        }
+        return el;
+      });
+
+      return updatedState;
+    default:
+      return state;
+  }
 };
 
-var initialState = [
+const initialState = [
   {
     sprintHabbit: '1111111111',
     _id: '5fbad10a4e5958241c581f31',
@@ -77,3 +85,19 @@ var initialState = [
     genderChild: 'female',
   },
 ];
+
+// export const dummyReducerAllHabbits = createReducer(initialState, {
+//   [action.updateCheckedHabbit]: (state, action) => {
+//     console.log();
+//     console.log('state: ', ...state);
+//     console.log('action: ', action.payload);
+//     return state;
+//   },
+// });
+
+// export const dummyReducerAllHabbits = createReducer(initialState, (builder) =>{
+//   builder.addCase(action.updateCheckedHabbit, (state, action) => {
+//     console.log('state: ', state);
+//     console.log('action: ', action.payload);
+//     // return state;
+//     })})

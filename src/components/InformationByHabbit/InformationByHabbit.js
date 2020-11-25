@@ -11,7 +11,13 @@ import checkHabbit from '../../redux/operations/habbitOperation';
 
 class InformationByHabbit extends React.Component {
   state = { showDropDownMenu: false, showModal: false };
+
   btnchange = React.createRef();
+
+  // componentDidUpdate() {
+  //   console.log('!!!!!', this.props.habbitUser);
+  // }
+
   handlesShowDropDownMenu = (e) => {
     this.setState({
       showDropDownMenu: !this.state.showDropDownMenu,
@@ -19,9 +25,10 @@ class InformationByHabbit extends React.Component {
   };
 
   clickConfirmedDay = (e) => {
+    console.log(this.props.habbitUser);
     this.props.onCheckHabbit({
       confirmed: true,
-      idHabbit: '5fbad10a4e5958241c581f31',
+      idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
     });
   };
 
@@ -45,8 +52,7 @@ class InformationByHabbit extends React.Component {
     }
   };
   render() {
-    console.log('props: ', this.props);
-
+    console.log(this.props.habbitUser.sprintHabbit);
     return (
       <div className={style.canvas}>
         {
@@ -128,14 +134,7 @@ class InformationByHabbit extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  habbitUser: {
-    sprintHabbit: '+-++111111',
-    idChild: '5fb4f73805dba90ca4fbf464',
-    nameHabbit: 'Play football',
-    priceHabbit: 2,
-    ownerHabbits: 'Sanchez',
-    genderChild: 'male',
-  },
+  habbitUser: state.dummyReducerAllHabbits[0],
 }); // Заглушка - компонет InformationByHabbit получит пропсом обьект habbitUser
 // при рендере коллекции  всех привычек детей пользователя
 

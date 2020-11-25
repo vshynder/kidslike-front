@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import { loaderReducer } from './laoderReducer';
-import { dummyReducerAllHabbits, checkHabbits } from './habbitReducer';
+import { dummyReducerAllHabbits } from './allHabbitsReducer';
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
