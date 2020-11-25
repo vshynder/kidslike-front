@@ -10,13 +10,22 @@ import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
 import checkHabbit from '../../redux/operations/habbitOperation';
 
 class InformationByHabbit extends React.Component {
-  state = { showDropDownMenu: false, showModal: false };
+  state = { showDropDownMenu: false, showModal: false, complitedHabbit: false };
 
   btnchange = React.createRef();
 
-  // componentDidUpdate() {
-  //   console.log('!!!!!', this.props.habbitUser);
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      'sprintHabbit.include(1): ',
+      this.props.allHabbits[0].sprintHabbit.includes('1'),
+    );
+    if (
+      !this.props.allHabbits[0].sprintHabbit.includes('1') &&
+      prevState.complitedHabbit === false
+    ) {
+      this.setState({ complitedHabbit: true });
+    }
+  }
 
   handlesShowDropDownMenu = (e) => {
     this.setState({
@@ -25,14 +34,18 @@ class InformationByHabbit extends React.Component {
   };
 
   clickConfirmedDay = (e) => {
-    console.log(this.props.habbitUser);
     this.props.onCheckHabbit({
       confirmed: true,
       idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
     });
   };
 
-  // clickUnConfirmedDay = (e) => {};
+  clickUnConfirmedDay = (e) => {
+    this.props.onCheckHabbit({
+      confirmed: false,
+      idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
+    });
+  };
 
   handlesShowModal = (e) => {
     this.setState({
@@ -52,7 +65,7 @@ class InformationByHabbit extends React.Component {
     }
   };
   render() {
-    console.log(this.props.habbitUser.sprintHabbit);
+    console.log('complitedHabbit ', this.state.complitedHabbit);
     return (
       <div className={style.canvas}>
         {
@@ -83,7 +96,7 @@ class InformationByHabbit extends React.Component {
         )}
         <div
           className={
-            this.props.habbitUser.genderChild === 'male'
+            this.props.allHabbits[0].genderChild === 'male'
               ? style.avatar_boy
               : style.avatar_girl
           }
@@ -91,27 +104,34 @@ class InformationByHabbit extends React.Component {
           <img
             className={style.imgavatar}
             src={
-              this.props.habbitUser.genderChild === 'male'
+              this.props.allHabbits[0].genderChild === 'male'
                 ? image_boy
                 : image_girl
             }
             alt={'pic'}
           />
           <p className={style.name_hover}>
-            {this.props.habbitUser.ownerHabbits}
+            {this.props.allHabbits[0].ownerHabbits}
           </p>
         </div>
         <div>
-          <h3 className={style.title}>{this.props.habbitUser.nameHabbit}</h3>
-          <ul className={style.conteiner}>
-            {this.props.habbitUser.sprintHabbit.split('').map((el, idx) => {
-              return (
-                <li className={this.renderCheckSprintHabbit(el)} key={idx}>
-                  {this.props.habbitUser.priceHabbit}
-                </li>
-              );
-            })}
-          </ul>
+          <h3 className={style.title}>{this.props.allHabbits[0].nameHabbit}</h3>
+          {!this.state.complitedHabbit ? (
+            <ul className={style.conteiner}>
+              {this.props.allHabbits[0].sprintHabbit
+                .slice()
+                .split('')
+                .map((el, idx) => {
+                  return (
+                    <li className={this.renderCheckSprintHabbit(el)} key={idx}>
+                      {this.props.allHabbits[0].priceHabbit}
+                    </li>
+                  );
+                })}
+            </ul>
+          ) : (
+            <p className={style.complhabbit}>Complited!</p>
+          )}
           <p className={style.bonusx}>x1.5</p>
         </div>
         <div className={style.btn_wrap}>
@@ -123,7 +143,10 @@ class InformationByHabbit extends React.Component {
             >
               <img src={iconconfirm} alt={'pic'}></img>
             </button>
-            <button className={style.btnfailure}>
+            <button
+              className={style.btnfailure}
+              onClick={this.clickUnConfirmedDay}
+            >
               <img src={iconcross} alt={'pic'}></img>
             </button>
           </div>
@@ -134,8 +157,8 @@ class InformationByHabbit extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  habbitUser: state.dummyReducerAllHabbits[0],
-}); // Заглушка - компонет InformationByHabbit получит пропсом обьект habbitUser
+  allHabbits: state.dummyReducerAllHabbits,
+}); // Заглушка - компонет InformationByHabbit получит пропсом обьект allHabbits[0]
 // при рендере коллекции  всех привычек детей пользователя
 
 const mapDispatchToProps = { onCheckHabbit: checkHabbit };

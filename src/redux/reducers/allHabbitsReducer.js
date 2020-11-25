@@ -4,8 +4,9 @@ import action from '../actions/index';
 export const dummyReducerAllHabbits = (state = initialState, action) => {
   switch (action.type) {
     case 'check/habbit':
-      // let updatedState = [...state];
+      // const updatedState = [...state];
       // updatedState[0].sprintHabbit = '++++111111';
+
       let updatedState = state.map((el) => {
         if (el._id === action.payload.idHabbit) {
           el.sprintHabbit = action.payload.newSprintHabbit;

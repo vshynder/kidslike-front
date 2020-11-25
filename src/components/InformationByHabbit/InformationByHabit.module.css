@@ -143,6 +143,19 @@ body {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+
+.complhabbit {
+  padding: 0px 15px 0 15px;
+  width: 430px;
+  height: 40px;
+  font-family: Rubik, Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  line-height: 40px;
+  font-weight: 700;
+  color: #fd8548;
+  text-align: center;
+}
+
 .title {
   padding-left: 20px;
   padding-bottom: 10px;
