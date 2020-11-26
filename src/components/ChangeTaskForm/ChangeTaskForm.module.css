@@ -115,14 +115,13 @@
   cursor: pointer;
 }
 
-.btnContainer__formBtnCansel{
-  border: 1px solid #BDBDBD;
+.btnContainer__formBtnCansel {
+  border: 1px solid #bdbdbd;
   background-color: #ffffff;
   color: #828282;
 }
 
-.btnContainer__formBtnAdd{
-
+.btnContainer__formBtnAdd {
 }
 
 /* .btnContainer__formBtn:first-child{
@@ -130,7 +129,7 @@
   } */
 
 .btnContainer__formBtn:hover {
-  background: #FFA273;
+  background: #ffa273;
 }
 .сhangeTaskForm__delete {
   margin-top: 20px;
@@ -206,8 +205,8 @@
     width: 100%;
   }
 
-  .btnContainer__formBtnCansel{
-    border: 1px solid #BDBDBD;
+  .btnContainer__formBtnCansel {
+    border: 1px solid #bdbdbd;
     background-color: #ffffff;
     color: #828282;
     grid-row: 1;
