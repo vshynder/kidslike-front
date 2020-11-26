@@ -55,6 +55,39 @@
   width: 100%;
 }
 
+.form__input[value] {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #333333;
+}
+
+.form_select {
+  position: relative;
+}
+
+.form__inputSelect {
+  position: absolute;
+  top: 40%;
+  right: 1%;
+}
+
+.formBalDay {
+  position: relative;
+  width: 170px;
+}
+
+.form__inputStar {
+  position: absolute;
+  top: 30%;
+  left: 13%;
+}
+
+.form_img {
+  padding-left: 50px;
+}
 .btnContainer {
   margin: 0 auto;
   margin-top: 40px;
@@ -82,13 +115,22 @@
   cursor: pointer;
 }
 
+.btnContainer__formBtnCansel{
+  border: 1px solid #BDBDBD;
+  background-color: #ffffff;
+  color: #828282;
+}
+
+.btnContainer__formBtnAdd{
+
+}
+
 /* .btnContainer__formBtn:first-child{
       margin-bottom: 15px;
   } */
 
 .btnContainer__formBtn:hover {
-  background: #ffdfcf;
-  color: #ff8626;
+  background: #FFA273;
 }
 .сhangeTaskForm__delete {
   margin-top: 20px;
@@ -130,6 +172,8 @@
   #wrapper {
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
+    max-width: 575px;
+    margin: 0 auto;
   }
   .siginUpTitel {
     padding-top: 50px;
@@ -138,10 +182,13 @@
   }
 
   .form {
+    width: 100%;
     margin: 0 auto;
-    width: 340px;
   }
-
+  .formMainContainer {
+    width: 320px;
+    margin: 0 auto;
+  }
   .form__titel {
     font-size: 12px;
     line-height: 14px;
@@ -157,5 +204,12 @@
 
   .btnContainer__formBtn {
     width: 100%;
+  }
+
+  .btnContainer__formBtnCansel{
+    border: 1px solid #BDBDBD;
+    background-color: #ffffff;
+    color: #828282;
+    grid-row: 1;
   }
 }
