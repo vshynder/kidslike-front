@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styles from './informItemByPresent.module.css';
 import defaultImage from '../../assets/informationByPresent/Group 299.png';
-import genderImage from '../../assets/informationByPresent/Group 292.png';
+import maleImage from '../../assets/informationByPresent/Group 292.png';
+import femaleImage from '../../assets/informationByPresent/Group 291.png';
 import subMenu_disable from '../../assets/informationByPresent/Group 280.svg';
 import subMenu_active from '../../assets/informationByPresent/Group 281.svg';
 
@@ -23,6 +24,7 @@ export default class InformItemByPresent extends Component {
   };
 
   render() {
+    const { gender, mainImage, name, cost } = this.props;
     const { display } = this.state;
     return (
       <ul className={styles.presentItem_container}>
@@ -56,18 +58,18 @@ export default class InformItemByPresent extends Component {
         <li className={styles.presentItem_images}>
           <img
             className={styles.presentItem_mainImage}
-            src={defaultImage}
+            src={mainImage === '' ? defaultImage : mainImage}
           ></img>
           <img
             className={styles.presentItem_genderImage}
-            src={genderImage}
+            src={gender === 'male' ? maleImage : femaleImage}
           ></img>
         </li>
         <li className={styles.presentItem_titleAndButton}>
           <div className={styles.presentItem_title}>
-            <p className={styles.presentItem_name}>Піца</p>
+            <p className={styles.presentItem_name}>{name}</p>
             <div className={styles.presentItem_block__cost}>
-              <p className={styles.presentItem_cost}>15</p>
+              <p className={styles.presentItem_cost}>{cost}</p>
             </div>
           </div>
           <div className={styles.presentItem_block__button}>
