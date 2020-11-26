@@ -3,7 +3,7 @@ import actions from '../actions/allHabbitsAction';
 
 const initialState = [
   {
-    sprintHabbit: '+++-+11111',
+    sprintHabbit: '++++-11111',
     _id: '5fbad10a4e5958241c581f31',
     idChild: '5fb7ac03930dc826c4b85a32',
     nameHabbit: 'Music Listen',
@@ -31,45 +31,45 @@ const initialState = [
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbfa76663ca7530b4aa09bd',
+    _id: '5fbfeffdd990eb2fa898f218',
     idChild: '5fb7c960558e331c400f46bb',
-    nameHabbit: 'TTT',
+    nameHabbit: 'QAZ',
     priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbfa76a63ca7530b4aa09be',
+    _id: '5fbff003d990eb2fa898f219',
     idChild: '5fb7c960558e331c400f46bb',
-    nameHabbit: 'NNN',
+    nameHabbit: 'WSX',
     priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbfa76e63ca7530b4aa09bf',
+    _id: '5fbff008d990eb2fa898f21a',
     idChild: '5fb7c960558e331c400f46bb',
-    nameHabbit: 'eret',
+    nameHabbit: 'WEDCSX',
     priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbfa77363ca7530b4aa09c0',
+    _id: '5fbff016d990eb2fa898f21b',
     idChild: '5fb7c960558e331c400f46bb',
-    nameHabbit: 'ererw',
+    nameHabbit: 'QWSX',
     priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbfa77663ca7530b4aa09c1',
+    _id: '5fbff01cd990eb2fa898f21c',
     idChild: '5fb7c960558e331c400f46bb',
-    nameHabbit: 'nnnn',
+    nameHabbit: 'CVFGR',
     priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
@@ -78,13 +78,11 @@ const initialState = [
 
 export const dummyReducerAllHabbits = createReducer(initialState, {
   [actions.updateCheckedSuccess]: (state, action) => {
-    state.map((el) => {
-      if (el._id === action.payload.idHabbit) {
-        el.sprintHabbit = action.payload.newSprintHabbit;
-        return el;
-      }
-      return el;
-    });
+    state.map((el) =>
+      el._id === action.payload.idHabbit
+        ? (el.sprintHabbit = action.payload.newSprintHabbit)
+        : el,
+    );
   },
 
   [actions.deletedSuccess]: (state, action) => {

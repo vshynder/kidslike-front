@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
   auth: addChildReducer.token, // Заглушка
-  dummyReducerAllHabbits, // Для тестирования логику нужно переиспользовать
+  dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
 });
 
 export default rootReducer;

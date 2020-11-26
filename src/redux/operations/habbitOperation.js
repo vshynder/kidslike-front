@@ -20,7 +20,6 @@ const checkHabbit = (value) => (dispatch, getState) => {
 
 const delHabbit = (value) => (dispatch, getState) => {
   dispatch(action.deletedRequest());
-  // dispatch(action.deletedSuccess({ idHabbit: value }));
 
   axios
     .delete('/api/habbits/delhabbit/' + value)
@@ -32,8 +31,8 @@ const delHabbit = (value) => (dispatch, getState) => {
 };
 
 const updateHabbit = (value) => (dispatch, getState) => {
-  console.log(value);
   dispatch(action.updRequest());
+
   axios
     .patch('/api/habbits/updatehabbit', value)
     .then((response) => {

@@ -1,6 +1,3 @@
-body {
-  background-color: #e3f8fc;
-}
 .canvas {
   position: relative;
   box-sizing: border-box;
@@ -219,5 +216,15 @@ body {
   }
   .bonusx {
     padding-right: 10px;
+  }
+  .complhabbit {
+    width: 254px;
+    height: 27px;
+    font-family: Rubik, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #fd8548;
+    text-align: center;
   }
 }

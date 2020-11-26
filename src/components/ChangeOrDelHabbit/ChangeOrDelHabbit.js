@@ -5,7 +5,7 @@ import habbitOperation from '../../redux/operations/habbitOperation';
 
 class ChangeOrDelHabbit extends React.Component {
   refModalmini = React.createRef();
-  idHabbit = '5fbfa76a63ca7530b4aa09be'; // Заглушка для удаления хеббита
+  idHabbit = '5fbff01cd990eb2fa898f21c'; // Заглушка для удаления хеббита
 
   componentDidMount() {
     document.addEventListener('click', this.onClickOuterModal, false);
@@ -32,7 +32,7 @@ class ChangeOrDelHabbit extends React.Component {
   render() {
     return (
       <div ref={this.refModalmini} className={styles.modalmini}>
-        <button
+        {/* <button
           className={styles.btn__modal}
           onClick={(e) =>
             this.props.updateHabbit({
@@ -43,10 +43,10 @@ class ChangeOrDelHabbit extends React.Component {
           }
         >
           testUpdHabb
-        </button>
-        {/* <button className={styles.btn__modal} onClick={this.showHideModal}>
-          Редагувати
         </button> */}
+        <button className={styles.btn__modal} onClick={this.showHideModal}>
+          Редагувати
+        </button>
         <button
           className={styles.btn__modal}
           onClick={(e) => this.props.delHabbit(this.idHabbit)}
