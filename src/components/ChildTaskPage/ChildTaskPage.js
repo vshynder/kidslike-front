@@ -22,16 +22,8 @@ export default class MainPosition extends Component {
         >
           {(matches) => (
             <Fragment>
-              {matches.small && (
-                <div className="familynfo">
-                  <div className="tasksinfo"></div>
-                </div>
-              )}
-              {matches.medium && (
-                <div className="familynfo">
-                  <div className="tasksinfo"></div>
-                </div>
-              )}
+              {matches.small && <div className="tasksinfo"></div>}
+              {matches.medium && <div className="tasksinfo"></div>}
               {matches.large && (
                 <div className="main">
                   <div className="familynfo">
