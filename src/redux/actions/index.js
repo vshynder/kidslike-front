@@ -1,7 +1,10 @@
 // импортим все экшнс сюда
 import addChildActions from '../../components/AddChildForm/AddChildActions';
-import updateCheckedHabbit from './allHabbitsAction';
+import habbit from './allHabbitsAction';
 
-const actions = { addChildActions, updateCheckedHabbit };
+const actions = {
+  addChildActions,
+  habbit,
+};
 
 export default actions;

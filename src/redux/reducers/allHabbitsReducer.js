@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import action from '../actions/index';
+import actions from '../actions/allHabbitsAction';
 
 const initialState = [
   {
-    sprintHabbit: '1111111111',
+    sprintHabbit: '+++-+11111',
     _id: '5fbad10a4e5958241c581f31',
     idChild: '5fb7ac03930dc826c4b85a32',
     nameHabbit: 'Music Listen',
@@ -23,54 +23,62 @@ const initialState = [
   {
     sprintHabbit: '1111111111',
     _id: '5fbac96cefb21b2698e84a9c',
-    nameHabbit: 'Relax',
-    priceHabbit: 754,
+    nameHabbit: 'RelaxSuper',
+    priceHabbit: 44,
     idChild: '5fb7c960558e331c400f46bb',
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbacb885233e71d54b2f68b',
-    nameHabbit: 'Fifa',
-    priceHabbit: 55,
+    _id: '5fbfa76663ca7530b4aa09bd',
     idChild: '5fb7c960558e331c400f46bb',
+    nameHabbit: 'TTT',
+    priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbace0767697121ec6857a1',
-    nameHabbit: 'GTA5',
-    priceHabbit: 8,
+    _id: '5fbfa76a63ca7530b4aa09be',
     idChild: '5fb7c960558e331c400f46bb',
+    nameHabbit: 'NNN',
+    priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbacebc67697121ec6857a3',
-    nameHabbit: 'Music2',
-    priceHabbit: 8,
+    _id: '5fbfa76e63ca7530b4aa09bf',
     idChild: '5fb7c960558e331c400f46bb',
+    nameHabbit: 'eret',
+    priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
   {
     sprintHabbit: '1111111111',
-    _id: '5fbbd7558bcd602db4291673',
-    nameHabbit: 'PS4',
-    priceHabbit: 8,
+    _id: '5fbfa77363ca7530b4aa09c0',
     idChild: '5fb7c960558e331c400f46bb',
+    nameHabbit: 'ererw',
+    priceHabbit: 3,
+    ownerHabbits: 'Masha',
+    genderChild: 'female',
+  },
+  {
+    sprintHabbit: '1111111111',
+    _id: '5fbfa77663ca7530b4aa09c1',
+    idChild: '5fb7c960558e331c400f46bb',
+    nameHabbit: 'nnnn',
+    priceHabbit: 3,
     ownerHabbits: 'Masha',
     genderChild: 'female',
   },
 ];
 
 export const dummyReducerAllHabbits = createReducer(initialState, {
-  [action.updateCheckedHabbit]: (state, action) => {
-    let updatedState = [...state];
-    updatedState.map((el) => {
+  [actions.updateCheckedSuccess]: (state, action) => {
+    state.map((el) => {
       if (el._id === action.payload.idHabbit) {
         el.sprintHabbit = action.payload.newSprintHabbit;
         return el;
@@ -78,25 +86,8 @@ export const dummyReducerAllHabbits = createReducer(initialState, {
       return el;
     });
   },
+
+  [actions.deletedSuccess]: (state, action) => {
+    return state.filter((el) => el._id !== action.payload.idHabbit);
+  },
 });
-
-// export const dummyReducerAllHabbits = (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'check/habbit':
-//       // let updatedState = [...state];
-
-//       let updatedState = [...state];
-//       updatedState.map((el) => {
-//         if (el._id === action.payload.idHabbit) {
-//           el.sprintHabbit = action.payload.newSprintHabbit;
-
-//           return el;
-//         }
-//         return el;
-//       });
-
-//       return updatedState;
-//     default:
-//       return state;
-//   }
-// };

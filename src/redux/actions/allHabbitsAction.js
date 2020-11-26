@@ -1,5 +1,25 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const updateCheckedHabbit = createAction('check/habbit');
+const updateCheckedSuccess = createAction('check/habbitSuccess');
+const updateCheckedRequest = createAction('check/habbitRequest');
+const updateCheckedError = createAction('check/habbitError');
 
-export default updateCheckedHabbit;
+const deletedRequest = createAction('delete/habbitRequest');
+const deletedSuccess = createAction('delete/habbitSuccess');
+const deletedError = createAction('delete/habbitError');
+
+const updSuccess = createAction('update/habbitSuccess');
+const updRequest = createAction('update/habbitRequest');
+const updError = createAction('update/habbitError');
+
+export default {
+  updateCheckedSuccess,
+  updateCheckedRequest,
+  updateCheckedError,
+  deletedRequest,
+  deletedSuccess,
+  deletedError,
+  updSuccess,
+  updRequest,
+  updError,
+};
