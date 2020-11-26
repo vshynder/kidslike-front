@@ -28,7 +28,7 @@ const {
   form_img,
   form_select,
   btnContainer__formBtnCansel,
-  btnContainer__formBtnAdd
+  btnContainer__formBtnAdd,
   // form__inputSelect
 } = styles;
 
@@ -144,7 +144,10 @@ function ChangeTaskForm() {
               >
                 Зберегти
               </button>
-              <button className={`${btnContainer__formBtn} ${btnContainer__formBtnCansel}`} type="button">
+              <button
+                className={`${btnContainer__formBtn} ${btnContainer__formBtnCansel}`}
+                type="button"
+              >
                 Відміна
               </button>
             </div>
