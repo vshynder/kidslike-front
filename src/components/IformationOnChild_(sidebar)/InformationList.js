@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import childrenSelectors from '../../redux/selectors/ChildSelectors';
 
 const InformationList = ({ childrens }) => {
-  console.log(childrens);
   return (
     <div className={style.childrenSidebar_container}>
       <div className={style.childrenSidebar_header}>
@@ -20,11 +19,23 @@ const InformationList = ({ childrens }) => {
               male={children.gender}
               name={children.name}
               balance={children.balance}
-              firstTask={children.tasks[0] ? children.tasks[0].name : ''}
+              firstTask={
+                children.tasks[0]
+                  ? children.tasks[0].name.length > 22
+                    ? `${children.tasks[0].name.slice(0, 22)}...`
+                    : children.tasks[0].name
+                  : ''
+              }
               costFirstTask={
                 children.tasks[0] ? `+ ${children.tasks[0].cost}` : ''
               }
-              secondTask={children.tasks[1] ? children.tasks[1].name : ''}
+              secondTask={
+                children.tasks[1]
+                  ? children.tasks[1].name.length > 22
+                    ? `${children.tasks[1].name.slice(0, 22)}...`
+                    : children.tasks[1].name
+                  : ''
+              }
               costSecondTask={
                 children.tasks[1] ? `+ ${children.tasks[1].cost}` : ''
               }
