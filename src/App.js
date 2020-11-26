@@ -11,6 +11,7 @@ import './assets/basic.css';
 
 const App = () => (
   <Switch>
+    {/* <InformationByHabbit /> */}
     <PrivateRouter path="/main" exact component={Main} />
     <PrivateRouter path="/presents" exact component={PresentPage} />
     <PrivateRouter path="/tasks" exact component={ChildTaskPage} />
