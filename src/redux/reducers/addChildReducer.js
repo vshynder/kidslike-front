@@ -27,9 +27,9 @@ const childrens = createReducer(fakeChildrens, {
   ],
 });
 
-const token = createReducer({ accessToken: '' }, {}); //заглушка, сюда вставлять accessToken
+//const token = createReducer({ accessToken: '' }, {}); //заглушка, сюда вставлять accessToken
 
 export default {
   childrens,
-  token,
+  //token,
 };

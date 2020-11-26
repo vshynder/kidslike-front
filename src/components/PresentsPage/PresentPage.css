@@ -18,17 +18,13 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  border: 3px solid black;
 }
 
 .main {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-.extendMain {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
 }
 
 .familynfo {
@@ -38,19 +34,11 @@ body {
   text-align: center;
 }
 
-.habitsInfo {
+.presents {
+  display: block;
   width: 280px;
-
-  display: block;
-  text-align: center;
-  /* border: 3px solid blue; */
-  padding: 2px 2px 2px 2px;
-}
-
-.tasksinfo {
-  display: block;
   text-align: end;
-  /* border: 3px solid green; */
+  border: 3px solid purple;
 }
 
 @media (min-width: 768px) {
@@ -62,13 +50,8 @@ body {
     width: 687px;
   }
 
-  .habitsInfo {
+  .presents {
     display: block;
-    width: 687px;
-  }
-
-  .tasksinfo {
-    display: none;
 
     width: 687px;
   }
@@ -76,8 +59,8 @@ body {
 
 @media (min-width: 1200px) {
   /* .container {
-    width: 1120px;
-  } */
+      width: 1120px;
+    } */
   .header {
     width: 1220px;
     margin-bottom: 50px;
@@ -92,12 +75,7 @@ body {
     width: 345px;
   }
 
-  .habitsInfo {
-    display: block;
-    width: 690px;
-  }
-
-  .tasksinfo {
+  .presents {
     display: block;
     width: 690px;
   }

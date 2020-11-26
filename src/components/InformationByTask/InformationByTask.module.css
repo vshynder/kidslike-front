@@ -1,0 +1,136 @@
+.container {
+  display: flex;
+  padding: 30px;
+  width: 690px;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 20px;
+}
+.firstSmallContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 255px;
+}
+.secondSmallContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 241px;
+}
+.childPhotoContainer {
+  background-color: #f9cada;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.userPhoto {
+  width: 49px;
+}
+.taskName {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.taskCostText {
+  font-size: 22px;
+}
+.taskDayText {
+  font-size: 22px;
+}
+.costContainer {
+  display: flex;
+}
+.taskCostStar {
+  margin-right: 5px;
+}
+.greyTitle {
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.timeContainer {
+  text-align: right;
+}
+.confirmationContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 95px;
+}
+.confirmationButton {
+  border-radius: 15px;
+  border: 2px solid #ffbe9d;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+}
+.confirmationButton:hover {
+  background-color: #ffdfcf;
+  border-color: #ffdfcf;
+}
+.additionButton {
+  background-color: #fff;
+  border: none;
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  color: #bdbdbd;
+  font-size: 15px;
+}
+.additionButton:hover {
+  color: #333333;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 280px;
+    padding: 15px;
+  }
+  .firstSmallContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin-bottom: 15px;
+  }
+  .secondSmallContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+  }
+  .taskNameAndCostContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 210px;
+    align-items: center;
+  }
+  .taskCostStar {
+    height: 18px;
+  }
+  .costContainer {
+    align-items: center;
+    height: 30px;
+  }
+  .taskName {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  .childPhotoContainer {
+    width: 30px;
+    height: 30px;
+  }
+  .userPhoto {
+    width: 20px;
+  }
+  .taskCostText {
+    font-size: 18px;
+  }
+  .timeContainer {
+    text-align: left;
+  }
+  .additionButton {
+    top: 5px;
+    right: 10px;
+  }
+}
