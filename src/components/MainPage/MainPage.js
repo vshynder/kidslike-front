@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Media from 'react-media';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
+import InformationByHabbit from '../InformationByHabbit/InformationByHabbit';
+import InformationByTask from '../InformationByTask';
 import './MainPage.css';
 
 export default class MainPosition extends Component {
@@ -36,9 +38,13 @@ export default class MainPosition extends Component {
                   <div className="familynfo">
                     <Slider></Slider>
                   </div>
-                  <div className="habitsInfo"></div>
+                  <div className="habitsInfo">
+                    <InformationByHabbit></InformationByHabbit>
+                  </div>
                   <div className="extendMain">
-                    <div className="tasksinfo">oops</div>
+                    <div className="tasksinfo">
+                      <InformationByTask></InformationByTask>
+                    </div>
                   </div>
                 </div>
               )}
