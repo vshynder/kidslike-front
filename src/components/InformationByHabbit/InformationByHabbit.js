@@ -6,7 +6,7 @@ import iconconfirm from './img/Vector_103_check_mark.svg';
 import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
-import checkHabbit from '../../redux/operations/habbitOperation';
+import habbitOperation from '../../redux/operations/habbitOperation';
 
 // import ChangeHabbitForm from '../ChangeHabbitForm/index'; // Иморт формы редактирования
 // import Modal from '../'; // Модальное окно
@@ -163,7 +163,7 @@ const mapStateToProps = (state) => ({
 }); // Заглушка - компонет InformationByHabbit получит пропсом обьект allHabbits[0]
 // при рендере коллекции  всех привычек детей пользователя
 
-const mapDispatchToProps = { onCheckHabbit: checkHabbit };
+const mapDispatchToProps = { onCheckHabbit: habbitOperation.checkHabbit };
 
 export default connect(
   mapStateToProps,

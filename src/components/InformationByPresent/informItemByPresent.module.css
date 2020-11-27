@@ -92,6 +92,7 @@
 
 .presentItem_mainImage {
   align-self: center;
+  border-radius: 20px;
   width: 260px;
   height: 147;
   z-index: 1;
@@ -204,6 +205,8 @@
 
   .presentItem_cost {
     padding-left: 43px;
+    align-self: flex-start;
+    text-align: start;
   }
 
   .presentItem_cost::before {
