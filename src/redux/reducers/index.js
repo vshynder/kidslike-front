@@ -7,7 +7,7 @@ import getAllPresents from './allPresentsReducer';
 const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
-  auth: addChildReducer.token, // Заглушка
+  //auth: addChildReducer.token, // Заглушка
   dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
   presents: getAllPresents.getPresents,
 });

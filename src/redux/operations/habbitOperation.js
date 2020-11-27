@@ -36,8 +36,13 @@ const updateHabbit = (value) => (dispatch, getState) => {
   axios
     .patch('/api/habbits/updatehabbit', value)
     .then((response) => {
-      console.log('response: ', response);
-      dispatch(action.updSuccess(value));
+      console.log(response, value.idHabbit);
+      dispatch(
+        action.updSuccess({
+          data: { ...response.data },
+          changeId: value.idHabbit,
+        }),
+      );
     })
     .catch((err) => dispatch(action.updError(err)));
 };
