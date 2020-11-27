@@ -27,7 +27,6 @@ export default class MainPosition extends Component {
           </Modal>
         )}
 
-        <button onClick={this.toggleModal}>push me</button>
         <Media
           queries={{
             small: '(max-width: 767px)',
@@ -39,18 +38,18 @@ export default class MainPosition extends Component {
             <Fragment>
               {matches.small && (
                 <div className="familynfo">
-                  <Slider></Slider>
+                  <Slider onClick={this.toggleModal}></Slider>
                 </div>
               )}
               {matches.medium && (
                 <div className="familynfo">
-                  <Slider></Slider>
+                  <Slider onClick={this.toggleModal}></Slider>
                 </div>
               )}
               {matches.large && (
                 <div className="main">
                   <div className="familynfo">
-                    <Slider></Slider>
+                    <Slider onClick={this.toggleModal}></Slider>
                   </div>
                   <div className="habitsInfo">
                     <InformationByHabbit></InformationByHabbit>

@@ -5,7 +5,7 @@ import style from './informationList.module.css';
 import { connect } from 'react-redux';
 import childrenSelectors from '../../redux/selectors/ChildSelectors';
 
-const InformationList = ({ childrens }) => {
+const InformationList = ({ childrens, onClick }) => {
   return (
     <div className={style.childrenSidebar_container}>
       <div className={style.childrenSidebar_header}>
@@ -43,7 +43,10 @@ const InformationList = ({ childrens }) => {
           </li>
         ))}
       </ul>
-      <button className={style.childrenSidebar_button}>Додати дитину +</button>
+
+      <button onClick={onClick} className={style.childrenSidebar_button}>
+        Додати дитину +
+      </button>
     </div>
   );
 };
