@@ -38,7 +38,7 @@
 }
 .avatar_girl {
   composes: avatar;
-  background-image: url(./img/Ellipse_pink.svg) no-repeat center;
+  background: url(./img/Ellipse_pink.svg) no-repeat center;
 }
 
 .imgavatar {
@@ -94,6 +94,7 @@
 }
 
 .conteiner {
+  list-style: none;
   padding: 0px 15px 0 15px;
   display: flex;
 }

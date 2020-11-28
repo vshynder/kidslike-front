@@ -39,14 +39,14 @@ class InformationByHabbit extends React.Component {
   clickConfirmedDay = (e) => {
     this.props.onCheckHabbit({
       confirmed: true,
-      idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
+      idHabbit: this.props.allHabbits[0]._id,
     });
   };
 
   clickUnConfirmedDay = (e) => {
     this.props.onCheckHabbit({
       confirmed: false,
-      idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
+      idHabbit: this.props.allHabbits[0]._id,
     });
   };
 
@@ -76,11 +76,11 @@ class InformationByHabbit extends React.Component {
             <ChangeHabbitForm  forCloseModal={this.handlesShowModal}/>
           </Modal>
         )} */
-          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
+          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА ДЛЯ ChangeHabbitForm
             <div style={{ position: 'absolute', backgroundColor: '#ddd' }}>
-              MODAL WINDOW DUMMY
+              ЗАГЛУШКА МОДАЛЬНОГО ОКНА
             </div>
-          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
+          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА ДЛЯ ChangeHabbitForm
         }
         <button
           ref={this.btnchange}
@@ -94,8 +94,10 @@ class InformationByHabbit extends React.Component {
             onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
             onHandlesShowModal={this.handlesShowModal}
             refBtnChange={this.btnchange.current}
+            idHabbit={this.props.allHabbits[0]._id}
           />
         )}
+
         <div
           className={
             this.props.allHabbits[0].genderChild === 'male'
@@ -163,7 +165,10 @@ const mapStateToProps = (state) => ({
 }); // Заглушка - компонет InformationByHabbit получит пропсом обьект allHabbits[0]
 // при рендере коллекции  всех привычек детей пользователя
 
-const mapDispatchToProps = { onCheckHabbit: habbitOperation.checkHabbit };
+const mapDispatchToProps = {
+  onCheckHabbit: habbitOperation.checkHabbit,
+  updateHabbit: habbitOperation.updateHabbit, // ДЛЯ ФОРМЫ ИЗМЕНЕНИЯ Хеббита, которая будет подключена
+};
 
 export default connect(
   mapStateToProps,
