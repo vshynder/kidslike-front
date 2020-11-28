@@ -20,6 +20,7 @@ const InformationListByPresent = ({ presents }) => {
         {presents.map((present) => (
           <li className={style.presentItem_item} key={present.id}>
             <InformItemByPresent
+              presentId={present.id}
               gender={present.gender}
               cost={present.cost}
               name={

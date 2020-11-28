@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Modal from '../../components/Modal/Modal';
+import ChangeFormPresent from '../../components/ChangePresentForm/ChangePresentForm';
 import styles from './informItemByPresent.module.css';
 import defaultImage from '../../assets/informationByPresent/Group 299.png';
 import maleImage from '../../assets/informationByPresent/Group 292.png';
@@ -9,6 +11,7 @@ import subMenu_active from '../../assets/informationByPresent/Group 281.svg';
 export default class InformItemByPresent extends Component {
   state = {
     display: 'none',
+    modal: false,
   };
 
   onChangeSubmenu = () => {
@@ -23,10 +26,24 @@ export default class InformItemByPresent extends Component {
     }
   };
 
+  showModal = () => {
+      this.setState ({
+          modal: true
+      })
+  }
+
+  onClose = () => {
+      this.setState({
+          modal: false
+      })
+  }
+
   render() {
-    const { gender, mainImage, name, cost } = this.props;
-    const { display } = this.state;
+    const { gender, mainImage, name, cost, presentId } = this.props;
+    const { display, modal } = this.state;
     return (
+    <>
+        {modal && (<Modal children={<ChangeFormPresent />} onClose={this.onClose}/>)}
       <ul className={styles.presentItem_container}>
         <li className={styles.presentItem_changePresent}>
           <button
@@ -43,7 +60,7 @@ export default class InformItemByPresent extends Component {
             >
               <li className={styles.presentItem_subMenu__angle}></li>
               <li>
-                <button className={styles.presentItem_subMenu__button}>
+                <button className={styles.presentItem_subMenu__button} onClick={this.showModal}>
                   Редагувати
                 </button>
               </li>
@@ -77,6 +94,7 @@ export default class InformItemByPresent extends Component {
           </div>
         </li>
       </ul>
+      </>
     );
   }
 }
