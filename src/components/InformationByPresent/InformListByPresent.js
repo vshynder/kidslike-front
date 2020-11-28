@@ -3,7 +3,7 @@ import InformItemByPresent from './InformItemByPresent';
 import present from '../../assets/informationByPresent/image 16.svg';
 import style from './informListByPresent.module.css';
 import { connect } from 'react-redux';
-import presentSelector from '../../redux/selectors/PresentsSelector';
+import presentSelector from '../../redux/selectors/presentsSelector';
 
 const InformationListByPresent = ({ presents }) => {
   return (

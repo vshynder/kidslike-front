@@ -2,14 +2,14 @@ import { combineReducers } from 'redux';
 import { loaderReducer } from './laoderReducer';
 import { dummyReducerAllHabbits } from './allHabbitsReducer';
 import addChildReducer from './addChildReducer';
-import getAllPresents from './allPresentsReducer';
+import getAllPresents from './allPresentReducer';
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
-  auth: addChildReducer.token, // Заглушка
+  //auth: addChildReducer.token, // Заглушка
   dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
-  presents: getAllPresents.getPresents,
+  presents: getAllPresents,
 });
 
 export default rootReducer;
