@@ -8,6 +8,7 @@ import Main from './components/MainPage/MainPage';
 import ChildTaskPage from './components/ChildTaskPage/ChildTaskPage';
 import PrivateRouter from './components/MainPage/PrivateRoutes';
 import PresentPage from './components/PresentsPage/PresentPage';
+// import GoogleFacebookLogIn from './components/GoogleFacebookLogIn';
 
 import './assets/fonts.css';
 import './assets/basic.css';
@@ -15,6 +16,7 @@ import './assets/basic.css';
 const App = () => (
   <Switch>
     <Route path="/" exact component={AuthPage} />
+    {/* <Route path="/login" exact component={GoogleFacebookLogIn} /> */}
     <Route path="/register" component={SiginUpPage} />
     <PrivateRouter path="/main" exact component={Main} />
     <PrivateRouter path="/presents" exact component={PresentPage} />
