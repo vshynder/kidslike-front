@@ -2,7 +2,7 @@ import axios from 'axios';
 import authActions from '../actions/authActions';
 // axios.defaults.baseURL = 'https://kidslike-back-end.herokuapp.com';
 
-const setAuthToken = token => {
+const setAuthToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -26,4 +26,4 @@ const registrationUser = (user) => (dispatch) => {
     .catch((error) => dispatch(authActions.registrationUserError(error)));
 };
 
-export default { loginUser, registrationUser};
+export default { loginUser, registrationUser };
