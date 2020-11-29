@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Media from 'react-media';
+import { connect } from 'react-redux';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
 import InformationByHabbit from '../InformationByHabbit/InformationByHabbit';
@@ -7,8 +8,9 @@ import InformationByTask from '../InformationByTask';
 import './MainPage.css';
 import Modal from '../Modal/Modal';
 import Form from '../AddChildForm/Form';
+import Header from '../Header';
 
-export default class MainPosition extends Component {
+class MainPosition extends Component {
   state = { modal: false };
 
   toggleModal = () => {
@@ -20,7 +22,9 @@ export default class MainPosition extends Component {
 
     return (
       <div className="container">
-        <header className="header"></header>
+        <header className="header">
+          <Header></Header>
+        </header>
         {modal && (
           <Modal onClose={this.toggleModal}>
             <Form onClick={Form}></Form>
@@ -68,3 +72,10 @@ export default class MainPosition extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  tasks: state.tasks,
+});
+
+// export default connect(mapStateToProps, null)(MainPosition);
+export default MainPosition;
