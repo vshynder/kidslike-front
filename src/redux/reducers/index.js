@@ -3,11 +3,15 @@ import { loaderReducer } from './laoderReducer';
 import { dummyReducerAllHabbits } from './allHabbitsReducer';
 import addChildReducer from './addChildReducer';
 import getAllPresents from './allPresentReducer';
+import { persistReducer } from 'redux-persist';
+import authReducer from './authReducer';
+
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
-  //auth: addChildReducer.token, // Заглушка
+  auth: persistReducer(authReducer),
+  // auth: addChildReducer.token, // Заглушка
   dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
   presents: getAllPresents,
 });
