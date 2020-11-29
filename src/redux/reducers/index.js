@@ -4,14 +4,15 @@ import { dummyReducerAllHabbits } from './allHabbitsReducer';
 import addChildReducer from './addChildReducer';
 import getAllPresents from './allPresentReducer';
 import { authReducer } from './authReducer';
+import { persistReducer } from 'redux-persist';
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
-  //auth: addChildReducer.token, // Заглушка
+  // auth: addChildReducer.token, // Заглушка
   dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
   presents: getAllPresents,
-  user: authReducer,
+  user: authReducer
 });
 
 export default rootReducer;
