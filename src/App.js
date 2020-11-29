@@ -9,11 +9,13 @@ import ChildTaskPage from './components/ChildTaskPage/ChildTaskPage';
 import PrivateRouter from './components/MainPage/PrivateRoutes';
 import PresentPage from './components/PresentsPage/PresentPage';
 
+import Header from './components/Header';
 import './assets/fonts.css';
 import './assets/basic.css';
 
 const App = () => (
   <Switch>
+    <Header />
     <Route path="/" exact component={AuthPage} />
     <Route path="/register" component={SiginUpPage} />
     <PrivateRouter path="/main" exact component={Main} />
