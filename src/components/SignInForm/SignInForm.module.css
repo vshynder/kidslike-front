@@ -1,0 +1,186 @@
+
+.loginPage {
+  max-width: 320px;
+  height: 634px;
+  margin: 0, auto;
+  background: #ffffff;
+}
+
+.signInText {
+  position: absolute;
+  width: 280px;
+  height: 24px;
+  left: 20px;
+  top: 104px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  color: #333333;
+}
+
+.loginContainer {
+  position: absolute;
+  top: 178px;
+  left: 20px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginContainer label {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #828282;
+}
+
+.loginContainer input {
+  width: 280px;
+  height: 44px;
+  left: 20px;
+  border: 1px solid #bdbdbd;
+  outline: none;
+  font-family: Rubik;
+  font-size: 19px;
+  padding: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+
+.btnContainer {
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 280px;
+}
+
+.btnContainer p {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  text-decoration: none;
+}
+
+.btnContainer button {
+  position: absolute;
+  border: none;
+  outline: none;
+  width: 220px;
+  height: 44px;
+  left: 25px;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background: #ff8626;
+  border-radius: 20px;
+}
+
+.btnContainer a {
+  text-decoration: none;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.google {
+  color: #EC4541;
+  border: 1px solid #EC4541;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.google:hover {
+  color: #FFFFFF;
+  background: #EC4541;
+}
+
+.facebook:hover {
+  color: #FFFFFF;
+  background: #305B94;
+}
+
+.facebook {
+  color: #305B94;
+  border: 1px solid #305B94;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.signUpText {
+  width: 276px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #828282;
+}
+
+.signUpLink:hover {
+  border-bottom: 1px solid #828282;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .loginPage {
+    max-width: 575px;
+    height: 550px;
+    background: #ffffff;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+
+  .signInText {
+    padding-top: 50px;
+    font-size: 26px;
+    line-height: 31px;
+  }
+
+  .loginContainer {
+    position: absolute;
+    top: 131px;
+    left: 117px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loginContainer input {
+    width: 340px;
+    left: 117px;
+  }
+
+  .btnContainer {
+    margin-top: 30px;
+    width: 340px;
+  }
+
+  .btnContainer button {
+    left: 117px;
+  }
+
+  .signUpText {
+    margin-bottom: 60px;
+  }
+}
