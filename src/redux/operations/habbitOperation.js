@@ -1,7 +1,7 @@
 import action from '../actions/allHabbitsAction';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:1717';
+// axios.defaults.baseURL = 'http://localhost:1717';
 
 const checkHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updateCheckedRequest());

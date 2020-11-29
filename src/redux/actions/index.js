@@ -1,12 +1,12 @@
 // импортим все экшнс сюда
 import addChildActions from '../../components/AddChildForm/AddChildActions';
 import habbit from './allHabbitsAction';
-import authAction from './authAction';
+import auth from './authActions';
 
 const actions = {
   addChildActions,
   habbit,
-  authAction,
+  auth,
 };
 
 export default actions;

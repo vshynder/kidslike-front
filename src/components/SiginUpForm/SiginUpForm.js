@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import {registration} from '../../redux/operations/authOperation';
+import authOperations from '../../redux/operations/authOperations';
 
 // Styles
 import styles from './SiginUpForm.module.css';
@@ -49,8 +49,8 @@ function SiginUpForm() {
         validationSchema={RegistrationSchema}
         onSubmit={(values, { resetForm }) => {
           setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
-            dispatch(registration(values));
+            // console.log(JSON.stringify(values, null, 2));
+            dispatch(authOperations.registrationUser(values));
             resetForm();
           }, 400);
         }}
