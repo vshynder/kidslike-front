@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Media from 'react-media';
+import Header from '../Header';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
 
@@ -11,7 +12,9 @@ export default class MainPosition extends Component {
   render() {
     return (
       <div className="container">
-        <header className="header"></header>
+        <header className="header">
+          <Header />
+        </header>
 
         <Media
           queries={{
