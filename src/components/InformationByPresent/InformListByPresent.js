@@ -20,7 +20,7 @@ const InformationListByPresent = ({ presents }) => {
         {presents.map((present) => (
           <li className={style.presentItem_item} key={present.id}>
             <InformItemByPresent
-              childId={present.childId}
+              childId={present._id}
               gender={present.gender}
               bal={present.bal}
               title={
