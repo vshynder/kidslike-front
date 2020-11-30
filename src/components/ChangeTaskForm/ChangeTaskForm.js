@@ -32,7 +32,7 @@ const {
   // form__inputSelect
 } = styles;
 
-function ChangeTaskForm() {
+function ChangeTaskForm({ onClose }) {
   const handleDeleteTask = () => {
     console.log('deleting task...');
   };
@@ -147,6 +147,7 @@ function ChangeTaskForm() {
               <button
                 className={`${btnContainer__formBtn} ${btnContainer__formBtnCansel}`}
                 type="button"
+                onClick={onClose}
               >
                 Відміна
               </button>
