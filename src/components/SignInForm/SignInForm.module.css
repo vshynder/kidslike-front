@@ -1,4 +1,3 @@
-
 .loginPage {
   max-width: 320px;
   height: 634px;
@@ -48,7 +47,6 @@
   font-family: Rubik;
   font-size: 19px;
   padding: 10px;
-  color: #fff;
   letter-spacing: 1px;
   box-sizing: border-box;
   border-radius: 15px;
@@ -101,25 +99,25 @@
 }
 
 .google {
-  color: #EC4541;
-  border: 1px solid #EC4541;
+  color: #ec4541;
+  border: 1px solid #ec4541;
   box-sizing: border-box;
   border-radius: 20px;
 }
 
 .google:hover {
-  color: #FFFFFF;
-  background: #EC4541;
+  color: #ffffff;
+  background: #ec4541;
 }
 
 .facebook:hover {
-  color: #FFFFFF;
-  background: #305B94;
+  color: #ffffff;
+  background: #305b94;
 }
 
 .facebook {
-  color: #305B94;
-  border: 1px solid #305B94;
+  color: #305b94;
+  border: 1px solid #305b94;
   box-sizing: border-box;
   border-radius: 20px;
 }

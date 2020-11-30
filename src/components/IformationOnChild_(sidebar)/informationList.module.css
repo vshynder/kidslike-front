@@ -85,9 +85,10 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   .childrenSidebar_container {
     width: 345px;
+    /* margin-left: 35px; */
   }
 
   .childrenSidebar_childrens {

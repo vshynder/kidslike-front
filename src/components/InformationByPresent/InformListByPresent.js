@@ -3,7 +3,7 @@ import InformItemByPresent from './InformItemByPresent';
 import present from '../../assets/informationByPresent/image 16.svg';
 import style from './informListByPresent.module.css';
 import { connect } from 'react-redux';
-import presentSelector from '../../redux/selectors/presentsSelector';
+import presentSelector from '../../redux/selectors/presentSelector';
 
 const InformationListByPresent = ({ presents }) => {
   return (
@@ -20,14 +20,15 @@ const InformationListByPresent = ({ presents }) => {
         {presents.map((present) => (
           <li className={style.presentItem_item} key={present.id}>
             <InformItemByPresent
+              childId={present._id}
               gender={present.gender}
-              cost={present.cost}
-              name={
-                present.name.length > 13
+              bal={present.bal}
+              title={
+                present.title.length > 13
                   ? `${present.name.slice(0, 13)}...`
-                  : present.name
+                  : present.title
               }
-              mainImage={present.mainImage}
+              image={present.image}
             />
           </li>
         ))}

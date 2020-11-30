@@ -60,7 +60,7 @@ class MainPosition extends Component {
         <Media
           queries={{
             small: '(max-width: 767px)',
-            medium: '(min-width: 768px) and (max-width: 1249px)',
+            medium: '(min-width: 768px) and (max-width: 1250px)',
             large: '(min-width: 1250px)',
           }}
         >

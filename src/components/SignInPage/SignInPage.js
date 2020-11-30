@@ -1,19 +1,19 @@
-import React from "react";
-import SignInForm from "../SignInForm/SignInForm";
-import styles from "./SignInPage.module.css";
+import React from 'react';
+import SignInForm from '../SignInForm/SignInForm';
+import styles from './SignInPage.module.css';
 
 const {
   container,
   signIn,
   logo,
-  SignInForm,
+  signInForm,
   pageTitel,
   loginDesctop,
   DesktopPage,
   desktopTitel,
   authMain,
   authPresents,
-  authSasha
+  authSasha,
 } = styles;
 
 function SignInPage() {
@@ -21,7 +21,7 @@ function SignInPage() {
     <div className={container}>
       <section className={signIn}>
         <div className={logo}>{/* <h1>Logo</h1> */}</div>
-        <div className={SignInForm}>
+        <div className={signInForm}>
           <h2 className={pageTitel}>Мотивуйте дитину вдосконалювати себе!</h2>
 
           <SignInForm />

@@ -6,15 +6,20 @@ import UserInfo from '../UserInfo';
 
 import styles from './styles.module.scss';
 
-function Header() {
-  console.log(styles);
+import { connect } from 'react-redux';
+
+function Header({ userToken }) {
   return (
     <div className={styles.header__container}>
       <Logo />
-      <Navigation />
-      <UserInfo />
+      {userToken && <Navigation />}
+      {userToken && <UserInfo />}
     </div>
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  userToken: state.user.accessToken,
+});
+
+export default connect(mapStateToProps)(Header);

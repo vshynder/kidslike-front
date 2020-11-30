@@ -11,8 +11,8 @@ export default class MainPosition extends Component {
 
   render() {
     return (
-      <div className="container">
-        <header className="header">
+      <div className="taskcontainer">
+        <header className="taskheader">
           <Header />
         </header>
 
@@ -28,7 +28,7 @@ export default class MainPosition extends Component {
               {matches.small && <div className="tasksinfo"></div>}
               {matches.medium && <div className="tasksinfo"></div>}
               {matches.large && (
-                <div className="main">
+                <div className="taskmain">
                   <div className="familynfo">
                     <Slider></Slider>
                   </div>
