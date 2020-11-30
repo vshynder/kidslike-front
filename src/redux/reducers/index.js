@@ -9,16 +9,9 @@ import { persistReducer } from 'redux-persist';
 const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
-<<<<<<< HEAD
   dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
   presents: allPresentReducer.presents,
   user: authReducer,
-=======
-  // auth: addChildReducer.token, // Заглушка
-  dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
-  presents: getAllPresents,
-  user: authReducer
->>>>>>> 52067e97fcf670ccdd91822d46d2839f12ccb15e
 });
 
 export default rootReducer;
