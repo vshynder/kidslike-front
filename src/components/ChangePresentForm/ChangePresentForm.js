@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 import style from './ChangePresentForm.module.scss';
 import closeBtn  from "../../assets/images/close.svg";
 import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
-import operation from '../../redux/operations/presentOperation'
-import selectorChild from '../../redux/selectors/ChildSelectors'
-import selectorPresent from '../../redux/selectors/presentSelector'
+
 
 
 
 class ChangeFormPresent extends Component {
     state={
-        title:'', // сюда должны прийти пропы названия подрка 
-        bal:0,  
-        childId:'',  
-        children:[],  
+        namePresent:'',  //запрос на сервер в поиске подарков 
+        ball:0,  // this.props.ball
+        choseChild:'',  //this.props.child
+        childrens:[ 'Masha', 'Sasha' ],  //заглушка детей )// axios or fetcc
     };
 
     componentDidMount(){
-        this.setState({children:this.props.children})// сюда должны прийти пропы детей
+            // this.setState({childrens:this.props})
     }
 
     handleChangeName = (e) => {
@@ -36,23 +34,19 @@ class ChangeFormPresent extends Component {
        // если закрыть окно должны передать пропы false
     };
 
-    handleChangeSubmit = e => {
+    handleSubmit = e => {
         e.preventDefault();
 
-        const {title, bal, childId} = this.state
+        // const {namePresent, ball, choseChild} = this.state
 
-        this.props.onUpdatePresent({title,bal,childId})
+        // this.props.onAddPresent({namePresent,ball,choseChild})
 
-        this.setState({title:'',bal:'',childId:''})
-    }
-
-    handleRemovePresent = e =>{
-        console.log('remove');
+        // this.setState({namePresent:'',ball:'',choseChild:''})
     }
 
     render(){
         const {childrens,namePresent ,choseChild} = this.state 
-        // const presentId = 
+
         return (
             <div className={style.container_presents}>
                 <button className={style.container_presents__close}
@@ -62,7 +56,7 @@ class ChangeFormPresent extends Component {
                      <img src={closeBtn} alt="close"/>
                 </button>
                
-                <form className={style.present_form}  onSubmit={this.handleChangeSubmit} >
+                <form className={style.present_form}  onSubmit={this.handleSubmit} >
                      <p className={style.present_form__title}>Редагування подарунку</p>
 
                     <label className={style.present_form__label}> Назва
@@ -110,8 +104,8 @@ class ChangeFormPresent extends Component {
                     <label className={style.present_form__label}>
               
                         <button className={style.present_form__delete_btn}   
-                        onClick={()=>onDeletePresent(this.params.presentId)}  // передаем пропы id подарка для удаления 
-                        type='button' >  
+                        // onClick={()=>onDelete(Present.id)}  // передаем пропы id подрка для удаления 
+                        type="submit" >  
     
                         <svg  className={style.present_form__delete_img}  width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.66797 0.96582H9.34204V1.41577H10.3077V0.902832C10.3079 0.405029 9.90308 0 9.40552 0H6.60449C6.10693 0 5.70215 0.405029 5.70215 0.902832V1.41577H6.66797V0.96582Z" fill="#BDBDBD"/>
@@ -136,18 +130,15 @@ class ChangeFormPresent extends Component {
         )
     };
 }
-const mapStatetoProps = (state)=> ({
-    children:selectorChild.getChildrens(state),
-});
-
-const mapDispatchToProps = {
-    onUpdatePresent: operation.addPresent,// Operation  to do 
-    onDeletePresent:operation.removePresent,
-}
 
 
-export default connect(mapStatetoProps,mapDispatchToProps)(ChangeFormPresent)
+// const mapDispatchToProps = {
+//     // onAddPresent:constOperation.addTask// Operation  to do 
+// }
 
+
+// export default connect(null,mapDispatchToProps)(ChangeFormPresent)
+export default ChangeFormPresent;
 
 
 

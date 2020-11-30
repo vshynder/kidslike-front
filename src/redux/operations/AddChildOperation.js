@@ -12,12 +12,10 @@ const token = {
 
 const addChild = (name, gender) => (dispatch, getState) => {
   const {
-    // Эта часть может переделываться в зависимости от redux state
-    auth: { accessToken: acToken },
+    user: { accessToken: acToken },
   } = getState();
 
   if (!acToken) {
-    console.log('exit');
     return;
   }
 
@@ -25,7 +23,10 @@ const addChild = (name, gender) => (dispatch, getState) => {
   dispatch(addChildActions.addChildRequest());
   console.log(name, gender);
   axios
-    .post('http://localhost:1717/api/children/addchild', { name, gender }) //Здесь эндпоинт поменяется когда сервер будет на хероку
+    .post('https://kidslike-back-end.herokuapp.com/api/children/addchild', {
+      name,
+      gender,
+    })
     .then((response) => {
       token.set(response.data.token);
       dispatch(addChildActions.addChildSuccess(response.data));
