@@ -9,7 +9,7 @@ import { persistReducer } from 'redux-persist';
 const rootReducer = combineReducers({
   loader: loaderReducer,
   childrens: addChildReducer.childrens,
-  dummyReducerAllHabbits, // Для тестирования, логику нужно переиспользовать
+  habbits: habbitsReducer, // Для тестирования, логику нужно переиспользовать
   presents: allPresentReducer.presents,
   user: authReducer,
 });
