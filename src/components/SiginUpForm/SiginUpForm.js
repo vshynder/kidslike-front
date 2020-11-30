@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import authOperations from '../../redux/operations/authOperations';
 
 // Styles
 import styles from './SiginUpForm.module.css';
@@ -25,6 +27,7 @@ const {
 } = styles;
 
 function SiginUpForm() {
+  const dispatch = useDispatch();
   const RegistrationSchema = yup.object().shape({
     email: yup
       .string()
@@ -42,11 +45,12 @@ function SiginUpForm() {
     <div className={container}>
       <h2 className={siginUpTitel}>Реєстрація</h2>
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: '', password: '', username: '' }}
         validationSchema={RegistrationSchema}
         onSubmit={(values, { resetForm }) => {
           setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2));
+            // console.log(JSON.stringify(values, null, 2));
+            dispatch(authOperations.registrationUser(values));
             resetForm();
           }, 400);
         }}
@@ -90,8 +94,8 @@ function SiginUpForm() {
             <p className={form__titel}>Ваше ім’я</p>
             <Field
               className={form__input}
-              type="name"
-              name="name"
+              type="username"
+              name="username"
               placeholder="Ім’я"
             />
             <div className={btnContainer}>
@@ -104,13 +108,13 @@ function SiginUpForm() {
               </button>
               <a
                 className={[btnContainer__socialBtn, google].join(' ')}
-                href="#"
+                href="https://kidslike-back-end.herokuapp.com/api/auth/google"
               >
                 Увійти за допомогою Google
               </a>
               <a
                 className={[btnContainer__socialBtn, facebook].join(' ')}
-                href="#"
+                href="https://kidslike-back-end.herokuapp.com/api/auth/facebook"
               >
                 Увійти за допомогою Facebook
               </a>

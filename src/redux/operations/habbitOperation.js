@@ -1,7 +1,15 @@
 import action from '../actions/allHabbitsAction';
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'http://localhost:1717';
+axios.defaults.baseURL = 'http://localhost:1717';
+
+const getAllHabbitsByUser = (value) => (dispatch, getState) => {
+  dispatch(action.getAllSuccess());
+  axios
+    .get('/api/habbits')
+    .then((response) => dispatch(action.getAllSuccess(response.data)))
+    .catch((err) => dispatch(action.getAllSuccess(err)));
+};
 
 const checkHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updateCheckedRequest());
@@ -22,7 +30,7 @@ const delHabbit = (value) => (dispatch, getState) => {
   dispatch(action.deletedRequest());
 
   axios
-    .delete('/api/habbits/delhabbit/' + value)
+    .delete('/api/habbits/' + value)
     .then((response) => {
       console.log('response: ', response);
       dispatch(action.deletedSuccess({ idHabbit: value }));
@@ -47,4 +55,4 @@ const updateHabbit = (value) => (dispatch, getState) => {
     .catch((err) => dispatch(action.updError(err)));
 };
 
-export default { checkHabbit, delHabbit, updateHabbit };
+export default { checkHabbit, delHabbit, updateHabbit, getAllHabbitsByUser };
