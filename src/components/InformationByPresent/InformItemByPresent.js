@@ -27,73 +27,78 @@ export default class InformItemByPresent extends Component {
   };
 
   showModal = () => {
-      this.setState ({
-          modal: true
-      })
-  }
+    this.setState({
+      modal: true,
+    });
+  };
 
   onClose = () => {
-      this.setState({
-          modal: false
-      })
-  }
+    this.setState({
+      modal: false,
+    });
+  };
 
   render() {
-    const { gender, mainImage, name, cost, presentId } = this.props;
+    const { gender, image, title, bal, childId } = this.props;
     const { display, modal } = this.state;
     return (
-    <>
-        {modal && (<Modal children={<ChangeFormPresent />} onClose={this.onClose}/>)}
-      <ul className={styles.presentItem_container}>
-        <li className={styles.presentItem_changePresent}>
-          <button
-            className={styles.presentItem_button__submenu}
-            onClick={this.onChangeSubmenu}
-          >
-            <img
-              src={display === 'none' ? subMenu_disable : subMenu_active}
-              className={styles.presentItem_image__subMenu}
-            ></img>
-            <ul
-              className={styles.presentItem_subMenu}
-              style={{ display: this.state.display }}
+      <>
+        {modal && (
+          <Modal children={<ChangeFormPresent />} onClose={this.onClose} />
+        )}
+        <ul className={styles.presentItem_container}>
+          <li className={styles.presentItem_changePresent}>
+            <button
+              className={styles.presentItem_button__submenu}
+              onClick={this.onChangeSubmenu}
             >
-              <li className={styles.presentItem_subMenu__angle}></li>
-              <li>
-                <button className={styles.presentItem_subMenu__button} onClick={this.showModal}>
-                  Редагувати
-                </button>
-              </li>
-              <li>
-                <button className={styles.presentItem_subMenu__button}>
-                  Видалити
-                </button>
-              </li>
-            </ul>
-          </button>
-        </li>
-        <li className={styles.presentItem_images}>
-          <img
-            className={styles.presentItem_mainImage}
-            src={mainImage === '' ? defaultImage : mainImage}
-          ></img>
-          <img
-            className={styles.presentItem_genderImage}
-            src={gender === 'male' ? maleImage : femaleImage}
-          ></img>
-        </li>
-        <li className={styles.presentItem_titleAndButton}>
-          <div className={styles.presentItem_title}>
-            <p className={styles.presentItem_name}>{name}</p>
-            <div className={styles.presentItem_block__cost}>
-              <p className={styles.presentItem_cost}>{cost}</p>
+              <img
+                src={display === 'none' ? subMenu_disable : subMenu_active}
+                className={styles.presentItem_image__subMenu}
+              ></img>
+              <ul
+                className={styles.presentItem_subMenu}
+                style={{ display: this.state.display }}
+              >
+                <li className={styles.presentItem_subMenu__angle}></li>
+                <li>
+                  <button
+                    className={styles.presentItem_subMenu__button}
+                    onClick={this.showModal}
+                  >
+                    Редагувати
+                  </button>
+                </li>
+                <li>
+                  <button className={styles.presentItem_subMenu__button}>
+                    Видалити
+                  </button>
+                </li>
+              </ul>
+            </button>
+          </li>
+          <li className={styles.presentItem_images}>
+            <img
+              className={styles.presentItem_mainImage}
+              src={image === '' ? defaultImage : image}
+            ></img>
+            <img
+              className={styles.presentItem_genderImage}
+              src={gender === 'male' ? maleImage : femaleImage}
+            ></img>
+          </li>
+          <li className={styles.presentItem_titleAndButton}>
+            <div className={styles.presentItem_title}>
+              <p className={styles.presentItem_name}>{title}</p>
+              <div className={styles.presentItem_block__cost}>
+                <p className={styles.presentItem_cost}>{bal}</p>
+              </div>
             </div>
-          </div>
-          <div className={styles.presentItem_block__button}>
-            <button className={styles.presentItem_button}>Придбати</button>
-          </div>
-        </li>
-      </ul>
+            <div className={styles.presentItem_block__button}>
+              <button className={styles.presentItem_button}>Придбати</button>
+            </div>
+          </li>
+        </ul>
       </>
     );
   }
