@@ -36,7 +36,6 @@ body {
 .tasksinfo {
   display: block;
   text-align: end;
-  border: 3px solid green;
   width: 280px;
 }
 
