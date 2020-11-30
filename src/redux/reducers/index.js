@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { loaderReducer } from './laoderReducer';
-import { dummyReducerAllHabbits } from './allHabbitsReducer';
+import habbitsReducer from './allHabbitsReducer';
 import addChildReducer from './addChildReducer';
 import allPresentReducer from './allPresentReducer';
 import { authReducer } from './authReducer';
