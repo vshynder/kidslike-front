@@ -1,16 +1,11 @@
-.loginPage {
+.container {
   max-width: 320px;
-  height: 634px;
-  margin: 0, auto;
-  background: #ffffff;
+  background-color: #ffffff;
+  margin: 0 auto;
 }
 
-.signInText {
-  position: absolute;
-  width: 280px;
-  height: 24px;
-  left: 20px;
-  top: 104px;
+.siginUpTitel {
+  padding-top: 54px;
   font-family: Rubik;
   font-style: normal;
   font-weight: 900;
@@ -20,89 +15,133 @@
   color: #333333;
 }
 
-.loginContainer {
-  position: absolute;
-  top: 178px;
-  left: 20px;
+.form {
+  margin: 0 auto;
   width: 280px;
-  display: flex;
-  flex-direction: column;
 }
 
-.loginContainer label {
+.form__titel {
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
   color: #828282;
+  padding: 20px 0 10px;
 }
 
-.loginContainer input {
-  width: 280px;
-  height: 44px;
-  left: 20px;
-  border: 1px solid #bdbdbd;
-  outline: none;
-  font-family: Rubik;
-  font-size: 19px;
-  padding: 10px;
-  letter-spacing: 1px;
-  box-sizing: border-box;
-  border-radius: 15px;
-}
-
-.btnContainer {
-  margin: 0 auto;
-  margin-top: 40px;
-  width: 280px;
-}
-
-.btnContainer p {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: normal;
-  display: flex;
-  flex-direction: column;
-  padding-top: 40px;
-  text-decoration: none;
-}
-
-.btnContainer button {
-  position: absolute;
-  border: none;
-  outline: none;
-  width: 220px;
-  height: 44px;
-  left: 25px;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  background: #ff8626;
-  border-radius: 20px;
-}
-
-.btnContainer a {
-  text-decoration: none;
+.form__input {
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  border-radius: 20px;
-  margin-bottom: 15px;
-  padding: 12px 14px;
+  color: #828282;
+  border: 1px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: #ffffff;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.form__inputError {
+  border: 1px solid #eb5757;
+  color: #eb5757;
+}
+
+.error {
+  position: relative;
+  width: 100%;
+}
+
+.form__error {
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0px 2px 8px rgba(252, 103, 94, 0.4);
+  border-radius: 10px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #828282;
+  width: 100%;
+  padding: 10px 20px;
+  top: 15px;
+}
+
+.form__error:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 13px;
+  top: -17px;
+  border: 8px solid;
+  border-color: transparent rgba(252, 103, 94, 0.1) rgba(252, 103, 94, 0.1)
+    transparent;
+}
+
+.form__error:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 14px;
+  top: -15px;
+  border: 8px solid;
+  border-color: transparent #fff #fff transparent;
+}
+
+.btnContainer {
+  margin: 0 auto;
+  margin-top: 40px;
   display: flex;
-  justify-content: center;
+  max-width: 276px;
+  flex-direction: column;
+}
+
+.btnContainer__formBtn {
+  font-family: Rubik;
+  width: 70%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  border: none;
+  background-color: #ff8626;
+  box-sizing: border-box;
+  border-radius: 20px;
+  color: #ffffff;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.btnContainer__formBtn:hover {
+  background: #ffdfcf;
+  color: #ff8626;
+}
+
+.btnContainer__socialBtn {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 12px 15px;
   text-align: center;
+  transition: 0.3s ease-in-out;
 }
 
 .google {
   color: #ec4541;
   border: 1px solid #ec4541;
-  box-sizing: border-box;
-  border-radius: 20px;
 }
 
 .google:hover {
@@ -110,75 +149,57 @@
   background: #ec4541;
 }
 
+.facebook {
+  color: #305b94;
+  border: 1px solid #305b94;
+}
+
 .facebook:hover {
   color: #ffffff;
   background: #305b94;
 }
 
-.facebook {
-  color: #305b94;
-  border: 1px solid #305b94;
-  box-sizing: border-box;
-  border-radius: 20px;
-}
-
-.signUpText {
-  width: 276px;
+.login,
+.login__link {
+  margin-top: 30px;
+  text-align: center;
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   color: #828282;
+  text-decoration: none;
 }
 
-.signUpLink:hover {
+.login__link:hover {
   border-bottom: 1px solid #828282;
-  cursor: pointer;
 }
 
 @media (min-width: 768px) {
-  .loginPage {
+  .container {
     max-width: 575px;
-    height: 550px;
     background: #ffffff;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
   }
-
-  .signInText {
+  .siginUpTitel {
     padding-top: 50px;
     font-size: 26px;
     line-height: 31px;
   }
 
-  .loginContainer {
-    position: absolute;
-    top: 131px;
-    left: 117px;
-    width: 340px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .loginContainer input {
-    width: 340px;
-    left: 117px;
-  }
-
-  .btnContainer {
-    margin-top: 30px;
+  .form {
+    margin: 0 auto;
     width: 340px;
   }
 
-  .btnContainer button {
-    left: 117px;
+  .form__titel {
+    font-size: 12px;
+    line-height: 14px;
   }
 
-  .signUpText {
-    margin-bottom: 60px;
+  .login {
+    padding-bottom: 50px;
   }
 }
