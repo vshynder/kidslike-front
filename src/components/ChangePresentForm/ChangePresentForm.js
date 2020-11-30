@@ -6,7 +6,7 @@ import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
 import operation from '../../redux/operations/presentOperation'
 import selectorChild from '../../redux/selectors/ChildSelectors'
-import selectorPresent from '../../redux/selectors/presentSelector'
+
 
 
 
@@ -51,8 +51,8 @@ class ChangeFormPresent extends Component {
     }
 
     render(){
-        const {childrens,namePresent ,choseChild} = this.state 
-        // const presentId = 
+        const {children,namePresent ,choseChild} = this.state 
+        const {onDeletePresent} = this.props
         return (
             <div className={style.container_presents}>
                 <button className={style.container_presents__close}
@@ -79,7 +79,7 @@ class ChangeFormPresent extends Component {
                            <div className={style.present_form__change_child_block}  ></div>
                            <select  onChange={this.handleChoseChild} value={choseChild} className={style.present_form__input} >
                             {
-                             childrens.map(child =>  <option key={child} value={child}> {child} </option> )   
+                             children.map(child =>  <option key={child._id} value={child._id}> {child.name} </option> )   
                             }
                            </select>
                     </label>
@@ -110,7 +110,7 @@ class ChangeFormPresent extends Component {
                     <label className={style.present_form__label}>
               
                         <button className={style.present_form__delete_btn}   
-                        onClick={()=>onDeletePresent(this.params.presentId)}  // передаем пропы id подарка для удаления 
+                        onClick={()=> onDeletePresent(this.params.presentId)}  // передаем пропы id подарка для удаления 
                         type='button' >  
     
                         <svg  className={style.present_form__delete_img}  width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
