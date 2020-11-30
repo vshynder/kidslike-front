@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import authActions from '../actions/authActions';
 
 const initState = {
-  username: '',
+  name: '',
   accessToken: null,
   refreshToken: null,
   avatarURL: null,
