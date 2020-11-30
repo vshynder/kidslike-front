@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = (props) => {
@@ -15,6 +15,7 @@ const Login = (props) => {
     formBtn,
     signUpText,
     signUpLink,
+    loginContainer,
   } = props;
 
   return (
@@ -30,7 +31,6 @@ const Login = (props) => {
           autoFocus
           required
           value={email}
-
         />
         <label>Введіть пароль</label>
         <input
@@ -38,27 +38,22 @@ const Login = (props) => {
           placeholder="_ _ _ _ _ _ _ _ _ _ _"
           required
           value={password}
-
         />
 
         <div className={btnContainer}>
-          <button
-            className={formBtn}
-            type="submit"
-            disabled={isSubmitting}
-          >
+          <button className={formBtn} type="submit">
             Увійти
           </button>
           <p>
-            <a className={socialBtn, google} href="#">
+            <a className={(socialBtn, google)} href="#">
               Увійти за допомогою Google
             </a>
-            <a className={socialBtn, facebook} href="#">
+            <a className={(socialBtn, facebook)} href="#">
               Увійти за допомогою Facebook
             </a>
             <p className={signUpText}>
-              Немає аккаунту?{" "}
-              <Link className={signUpLink} to={"/signUpText"}>
+              Немає аккаунту?{' '}
+              <Link className={signUpLink} to={'/signUpText'}>
                 Зареєструватись
               </Link>
             </p>
