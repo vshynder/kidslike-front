@@ -78,9 +78,41 @@ body {
   /* .container {
     width: 1120px;
   } */
+
+  .habitsInfo_header {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin-bottom: 30px;
+  }
+
+  .habitsInfo_header-img {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .habitsInfo_header-title {
+    align-self: flex-end;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #333333;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
   .header {
     width: 1220px;
     margin-bottom: 50px;
+  }
+
+  .habitsInfo_list {
+    height: 456px;
+    width: 690px;
+    border: 3px solid purple;
   }
   .main {
     display: flex;
