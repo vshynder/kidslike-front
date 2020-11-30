@@ -56,7 +56,15 @@ class MainPosition extends Component {
                     <Slider onClick={this.toggleModal}></Slider>
                   </div>
                   <div className="habitsInfo">
-                    <InformationByHabbit></InformationByHabbit>
+                    <div className="habitsInfo_section">
+                      <div className="habitsInfo_section-header">
+                        <h2>Звички</h2>
+                      </div>
+                      <div className="habitsInfo_section-list">
+                        <InformationByHabbit></InformationByHabbit>
+                      </div>
+                      <button className="habitsInfo_section-button"></button>
+                    </div>
                   </div>
                   <div className="extendMain">
                     <div className="tasksinfo">
