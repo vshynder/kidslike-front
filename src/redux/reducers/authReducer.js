@@ -17,4 +17,5 @@ export const authReducer = createReducer(initState, {
   [authActions.registrationUserSuccess]: (state, action) => {
     return { ...state, ...action.payload.user };
   },
+  [authActions.logoutSuccess]: () => initState,
 });
