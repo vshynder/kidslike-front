@@ -4,18 +4,41 @@ import Header from '../Header';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
 import PresentsIcon from '../../assets/images/presentsIcon.png';
+import Modal from '../Modal/Modal';
+import AddFamilyForm from '../AddChildForm/Form';
+import AddFormPresent from '../AddFormPresent/AddFormPresent';
 
 import './PresentPage.css';
 
 export default class MainPosition extends Component {
   state = { modal: false, addFormPresent: false };
 
+  toggleModal = () => {
+    this.setState((state) => ({ modal: !state.modal }));
+  };
+
+  toggleAddFormPresentModal = () => {
+    this.setState((state) => ({ addFormPresent: !state.addFormPresent }));
+  };
+
   render() {
+    const { modal } = this.state;
+    const { addFormPresent } = this.state;
     return (
       <div className="presentcontainer">
         <header className="presentheader">
           <Header />
         </header>
+        {modal && (
+          <Modal onClose={this.toggleModal}>
+            <AddFamilyForm></AddFamilyForm>
+          </Modal>
+        )}
+        {addFormPresent && (
+          <Modal onClose={this.toggleAddFormPresentModal}>
+            <AddFormPresent></AddFormPresent>
+          </Modal>
+        )}
 
         <Media
           queries={{
@@ -37,7 +60,10 @@ export default class MainPosition extends Component {
                       {/* <InformationByHabbit></InformationByHabbit> */}
                     </div>
                     <div className="presents_button">
-                      <button className="presents_button-button">
+                      <button
+                        onClick={this.toggleAddFormPresentModal}
+                        className="presents_button-button"
+                      >
                         Додати подарунок +
                       </button>
                     </div>
@@ -55,7 +81,10 @@ export default class MainPosition extends Component {
                       {/* <InformationByHabbit></InformationByHabbit> */}
                     </div>
                     <div className="presents_button">
-                      <button className="presents_button-button">
+                      <button
+                        onClick={this.toggleAddFormPresentModal}
+                        className="presents_button-button"
+                      >
                         Додати подарунок +
                       </button>
                     </div>
@@ -65,7 +94,7 @@ export default class MainPosition extends Component {
               {matches.large && (
                 <div className="presentmain">
                   <div className="presentfamilynfo">
-                    <Slider></Slider>
+                    <Slider onClick={this.toggleModal}></Slider>
                   </div>
                   <div className="presents">
                     <div className="presents_header">
@@ -76,7 +105,10 @@ export default class MainPosition extends Component {
                       {/* <InformationByHabbit></InformationByHabbit> */}
                     </div>
                     <div className="presents_button">
-                      <button className="presents_button-button">
+                      <button
+                        onClick={this.toggleAddFormPresentModal}
+                        className="presents_button-button"
+                      >
                         Додати подарунок +
                       </button>
                     </div>
