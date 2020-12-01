@@ -5,6 +5,8 @@ import closeBtn  from "../../assets/images/close.svg";
 import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
 
+import operation from '../../redux/operations/presentOperation'
+import selectorChild from '../../redux/selectors/ChildSelectors'
 
 
 
@@ -45,7 +47,8 @@ class ChangeFormPresent extends Component {
     }
 
     render(){
-        const {childrens,namePresent ,choseChild} = this.state 
+        const {children,namePresent ,choseChild} = this.state 
+        const {onDeletePresent} = this.props
 
         return (
             <div className={style.container_presents}>
@@ -73,7 +76,7 @@ class ChangeFormPresent extends Component {
                            <div className={style.present_form__change_child_block}  ></div>
                            <select  onChange={this.handleChoseChild} value={choseChild} className={style.present_form__input} >
                             {
-                             childrens.map(child =>  <option key={child} value={child}> {child} </option> )   
+                             children.map(child =>  <option key={child._id} value={child._id}> {child.name} </option> )   
                             }
                            </select>
                     </label>
@@ -103,9 +106,9 @@ class ChangeFormPresent extends Component {
 
                     <label className={style.present_form__label}>
               
-                        <button className={style.present_form__delete_btn}   
-                        // onClick={()=>onDelete(Present.id)}  // передаем пропы id подрка для удаления 
-                        type="submit" >  
+                        <button className={style.present_form__delete_btn}
+                        onClick={()=> onDeletePresent(this.params.presentId)}  // передаем пропы id подарка для удаления 
+                        type='button' >  
     
                         <svg  className={style.present_form__delete_img}  width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.66797 0.96582H9.34204V1.41577H10.3077V0.902832C10.3079 0.405029 9.90308 0 9.40552 0H6.60449C6.10693 0 5.70215 0.405029 5.70215 0.902832V1.41577H6.66797V0.96582Z" fill="#BDBDBD"/>

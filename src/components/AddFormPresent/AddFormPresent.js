@@ -17,7 +17,7 @@ class AddFormPresent extends Component {
     };
 
     componentDidMount(){
-            this.setState({children:this.props.children})// сюда должны прийти пропы детей
+            this.setState({children:this.props.children})
     }
 
     handleChangeName = (e) => {
