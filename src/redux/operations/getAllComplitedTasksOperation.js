@@ -21,7 +21,7 @@ const getTasks = (childId) => (dispatch, getState) => {
   token.set(acToken);
   dispatch(getAllComplitedTasksActions.getAllTasksRequest());
   axios
-    .get(`http://localhost:1717/api/tasks/${childId}`)
+    .get(`https://kidslike-back-end.herokuapp.com/api/tasks/${childId}`)
     .then((response) => {
       token.set(response.data.token);
       dispatch(getAllComplitedTasksActions.getAllTasksSuccess(response.data));
