@@ -13,9 +13,14 @@ import habit from '../../assets/images/habbits.png';
 import task from '../../assets/images/tasks.png';
 import AddFormHabit from '../AddFormHabit';
 import AddFormTask from '../AddFormTask';
+import tasksOperation from '../../redux/operations/tasksOperation';
 
 class MainPosition extends Component {
   state = { modal: false, addFormHabit: false, addFromTask: false };
+
+  componentDidMount(){
+    this.props.getTasks()
+  }
 
   toggleModal = () => {
     this.setState((state) => ({ modal: !state.modal }));
@@ -33,6 +38,8 @@ class MainPosition extends Component {
     const { modal } = this.state;
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
+    const {tasks} = this.props;
+
 
     return (
       <div className="container">
@@ -105,7 +112,10 @@ class MainPosition extends Component {
                         <h2 className="tasksinfo__header-title">Задачі</h2>
                       </div>
                       <div className="tasksinfo__list">
-                        <InformationByTask></InformationByTask>
+                       {
+                         tasks.map(task => 
+                            <InformationByTask task ={task}/> )
+                       }
                       </div>
                       <div className="tasksinfo__button">
                         <button
@@ -131,5 +141,11 @@ const mapStateToProps = (state) => ({
   tasks: state.tasks,
 });
 
-// export default connect(mapStateToProps, null)(MainPosition);
-export default MainPosition;
+
+const mapDispatchToProps = {
+  getTasks:tasksOperation.getAllTasks
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPosition);
+// export default MainPosition;

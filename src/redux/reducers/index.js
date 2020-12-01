@@ -6,6 +6,7 @@ import allPresentReducer from './allPresentReducer';
 import AllTasksCurrentChild from './allTasksCurrentChild';
 import { authReducer } from './authReducer';
 import { persistReducer } from 'redux-persist';
+import tasksReducer from './tasksReducer'
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   currentChildTasks: AllTasksCurrentChild.allTasksCurrentChild,
   habbits: habbitsReducer, // Для тестирования, логику нужно переиспользовать
   presents: allPresentReducer.presents,
+  tasks:tasksReducer.tasks,
   user: authReducer,
 });
 

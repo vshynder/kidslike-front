@@ -19,6 +19,7 @@ export default class InformationByTask extends Component {
   };
   render() {
     const { isRenderModal } = this.state;
+    const {task} = this.props
     return (
       <>
         <div className={styles.container}>
@@ -31,21 +32,21 @@ export default class InformationByTask extends Component {
               />
             </span>
             <span className={styles.taskNameAndCostContainer}>
-              <p className={styles.taskName}>Помити посуд</p>
+              <p className={styles.taskName}>{task.title}</p>
               <span className={styles.costContainer}>
                 <img
                   src={stylingStar}
                   alt="styling-star"
                   className={styles.taskCostStar}
                 />
-                <p className={styles.taskCostText}>5</p>
+                <p className={styles.taskCostText}>{task.reward}</p>
               </span>
             </span>
           </span>
           <span className={styles.secondSmallContainer}>
             <span className={styles.timeContainer}>
               <p className={styles.greyTitle}>Час на виконання:</p>
-              <p className={styles.taskDayText}>1 день</p>
+              <p className={styles.taskDayText}>{task.daysToDo}день</p>
             </span>
             <span>
               <p className={styles.greyTitle}>Підтвердження</p>
