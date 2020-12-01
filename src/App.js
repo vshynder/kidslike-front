@@ -4,14 +4,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import navigation from './components/AuthPageNavigation/navigation';
 import SiginUpPage from './components/SiginUpPage/SiginUpPage';
 import AuthPage from './components/AuthPage/AuthPage';
-import Main from './components/MainPage/MainPage';
+import Main from './components/MainPage/MainPage.js';
 import ChildTaskPage from './components/ChildTaskPage/ChildTaskPage';
 import PrivateRouter from './components/MainPage/PrivateRoutes';
 import PresentPage from './components/PresentsPage/PresentPage';
-// import GoogleFacebookLogIn from './components/GoogleFacebookLogIn';
 
 import SignInPage from './components/SignInPage/SignInPage';
-import ContainerForAllHabbits from './components/ContainerForAllHabbits/ContainerForAllHabbits'; // For Main
 
 import './assets/fonts.css';
 import './assets/basic.css';
