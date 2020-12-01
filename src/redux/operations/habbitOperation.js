@@ -3,6 +3,18 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:1717';
 
+const addHabit = ({title,bal,childId}) => (dispatch) => {
+  dispatch(action.addHabitRequest());
+  axios
+    .post('/api/habits/addHabit', {title,bal,childId})
+    .then(res => {
+      dispatch(
+        action.addHabitSuccess(res.data));
+    })
+    .catch(error => dispatch(action.addHabitError(error)));
+};
+
+
 const checkHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updateCheckedRequest());
   axios
@@ -42,4 +54,4 @@ const updateHabbit = (value) => (dispatch, getState) => {
     .catch((err) => dispatch(action.updError(err)));
 };
 
-export default { checkHabbit, delHabbit, updateHabbit };
+export default {addHabit, checkHabbit, delHabbit, updateHabbit };

@@ -77,6 +77,10 @@ const initialState = [
 ];
 
 export const dummyReducerAllHabbits = createReducer(initialState, {
+  [action.addHabitSuccess]: (state, action) => {
+    return [...state, action.payload]
+  },
+
   [actions.updateCheckedSuccess]: (state, action) => {
     state.map((el) =>
       el._id === action.payload.idHabbit

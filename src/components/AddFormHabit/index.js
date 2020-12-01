@@ -1,24 +1,62 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import styles from './addHabitForm.module.scss';
+import operation from '../../redux/operations/habbitOperation'
+import selector from '../../redux/selectors/ChildSelectors'
 
 import star from '../../assets/images/changeHabbitStar.png';
 import select from '../../assets/images/changeHabbitSelect.png';
 
-const AddFormHabit = () => {
-  const handleCloseClick = () => {
+class AddFormHabit extends Component {
+  state={
+    title:'', 
+    bal:'',  
+    childId:'',  
+    children:[],  
+  };
+
+  componentDidMount(){
+    this.setState({children:this.props.children})
+  };
+
+  handleChangeName = (e) => {
+    this.setState({title:e.target.value})
+  };
+  
+  handleChangeBall = (e) => {
+    this.setState({bal:e.target.value})
+  };
+
+  handleChoseChild = e => {
+    this.setState({childId:e.target.value})
+  };
+
+  handleCloseClick = () => {
     console.log('Close mark clicked');
   };
 
-  const handleCancel = () => {
+  handleCancel = () => {
     console.log('cancel');
   };
 
-  const handleSave = () => {
+  handleSave = () => {
     console.log('save');
   };
 
-  return (
-    <div className={styles.changehabbit__form}>
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const {title, bal, childId} = this.state
+
+    this.props.onAddHabit({title,bal,childId})
+
+    this.setState({title:'',bal:'',childId:''})
+  }
+
+  render() {
+    const {children,title ,childId} = this.state
+    return (
+      <div className={styles.changehabbit__form}>
       <svg
         onClick={handleCloseClick}
         className={styles.changehabbit__close}
@@ -35,17 +73,19 @@ const AddFormHabit = () => {
       <div className={styles.changehabbit__input}>
         <label htmlFor="name">Назва</label>
         <input
-          className={styles.changehabbit__inputLong}
-          id="name"
-          type="text"
+          className={styles.changehabbit__inputLong}      
           placeholder="Введіть назву"
+          value={title}
+          onChange={this.handleChangeName}
         />
       </div>
 
       <div className={styles.changehabbit__input}>
         <label htmlFor="task">Призначення звички</label>
-        <select className={styles.changehabbit__inputLong} id="task">
-          <option>Оберіть дитину</option>
+        <select  onChange={this.handleChoseChild} value={childId} className={styles.changehabbit__inputLong} >
+          {
+            children.map(child => <option key={child._id} value={child._id}> {child.name} </option> )   
+          }
         </select>
         <img className={styles.changehabbit__inputSelect} src={select}  alt="select"/>
       </div>
@@ -61,6 +101,7 @@ const AddFormHabit = () => {
           min="0"
           max="99"
           placeholder="00"
+          onChange={this.handleChangeBall}
         />
         <img className={styles.changehabbit__inputStar} src={star} alt="star" />
       </div>
@@ -78,7 +119,18 @@ const AddFormHabit = () => {
         </button>
       </div>
     </div>
-  );
+    )    
+  };
 };
 
-export default AddFormHabit;
+const mapStatetoProps = (state)=> ({
+  children:selector.getChildrens(state)
+});
+
+
+const mapDispatchToProps = {
+  onAddHabit:operation.addHabit
+};
+
+
+export default connect(mapStatetoProps,mapDispatchToProps)(AddFormHabit);
