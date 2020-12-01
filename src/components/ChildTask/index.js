@@ -3,8 +3,9 @@ import styles from './ChildTask.module.scss';
 import DropDown from './ChildTaskDropDown';
 
 import girlImage from '../../assets/images/childtask_girl.png';
+import boyImage from '../../assets/images/childtask_boy.png';
 
-export default function ChildTask() {
+export default function ChildTask({ gender, daysToDo, reward, title }) {
   const [isApproved, setIsApproved] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -29,16 +30,19 @@ export default function ChildTask() {
         )}
       </div>
       <div className={styles.childtask__name}>
-        <img className={styles.childtask__name_img} src={girlImage} />
+        <img
+          className={styles.childtask__name_img}
+          src={gender === 'female' ? girlImage : boyImage}
+        />
         <div className={styles.childtask__name_info}>
-          <p className={styles.childtask__name_text}>Помити посуд</p>
-          <p className={styles.childtask__name_mark}>4</p>
+          <p className={styles.childtask__name_text}>{title}</p>
+          <p className={styles.childtask__name_mark}>{reward}</p>
         </div>
       </div>
       <div className={styles.childtask__info}>
         <div className={styles.childtask__info_time}>
           <p className={styles.childtask__info_time_title}>Час на виконання:</p>
-          <p className={styles.childtask__info_time_value}>1 день</p>
+          <p className={styles.childtask__info_time_value}>{daysToDo} день</p>
         </div>
         <div className={styles.childtask__info_approve}>
           <p className={styles.childtask__info_approve_title}>Підтвердження</p>
