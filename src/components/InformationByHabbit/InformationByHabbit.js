@@ -67,6 +67,7 @@ class InformationByHabbit extends React.Component {
       return style.containerlidischeck;
     }
   };
+
   render() {
     return (
       <div className={style.canvas}>
@@ -163,9 +164,7 @@ class InformationByHabbit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const habbit = state.habbitsReducer.find(
-    (el) => el._id === ownProps.id,
-  );
+  const habbit = state.habbits.find((el) => el._id === ownProps.id);
   return { habbit };
 }; // Заглушка - компонет InformationByHabbit получит пропсом обьект habbit
 // при рендере коллекции  всех привычек детей пользователя
@@ -173,6 +172,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   onCheckHabbit: habbitOperation.checkHabbit,
   updateHabbit: habbitOperation.updateHabbit, // !!! ДЛЯ передачи в ChangeHabbitForm, или подписаться  на updateHabbit в ней
+  addHABBTESTDELL: habbitOperation.addHabit, // !!! УДАЛИТЬ!!!
 };
 
 export default connect(
