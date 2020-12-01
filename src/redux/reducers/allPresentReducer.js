@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import presentAction from '../actions/presentAction';
 
+// веременные подарки
 const present = [
   {
     _id: '5fb51b0126db0d0eab59dac6',
