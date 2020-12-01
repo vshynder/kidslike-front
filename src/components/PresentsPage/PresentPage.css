@@ -2,7 +2,7 @@ body {
   background-color: #e5e5e5;
 }
 
-.container {
+.presentcontainer {
   width: 100%;
   min-width: 320px;
   box-sizing: border-box;
@@ -13,21 +13,20 @@ body {
 
   align-items: center;
 }
-.header {
+.presentheader {
   width: 280px;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  border: 3px solid black;
 }
 
-.main {
+.presentmain {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.familynfo {
+.presentfamilynfo {
   width: 280px;
 
   display: block;
@@ -42,11 +41,11 @@ body {
 }
 
 @media (min-width: 768px) {
-  .header {
+  .presentheader {
     width: 687px;
     margin-bottom: 49px;
   }
-  .familynfo {
+  .presentfamilynfo {
     width: 687px;
   }
 
@@ -57,21 +56,21 @@ body {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   /* .container {
       width: 1120px;
     } */
-  .header {
+  .presentheader {
     width: 1220px;
     margin-bottom: 50px;
   }
-  .main {
+  .presentmain {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 1119px;
   }
 
-  .familynfo {
+  .presentfamilynfo {
     width: 345px;
   }
 

@@ -5,7 +5,7 @@ import style from './informationList.module.css';
 import { connect } from 'react-redux';
 import childrenSelectors from '../../redux/selectors/ChildSelectors';
 
-const InformationList = ({ childrens }) => {
+const InformationList = ({ childrens, onClick }) => {
   return (
     <div className={style.childrenSidebar_container}>
       <div className={style.childrenSidebar_header}>
@@ -16,34 +16,38 @@ const InformationList = ({ childrens }) => {
         {childrens.map((children) => (
           <li className={style.childrenSidebar_item} key={children.id}>
             <InformationItem
+              childId={children._id}
               male={children.gender}
               name={children.name}
-              balance={children.balance}
+              balance={children.stars}
               firstTask={
                 children.tasks[0]
-                  ? children.tasks[0].name.length > 22
-                    ? `${children.tasks[0].name.slice(0, 22)}...`
-                    : children.tasks[0].name
+                  ? children.tasks[0].title.length > 22
+                    ? `${children.tasks[0].title.slice(0, 22)}...`
+                    : children.tasks[0].title
                   : ''
               }
               costFirstTask={
-                children.tasks[0] ? `+ ${children.tasks[0].cost}` : ''
+                children.tasks[0] ? `+ ${children.tasks[0].reward}` : ''
               }
               secondTask={
                 children.tasks[1]
-                  ? children.tasks[1].name.length > 22
-                    ? `${children.tasks[1].name.slice(0, 22)}...`
-                    : children.tasks[1].name
+                  ? children.tasks[1].title.length > 22
+                    ? `${children.tasks[1].title.slice(0, 22)}...`
+                    : children.tasks[1].title
                   : ''
               }
               costSecondTask={
-                children.tasks[1] ? `+ ${children.tasks[1].cost}` : ''
+                children.tasks[1] ? `+ ${children.tasks[1].reward}` : ''
               }
             />
           </li>
         ))}
       </ul>
-      <button className={style.childrenSidebar_button}>Додати дитину +</button>
+
+      <button onClick={onClick} className={style.childrenSidebar_button}>
+        Додати дитину +
+      </button>
     </div>
   );
 };

@@ -3,8 +3,10 @@ import style from './InformationItem.module.css';
 import maleImage from '../../assets/InformationOnChild-Images/image15.svg';
 import femaleImage from '../../assets/InformationOnChild-Images/image14.svg';
 import vector from '../../assets/InformationOnChild-Images/Vector100.svg';
+import { Link } from 'react-router-dom';
 
 const InformationItem = ({
+  childId,
   male,
   name,
   balance,
@@ -41,10 +43,10 @@ const InformationItem = ({
         </ul>
       </li>
       <li className={style.informItem_block__link}>
-        <a href={'#'} className={style.informItem_link}>
+        <Link to={`/childTasks/${childId}`} className={style.informItem_link}>
           <p className={style.informItem_linkName}>До виконаних задач</p>
           <img src={vector} alt="vector" />
-        </a>
+        </Link>
       </li>
     </ul>
   );

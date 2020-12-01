@@ -15,6 +15,14 @@ const addHabit = ({title,bal,childId}) => (dispatch) => {
 };
 
 
+const getAllHabbitsByUser = (value) => (dispatch, getState) => {
+  dispatch(action.getAllSuccess());
+  axios
+    .get('/api/habbits')
+    .then((response) => dispatch(action.getAllSuccess(response.data)))
+    .catch((err) => dispatch(action.getAllSuccess(err)));
+};
+
 const checkHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updateCheckedRequest());
   axios
@@ -34,7 +42,7 @@ const delHabbit = (value) => (dispatch, getState) => {
   dispatch(action.deletedRequest());
 
   axios
-    .delete('/api/habbits/delhabbit/' + value)
+    .delete('/api/habbits/' + value)
     .then((response) => {
       console.log('response: ', response);
       dispatch(action.deletedSuccess({ idHabbit: value }));
@@ -48,10 +56,16 @@ const updateHabbit = (value) => (dispatch, getState) => {
   axios
     .patch('/api/habbits/updatehabbit', value)
     .then((response) => {
-      console.log('response: ', response);
-      dispatch(action.updSuccess(value));
+      console.log(response, value.idHabbit);
+      dispatch(
+        action.updSuccess({
+          data: { ...response.data },
+          changeId: value.idHabbit,
+        }),
+      );
     })
     .catch((err) => dispatch(action.updError(err)));
 };
 
-export default {addHabit, checkHabbit, delHabbit, updateHabbit };
+export default {addHabit, checkHabbit, delHabbit, updateHabbit, getAllHabbitsByUser };
+

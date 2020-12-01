@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 import style from './pressentForm.module.scss';
 import closeBtn  from "../../assets/images/close.svg";
 import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
-import deleteBtn from '../../assets/images/Vector-1.svg'
-
+import operation from '../../redux/operations/presentOperation'
+import selector from '../../redux/selectors/ChildSelectors'
 
 
 class AddFormPresent extends Component {
     state={
-        namePresent:'',  //запрос на сервер в поиске подарков 
-        ball:0,  // this.props.ball
-        choseChild:'',  //this.props.child
-        childrens:[ 'Masha', 'Sasha' ],  //заглушка детей )// axios or fetcc
+        title:'', 
+        bal:0,  
+        childId:'',  
+        children:[],  
     };
 
     componentDidMount(){
-            // this.setState({childrens:this.props})// сюда должны прийти пропы детей
+            this.setState({children:this.props.children})// сюда должны прийти пропы детей
     }
 
     handleChangeName = (e) => {
-        this.setState({namePresent:e.target.value})
+        this.setState({title:e.target.value})
     }    
     handleChangeBall = (e) => {
-        this.setState({ball:e.target.value})
+        this.setState({bal:e.target.value})
     }
 
     handleChoseChild = e => {
-        this.setState({choseChild:e.target.value})
+        this.setState({childId:e.target.value})
     }
     handleCloseWindow = (e) =>{
        // если закрыть окно должны передать пропы false
@@ -37,16 +37,15 @@ class AddFormPresent extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        // const {namePresent, ball, choseChild} = this.state
+        const {title, bal, childId} = this.state
 
-        // this.props.onAddPresent({namePresent,ball,choseChild})
+        this.props.onAddPresent({title,bal,childId})
 
-        // this.setState({namePresent:'',ball:'',choseChild:''})
+        this.setState({title:'',bal:'',childId:''})
     }
 
     render(){
-        const {childrens,namePresent ,choseChild} = this.state 
-
+        const {children,title ,childId} = this.state 
         return (
             <div className={style.container_presents}>
                 <button className={style.container_presents__close}
@@ -57,13 +56,13 @@ class AddFormPresent extends Component {
                 </button>
                
                 <form className={style.present_form}  onSubmit={this.handleSubmit} >
-                     <p className={style.present_form__title}>Редагування подарунку</p>
+                     <p className={style.present_form__title}>Додавання подарунку</p>
 
                     <label className={style.present_form__label}> Назва
                          <input 
                          className={style.present_form__input}
                          placeholder="Введіть назву"
-                         value={namePresent}
+                         value={title}
                          onChange={this.handleChangeName}
                          />
                     </label>
@@ -71,9 +70,9 @@ class AddFormPresent extends Component {
                     <label className={style.present_form__label}>Призначення подарунку
                            <img src={tringl} className={style.present_form__change_child}  />
                            <div className={style.present_form__change_child_block}  ></div>
-                           <select  onChange={this.handleChoseChild} value={choseChild} className={style.present_form__input} >
+                           <select  onChange={this.handleChoseChild} value={childId} className={style.present_form__input} >
                             {
-                             childrens.map(child =>  {<option  value={child}> {child} </option>} )   
+                             children.map(child => <option key={child._id} value={child._id}> {child.name} </option> )   
                             }
                            </select>
                     </label>
@@ -117,14 +116,18 @@ class AddFormPresent extends Component {
     };
 }
 
+const mapStatetoProps = (state)=> ({
+    children:selector.getChildrens(state)
+})
+
 
 const mapDispatchToProps = {
-    // onAddPresent:constOperation.addTask// Operation  to do 
+    onAddPresent:operation.addPresent
 }
 
 
-// export default connect(null,mapDispatchToProps)(AddFormPresent)
-export default AddFormPresent;
+export default connect(mapStatetoProps,mapDispatchToProps)(AddFormPresent)
+
 
 
 

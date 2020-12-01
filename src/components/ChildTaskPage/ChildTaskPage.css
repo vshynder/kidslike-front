@@ -2,7 +2,7 @@ body {
   background-color: #e5e5e5;
 }
 
-.container {
+.taskcontainer {
   width: 100%;
   min-width: 320px;
   box-sizing: border-box;
@@ -13,21 +13,20 @@ body {
 
   align-items: center;
 }
-.header {
+.taskheader {
   width: 280px;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  border: 3px solid black;
 }
 
-.main {
+.taskmain {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.familynfo {
+.taskfamilynfo {
   width: 280px;
 
   display: block;
@@ -37,16 +36,15 @@ body {
 .tasksinfo {
   display: block;
   text-align: end;
-  border: 3px solid green;
   width: 280px;
 }
 
 @media (min-width: 768px) {
-  .header {
+  .taskheader {
     width: 687px;
     margin-bottom: 49px;
   }
-  .familynfo {
+  .taskfamilynfo {
     width: 687px;
   }
 
@@ -57,21 +55,21 @@ body {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   /* .container {
       width: 1120px;
     } */
-  .header {
-    width: 1220px;
+  .taskheader {
+    width: 1219px;
     margin-bottom: 50px;
   }
-  .main {
+  .taskmain {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 1119px;
   }
 
-  .familynfo {
+  .taskfamilynfo {
     width: 345px;
   }
 
