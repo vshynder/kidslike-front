@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import profilePhoto from './profile-example.png';
 import exitButton from './exit.svg';
 import styles from './UserInfo.module.css';
 import Modal from '../Modal/Modal';
 import Logout from '../Logout';
+import authSelectors from '../../redux/selectors/authSelectors';
 
-export default class UserInfo extends Component {
+class UserInfo extends Component {
   state = {
     isRenderModal: false,
   };
@@ -18,18 +20,19 @@ export default class UserInfo extends Component {
 
   render() {
     const { isRenderModal } = this.state;
+    const { avatarURL, name } = this.props;
     return (
       <>
         <div className={styles.userInfoContainer}>
           <span className={styles.userPhotoContainer}>
             <img
-              src={profilePhoto}
+              src={avatarURL}
               alt="profile-image"
               className={styles.userPhoto}
             />
           </span>
 
-          <p className={styles.userName}>Marta Rogova</p>
+          <p className={styles.userName}>{name}</p>
           <button onClick={this.handleOpenModal}>
             <img src={exitButton} alt="exit-button" width="21px" />
           </button>
@@ -43,3 +46,8 @@ export default class UserInfo extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return authSelectors.getUser(state);
+};
+
+export default connect(mapStateToProps)(UserInfo);
