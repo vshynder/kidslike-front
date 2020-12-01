@@ -1,102 +1,51 @@
 import { createReducer } from '@reduxjs/toolkit';
-import action from '../actions/index';
+import actions from '../actions/allHabbitsAction';
 
-const initialState = [
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbad10a4e5958241c581f31',
-    idChild: '5fb7ac03930dc826c4b85a32',
-    nameHabbit: 'Music Listen',
-    priceHabbit: 3,
-    ownerHabbits: 'CVF',
-    genderChild: 'male',
+export const habbitsReducer = createReducer([], {
+  [actions.getAllSuccess]: (state, action) => {
+    return (state = action.payload);
   },
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbbd226c8f55226980252eb',
-    idChild: '5fb7ac03930dc826c4b85a32',
-    nameHabbit: 'Dynamo K',
-    priceHabbit: 3,
-    ownerHabbits: 'CVF',
-    genderChild: 'male',
+  [actions.updateCheckedSuccess]: (state, action) => {
+    state.map((el) =>
+      el._id === action.payload.idHabbit
+        ? (el.sprintHabbit = action.payload.newSprintHabbit)
+        : el,
+    );
   },
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbac96cefb21b2698e84a9c',
-    nameHabbit: 'Relax',
-    priceHabbit: 754,
-    idChild: '5fb7c960558e331c400f46bb',
-    ownerHabbits: 'Masha',
-    genderChild: 'female',
-  },
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbacb885233e71d54b2f68b',
-    nameHabbit: 'Fifa',
-    priceHabbit: 55,
-    idChild: '5fb7c960558e331c400f46bb',
-    ownerHabbits: 'Masha',
-    genderChild: 'female',
-  },
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbace0767697121ec6857a1',
-    nameHabbit: 'GTA5',
-    priceHabbit: 8,
-    idChild: '5fb7c960558e331c400f46bb',
-    ownerHabbits: 'Masha',
-    genderChild: 'female',
-  },
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbacebc67697121ec6857a3',
-    nameHabbit: 'Music2',
-    priceHabbit: 8,
-    idChild: '5fb7c960558e331c400f46bb',
-    ownerHabbits: 'Masha',
-    genderChild: 'female',
-  },
-  {
-    sprintHabbit: '1111111111',
-    _id: '5fbbd7558bcd602db4291673',
-    nameHabbit: 'PS4',
-    priceHabbit: 8,
-    idChild: '5fb7c960558e331c400f46bb',
-    ownerHabbits: 'Masha',
-    genderChild: 'female',
-  },
-];
 
-export const dummyReducerAllHabbits = createReducer(initialState, {
-  [action.updateCheckedHabbit]: (state, action) => {
-    let updatedState = [...state];
-    updatedState.map((el) => {
-      if (el._id === action.payload.idHabbit) {
-        el.sprintHabbit = action.payload.newSprintHabbit;
-        return el;
-      }
-      return el;
-    });
+  [actions.deletedSuccess]: (state, action) => {
+    return state.filter((el) => el._id !== action.payload.idHabbit);
+  },
+  [actions.updSuccess]: (state, action) => {
+    console.log('action.payload ', action.payload);
+    return state.map((el) =>
+      el._id === action.payload.changeId ? (el = action.payload.data) : el,
+    );
   },
 });
 
-// export const dummyReducerAllHabbits = (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'check/habbit':
-//       // let updatedState = [...state];
+export default habbitsReducer;
 
-//       let updatedState = [...state];
-//       updatedState.map((el) => {
-//         if (el._id === action.payload.idHabbit) {
-//           el.sprintHabbit = action.payload.newSprintHabbit;
+// Для редюсера loader:
+// [actions.getAllHabbitsRequest]:()=>true,
+// [actions.updRequest]:()=>true,
+// [actions.deletedRequest] :()=>true,
+// [actions.deletedRequest]:()=>true,
+// [actions.getAllSuccess]: ()=>false,
+// [actions.updateCheckedSuccess]: ()=>false,
+// [actions.deletedSuccess]: ()=>false,
+// [actions.updSuccess]: ()=>false,
+// [actions.getAllHabbitsError]:()=>false,
+// [actions.updError]:()=>false,
+// [actions.deletedError] :()=>false,
+// [actions.updateCheckedError] :()=>false,
 
-//           return el;
-//         }
-//         return el;
-//       });
-
-//       return updatedState;
-//     default:
-//       return state;
-//   }
-// };
+//  Для редюсера error
+// [actions.getAllHabbitsError] : (state, action) => action.payload,
+// [actions.updError] : (state, action) => action.payload,
+// [actions.deletedError] : (state, action) => action.payload,
+// [actions.updateCheckedError] : (state, action) => action.payload,
+// [actions.getAllSuccess]: ()=>null,
+// [actions.updateCheckedSuccess]: ()=>null,
+// [actions.deletedSuccess]: ()=>null,
+// [actions.updSuccess]: ()=>null,

@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, token, ...routeProps }) => {
 };
 
 const mapStateToProps = (state) => ({
-  //   token: state.user.token,
+  //   token: state.user.accessToken,
   // шаблон. можливо для зміни
 });
 

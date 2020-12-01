@@ -24,9 +24,7 @@ function AuthPage() {
     <div className={container}>
       <section className={authMenu}>
         <div>
-          <div className={authMenu__logo}>
-            {/* <h1>KidsLike</h1> */}
-          </div>
+          <div className={authMenu__logo}>{/* <h1>KidsLike</h1> */}</div>
           <div className={main}>
             <h2 className={authMenu__title}>
               Мотивуйте дитину вдосконалювати себе!
@@ -37,8 +35,12 @@ function AuthPage() {
               подарунками виконувати їх і очікуйте результату!
             </p>
             <div className={btn}>
-              <Link className={btn__in} to={"/login"}>Вхід</Link>
-              <Link className={btn__out} to={"/register"}>Зареєструватися</Link>
+              <Link className={btn__in} to={'/login'}>
+                Вхід
+              </Link>
+              <Link className={btn__out} to={'/register'}>
+                Зареєструватися
+              </Link>
             </div>
           </div>
         </div>

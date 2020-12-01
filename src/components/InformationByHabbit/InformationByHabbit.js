@@ -6,7 +6,7 @@ import iconconfirm from './img/Vector_103_check_mark.svg';
 import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
-import checkHabbit from '../../redux/operations/habbitOperation';
+import habbitOperation from '../../redux/operations/habbitOperation';
 
 // import ChangeHabbitForm from '../ChangeHabbitForm/index'; // Иморт формы редактирования
 // import Modal from '../'; // Модальное окно
@@ -16,14 +16,14 @@ class InformationByHabbit extends React.Component {
 
   btnchange = React.createRef();
   componentDidMount() {
-    if (!this.props.allHabbits[0].sprintHabbit.includes('1')) {
+    if (!this.props.habbit.sprintHabbit.includes('1')) {
       this.setState({ complitedHabbit: true });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      !this.props.allHabbits[0].sprintHabbit.includes('1') &&
+      !this.props.habbit.sprintHabbit.includes('1') &&
       prevState.complitedHabbit === false
     ) {
       this.setState({ complitedHabbit: true });
@@ -39,14 +39,14 @@ class InformationByHabbit extends React.Component {
   clickConfirmedDay = (e) => {
     this.props.onCheckHabbit({
       confirmed: true,
-      idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
+      idHabbit: this.props.habbit._id,
     });
   };
 
   clickUnConfirmedDay = (e) => {
     this.props.onCheckHabbit({
       confirmed: false,
-      idHabbit: '5fbad10a4e5958241c581f31', //Заглушка, При рендерере масива хебитов нужно прокинуть пропсом или записать в дата-атрибут
+      idHabbit: this.props.habbit._id,
     });
   };
 
@@ -73,14 +73,20 @@ class InformationByHabbit extends React.Component {
         {
           /* {this.state.showModal && (
           <Modal>
-            <ChangeHabbitForm  forCloseModal={this.handlesShowModal}/>
+            <ChangeHabbitForm updateHabbit={this.props.updateHabbit}  forCloseModal={this.handlesShowModal}/>
           </Modal>
         )} */
-          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
-            <div style={{ position: 'absolute', backgroundColor: '#ddd' }}>
-              MODAL WINDOW DUMMY
+          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА ДЛЯ ChangeHabbitForm
+            <div
+              style={{
+                height: '30px',
+                position: 'absolute',
+                backgroundColor: '#ddd',
+              }}
+            >
+              ЗАГЛУШКА МОДАЛЬНОГО ОКНА
             </div>
-          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
+          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА ДЛЯ ChangeHabbitForm
         }
         <button
           ref={this.btnchange}
@@ -94,11 +100,13 @@ class InformationByHabbit extends React.Component {
             onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
             onHandlesShowModal={this.handlesShowModal}
             refBtnChange={this.btnchange.current}
+            idHabbit={this.props.habbit._id}
           />
         )}
+
         <div
           className={
-            this.props.allHabbits[0].genderChild === 'male'
+            this.props.habbit.genderChild === 'male'
               ? style.avatar_boy
               : style.avatar_girl
           }
@@ -106,27 +114,23 @@ class InformationByHabbit extends React.Component {
           <img
             className={style.imgavatar}
             src={
-              this.props.allHabbits[0].genderChild === 'male'
-                ? image_boy
-                : image_girl
+              this.props.habbit.genderChild === 'male' ? image_boy : image_girl
             }
             alt={'pic'}
           />
-          <p className={style.name_hover}>
-            {this.props.allHabbits[0].ownerHabbits}
-          </p>
+          <p className={style.name_hover}>{this.props.habbit.ownerHabbits}</p>
         </div>
         <div>
-          <h3 className={style.title}>{this.props.allHabbits[0].nameHabbit}</h3>
+          <h3 className={style.title}>{this.props.habbit.nameHabbit}</h3>
           {!this.state.complitedHabbit ? (
             <ul className={style.conteiner}>
-              {this.props.allHabbits[0].sprintHabbit
+              {this.props.habbit.sprintHabbit
                 .slice()
                 .split('')
                 .map((el, idx) => {
                   return (
                     <li className={this.renderCheckSprintHabbit(el)} key={idx}>
-                      {this.props.allHabbits[0].priceHabbit}
+                      {this.props.habbit.priceHabbit}
                     </li>
                   );
                 })}
@@ -158,12 +162,18 @@ class InformationByHabbit extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  allHabbits: state.dummyReducerAllHabbits,
-}); // Заглушка - компонет InformationByHabbit получит пропсом обьект allHabbits[0]
+const mapStateToProps = (state, ownProps) => {
+  const habbit = state.habbitsReducer.find(
+    (el) => el._id === ownProps.id,
+  );
+  return { habbit };
+}; // Заглушка - компонет InformationByHabbit получит пропсом обьект habbit
 // при рендере коллекции  всех привычек детей пользователя
 
-const mapDispatchToProps = { onCheckHabbit: checkHabbit };
+const mapDispatchToProps = {
+  onCheckHabbit: habbitOperation.checkHabbit,
+  updateHabbit: habbitOperation.updateHabbit, // !!! ДЛЯ передачи в ChangeHabbitForm, или подписаться  на updateHabbit в ней
+};
 
 export default connect(
   mapStateToProps,

@@ -1,17 +1,20 @@
+body {
+  background-color: #e5e5e5;
+}
+
 .container {
   width: 100%;
   min-width: 320px;
   box-sizing: border-box;
-  border: 3px solid red;
 
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   /* padding: 0 40px 0 40px; */
 
   align-items: center;
 }
 .header {
-  border: 3px solid #000000;
   width: 280px;
   display: flex;
   justify-content: center;
@@ -20,7 +23,7 @@
 
 .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .extendMain {
@@ -41,14 +44,13 @@
 
   display: block;
   text-align: center;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   padding: 2px 2px 2px 2px;
 }
 
 .tasksinfo {
   display: block;
   text-align: end;
-  border: 3px solid green;
 }
 
 @media (min-width: 768px) {
@@ -61,7 +63,7 @@
   }
 
   .habitsInfo {
-    display: none;
+    display: block;
     width: 687px;
   }
 
@@ -72,15 +74,73 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
+  /* .container {
+    width: 1120px;
+  } */
+
+  .habitsInfo_button {
+    display: flex;
+    justify-content: start;
+  }
+  .habitsInfo_button-button {
+    border: 1px solid #bdbdbd;
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #ffffff;
+    width: 220px;
+    height: 44px;
+    cursor: pointer;
+    outline: none;
+    background-color: #ff8626;
+  }
+
+  .habitsInfo_header {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin-bottom: 30px;
+  }
+
+  .habitsInfo_header-img {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .habitsInfo_header-title {
+    align-self: flex-end;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #333333;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
   .header {
-    width: 1220px;
+    width: 1219px;
     margin-bottom: 50px;
+  }
+
+  .habitsInfo_list {
+    max-height: 471px;
+    width: 690px;
+    margin-bottom: 30px;
+    overflow-y: scroll;
   }
   .main {
     display: flex;
     justify-content: space-between;
-    width: 1120px;
+    width: 1119px;
   }
 
   .familynfo {
@@ -90,10 +150,67 @@
   .habitsInfo {
     display: block;
     width: 690px;
+    max-height: 463px;
+    overflow-y: scroll;
   }
 
   .tasksinfo {
     display: block;
     width: 690px;
+    margin-bottom: 30px;
+  }
+
+  .tasksinfo__header {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin-bottom: 30px;
+  }
+
+  .tasksinfo__header-img {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .tasksinfo__header-title {
+    align-self: flex-end;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #333333;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  .tasksinfo__list {
+    max-height: 285px;
+    width: 690px;
+    margin-bottom: 30px;
+    overflow-y: scroll;
+  }
+  .tasksinfo__button {
+    display: flex;
+    justify-content: start;
+  }
+
+  .tasksinfo__button-button {
+    border: 1px solid #bdbdbd;
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #ffffff;
+    width: 220px;
+    height: 44px;
+    cursor: pointer;
+    outline: none;
+    background-color: #ff8626;
   }
 }

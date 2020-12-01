@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ChangeOrDelHabbit.module.css';
+import { connect } from 'react-redux';
+import habbitOperation from '../../redux/operations/habbitOperation';
 
 class ChangeOrDelHabbit extends React.Component {
   refModalmini = React.createRef();
@@ -27,12 +29,31 @@ class ChangeOrDelHabbit extends React.Component {
   };
 
   render() {
+    let { idHabbit } = this.props;
+    console.log('idHabbit: ', idHabbit);
+    // idHabbit = '5fbff003d990eb2fa898f219'; // Заглушка для удаления хеббита
     return (
       <div ref={this.refModalmini} className={styles.modalmini}>
+        {/* <button
+          className={styles.btn__modal}
+          onClick={(e) =>
+            this.props.updateHabbit({
+              nameHabbit: 'DynMOddrew',
+              idHabbit: '5fbbd226c8f55226980252eb',
+              priceHabbit: 11,
+            })
+          }
+        >
+          TEST_UpdHabb
+        </button> */}
+        {/* this.props.updateHabbit ВЫЗЫВАЕТСЯ В ChangeHabbitForm  !!! */}
         <button className={styles.btn__modal} onClick={this.showHideModal}>
           Редагувати
         </button>
-        <button className={styles.btn__modal} onClick={this.showHideModal}>
+        <button
+          className={styles.btn__modal}
+          onClick={(e) => this.props.delHabbit(idHabbit)}
+        >
           Видалити
         </button>
       </div>
@@ -40,4 +61,9 @@ class ChangeOrDelHabbit extends React.Component {
   }
 }
 
-export default ChangeOrDelHabbit;
+const mapDispatchToProps = {
+  delHabbit: habbitOperation.delHabbit,
+  updateHabbit: habbitOperation.updateHabbit, // ДЛЯ ТЕСТИТРОВАНИЯ
+};
+
+export default connect(null, mapDispatchToProps)(ChangeOrDelHabbit);
