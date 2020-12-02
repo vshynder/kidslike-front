@@ -21,7 +21,6 @@ class MainPosition extends Component {
 
   componentDidMount() {
     this.props.getTasks();
-    // this.props.getHabits();
   }
 
   toggleModal = () => {
@@ -41,6 +40,7 @@ class MainPosition extends Component {
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
     const { tasks } = this.props;
+    console.log(tasks);
 
     return (
       <div className="container">
@@ -96,10 +96,6 @@ class MainPosition extends Component {
                     </div>
                     <div className="habitsInfo_list">
                       <InformationByHabbit />
-                      {/* {habits &&
-                        habits.map((habit) => (
-                          <InformationByHabbit habbit={habit} />
-                        ))} */}
                     </div>
                     <div className="habitsInfo_button">
                       <button
@@ -119,7 +115,7 @@ class MainPosition extends Component {
                       <div className="tasksinfo__list">
                         {tasks &&
                           tasks.map((task) => (
-                            <InformationByTask task={task} />
+                            <InformationByTask key={task._id} task={task} />
                           ))}
                       </div>
                       <div className="tasksinfo__button">
@@ -144,12 +140,10 @@ class MainPosition extends Component {
 
 const mapStateToProps = (state) => ({
   tasks: state.tasks,
-  // habits: state.habbits,
 });
 
 const mapDispatchToProps = {
   getTasks: tasksOperation.getAllTasks,
-  // getHabits: habitsOperation.getAllHabbitsByUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPosition);
