@@ -75,7 +75,7 @@ class MainPosition extends Component {
             <Fragment>
               {matches.small && (
                 <div className="familynfo">
-                  <Slider onClick={this.toggleModal}></Slider>
+                  <Slider  onClick={this.toggleModal}></Slider>
                 </div>
               )}
               {matches.medium && (
@@ -113,8 +113,9 @@ class MainPosition extends Component {
                       </div>
                       <div className="tasksinfo__list">
                        {
-                         tasks.map(task => 
-                            <InformationByTask task ={task}/> )
+                         tasks.map((task ) => 
+          
+                             <InformationByTask  key={task._id} task={task}/>)
                        }
                       </div>
                       <div className="tasksinfo__button">
