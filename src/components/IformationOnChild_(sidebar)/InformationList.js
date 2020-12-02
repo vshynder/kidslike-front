@@ -19,26 +19,32 @@ const InformationList = ({ childrens, onClick }) => {
               childId={children._id}
               male={children.gender}
               name={children.name}
-              balance={children.stars}
+              balance={children.stars ? children.stars : 0}
               firstTask={
+                children.tasks ? 
                 children.tasks[0]
                   ? children.tasks[0].title.length > 22
                     ? `${children.tasks[0].title.slice(0, 22)}...`
                     : children.tasks[0].title
                   : ''
+                  :""
               }
               costFirstTask={
-                children.tasks[0] ? `+ ${children.tasks[0].reward}` : ''
+                children.tasks ?
+                children.tasks[0] ? `+ ${children.tasks[0].reward}` : '' :""
               }
               secondTask={
+                children.tasks ?
                 children.tasks[1]
                   ? children.tasks[1].title.length > 22
                     ? `${children.tasks[1].title.slice(0, 22)}...`
                     : children.tasks[1].title
                   : ''
+                  :""
               }
               costSecondTask={
-                children.tasks[1] ? `+ ${children.tasks[1].reward}` : ''
+                children.tasks ?
+                children.tasks[1] ? `+ ${children.tasks[1].reward}` : '' :""
               }
             />
           </li>

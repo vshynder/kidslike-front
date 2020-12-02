@@ -39,6 +39,7 @@ class MainPosition extends Component {
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
     const {tasks} = this.props;
+    console.log(tasks)
 
 
     return (
@@ -113,7 +114,7 @@ class MainPosition extends Component {
                       </div>
                       <div className="tasksinfo__list">
                        {
-                         tasks.map((task ) => 
+                         tasks && tasks.map((task ) => 
           
                              <InformationByTask  key={task._id} task={task}/>)
                        }
