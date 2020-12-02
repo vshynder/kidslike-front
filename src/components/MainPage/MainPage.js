@@ -21,7 +21,7 @@ class MainPosition extends Component {
 
   componentDidMount() {
     this.props.getTasks();
-    this.props.getHabits();
+    // this.props.getHabits();
   }
 
   toggleModal = () => {
@@ -96,10 +96,10 @@ class MainPosition extends Component {
                       <h2 className="habitsInfo_header-title">Звички</h2>
                     </div>
                     <div className="habitsInfo_list">
-                      {habits &&
+                      {/* {habits &&
                         habits.map((habit) => (
                           <InformationByHabbit habbit={habit} />
-                        ))}
+                        ))} */}
                     </div>
                     <div className="habitsInfo_button">
                       <button
@@ -122,14 +122,14 @@ class MainPosition extends Component {
                             <InformationByTask task={task} />
                           ))}
                       </div>
-                    </div>
-                    <div className="tasksinfo__button">
-                      <button
-                        onClick={this.toggleAddFormTaskModal}
-                        className="tasksinfo__button-button"
-                      >
-                        Додати задачу +
-                      </button>
+                      <div className="tasksinfo__button">
+                        <button
+                          onClick={this.toggleAddFormTaskModal}
+                          className="tasksinfo__button-button"
+                        >
+                          Додати задачу +
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
