@@ -10,11 +10,11 @@ const InformationList = ({ childrens, onClick }) => {
     <div className={style.childrenSidebar_container}>
       <div className={style.childrenSidebar_header}>
         <img className={style.childrenSidebar_house} src={house} alt="home" />
-        <h2 className={style.childrenSidebar_title}>Сiм`я</h2>
+        <h2 className={style.childrenSidebar_title}>Сім'я</h2>
       </div>
       <ul className={style.childrenSidebar_childrens}>
         {childrens.map((children) => (
-          <li className={style.childrenSidebar_item} key={children.id}>
+          <li className={style.childrenSidebar_item} key={children._id}>
             <InformationItem
               childId={children._id}
               male={children.gender}

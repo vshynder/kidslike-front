@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
 import habbitOperation from '../../redux/operations/habbitOperation';
 
-// import ChangeHabbitForm from '../ChangeHabbitForm/index'; // Иморт формы редактирования
-// import Modal from '../'; // Модальное окно
+import ChangeHabbitForm from '../ChangeHabbitForm';
+import Modal from '../Modal/Modal';
 
 class InformationByHabbit extends React.Component {
   state = { showDropDownMenu: false, showModal: false, complitedHabbit: false };
@@ -67,27 +67,15 @@ class InformationByHabbit extends React.Component {
       return style.containerlidischeck;
     }
   };
+
   render() {
     return (
       <div className={style.canvas}>
-        {
-          /* {this.state.showModal && (
-          <Modal>
-            <ChangeHabbitForm updateHabbit={this.props.updateHabbit}  forCloseModal={this.handlesShowModal}/>
+        {this.state.showModal && (
+          <Modal onClose={this.handlesShowModal}>
+            <ChangeHabbitForm updateHabbit={this.props.updateHabbit} />
           </Modal>
-        )} */
-          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА ДЛЯ ChangeHabbitForm
-            <div
-              style={{
-                height: '30px',
-                position: 'absolute',
-                backgroundColor: '#ddd',
-              }}
-            >
-              ЗАГЛУШКА МОДАЛЬНОГО ОКНА
-            </div>
-          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА ДЛЯ ChangeHabbitForm
-        }
+        )}
         <button
           ref={this.btnchange}
           onClick={this.handlesShowDropDownMenu}
@@ -163,12 +151,9 @@ class InformationByHabbit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const habbit = state.habbitsReducer.find(
-    (el) => el._id === ownProps.id,
-  );
+  const habbit = state.habbits.find((el) => el._id === ownProps.id);
   return { habbit };
-}; // Заглушка - компонет InformationByHabbit получит пропсом обьект habbit
-// при рендере коллекции  всех привычек детей пользователя
+};
 
 const mapDispatchToProps = {
   onCheckHabbit: habbitOperation.checkHabbit,

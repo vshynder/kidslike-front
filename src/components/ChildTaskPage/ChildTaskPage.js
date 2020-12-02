@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import TaskContainer from '../TasksContainer/TasksContainer';
 import Media from 'react-media';
 import Header from '../Header';
 
@@ -32,7 +33,9 @@ export default class MainPosition extends Component {
                   <div className="familynfo">
                     <Slider></Slider>
                   </div>
-                  <div className="tasksinfo"></div>
+                  <div className="tasksinfo">
+                    <TaskContainer match={this.props.match} />
+                  </div>
                 </div>
               )}
             </Fragment>

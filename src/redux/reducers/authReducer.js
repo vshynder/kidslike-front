@@ -18,4 +18,10 @@ export const authReducer = createReducer(initState, {
     return { ...state, ...action.payload.user };
   },
   [authActions.logoutSuccess]: () => initState,
+
+  [authActions.getCurrentUserSuccess]:(state, action) => {
+    console.log(action.payload);
+    return { ...state, ...action.payload };
+  },
+  [authActions.getCurrentUserError]: (_,{payload}) => payload,
 });

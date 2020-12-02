@@ -47,4 +47,26 @@ const logOut = () => (dispatch, getState) => {
     })
     .catch((error) => dispatch(authActions.logoutError(error)));
 };
-export default { loginUser, registrationUser, logOut };
+
+const getCurrentUser = () => (dispatch,getState) => {
+
+  const {
+    user: { accessToken: accessToken },
+  } = getState();
+  if (!accessToken) {
+    return;
+  }
+
+  setAuthToken(accessToken);
+  dispatch(authActions.getCurrentUserRequest());
+
+  axios
+      .get('http://kidslike-back-end.herokuapp.com/api/auth/current')
+      .then((response) => {
+        return dispatch(authActions.getCurrentUserSuccess(response.data))
+      })
+     
+      .catch(error => dispatch(authActions.getCurrentUserError(error)))
+};
+
+export default { loginUser, registrationUser, logOut,getCurrentUser };
