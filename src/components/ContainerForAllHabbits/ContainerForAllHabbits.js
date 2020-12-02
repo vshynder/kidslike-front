@@ -8,7 +8,6 @@ class ContainerForAllHabbits extends React.Component {
     this.props.getAllHabbitsByUser();
   }
   render() {
-    console.log('allHabbits ', this.props.allHabbits);
     const { allHabbits } = this.props;
     return (
       allHabbits.length > 0 &&
