@@ -92,9 +92,8 @@
   top: 30px;
   right: 22px;
   z-index: 10;
-  display: none;
 }
-.submenuItem::before {
+.submenu::before {
   content: ' ';
   position: absolute;
   width: 0;
@@ -110,10 +109,6 @@
 .additionButton:focus {
   color: #333333;
 }
-/* .additionButton:focus + .submenu {
-  display: flex;
-  cursor: pointer;
-} */
 
 .submenuItem {
   padding: 8px 15px;

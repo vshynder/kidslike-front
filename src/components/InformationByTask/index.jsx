@@ -9,35 +9,27 @@ import ChangeTaskForm from '../ChangeTaskForm/ChangeTaskForm';
 import tasksOperation from '../../redux/operations/tasksOperation';
 import { connect } from 'react-redux';
 
-<<<<<<< HEAD
-export default class InformationByTask extends Component {
-  constructor(props) {
-    super(props);
-    this.submenu = React.createRef();
-  }
-=======
 class InformationByTask extends Component {
->>>>>>> dev
   state = {
     isRenderModal: false,
+    isRenderSubmenu: false,
   };
-  focusSubmenu = (e) => {
-    this.submenu.current.focus();
+
+  handleOpenSubmenu = (e) => {
+    this.setState({ isRenderSubmenu: true });
+  };
+  handleCloseSubmenu = (e) => {
+    this.setState({ isRenderSubmenu: false });
   };
   handleOpenModal = (e) => {
-    this.setState({ isRenderModal: true });
+    this.setState({ isRenderModal: true, isRenderSubmenu: false });
   };
   handleCloseModal = (e) => {
     this.setState({ isRenderModal: false });
   };
   render() {
-    const { isRenderModal } = this.state;
-<<<<<<< HEAD
-    const { task } = this.props;
-=======
-    console.log(this.props);
+    const { isRenderModal, isRenderSubmenu } = this.state;
     const { title, reward, daysToDo } = this.props.task;
->>>>>>> dev
     return (
       <>
         <div className={styles.container}>
@@ -64,11 +56,7 @@ class InformationByTask extends Component {
           <span className={styles.secondSmallContainer}>
             <span className={styles.timeContainer}>
               <p className={styles.greyTitle}>Час на виконання:</p>
-<<<<<<< HEAD
-              <p className={styles.taskDayText}>{task.daysToDo} день</p>
-=======
               <p className={styles.taskDayText}>{daysToDo} день</p>
->>>>>>> dev
             </span>
             <span>
               <p className={styles.greyTitle}>Підтвердження</p>
@@ -88,18 +76,27 @@ class InformationByTask extends Component {
               </span>
             </span>
           </span>
-          <button className={styles.additionButton} onClick={this.focusSubmenu}>
+          <button
+            className={styles.additionButton}
+            onFocus={this.handleOpenSubmenu}
+          >
             ...
           </button>
-          <div ref={this.submenu} className={styles.submenu}>
-            <button
-              className={styles.submenuItem}
-              onClick={this.handleOpenModal}
+          {isRenderSubmenu && (
+            <div
+              ref={this.submenu}
+              className={styles.submenu}
+              onMouseLeave={this.handleCloseSubmenu}
             >
-              Редагувати
-            </button>
-            <button className={styles.submenuItem}>Видалити</button>
-          </div>
+              <button
+                className={styles.submenuItem}
+                onClick={this.handleOpenModal}
+              >
+                Редагувати
+              </button>
+              <button className={styles.submenuItem}>Видалити</button>
+            </div>
+          )}
         </div>
         {isRenderModal && (
           <Modal onClose={this.handleCloseModal}>
