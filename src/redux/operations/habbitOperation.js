@@ -22,6 +22,7 @@ const getAllHabbitsByUser = (value) => (dispatch, getState) => {
       dispatch(action.getAllSuccess(response.data));
     })
     .catch((err) => {
+      console.log('response.data: ', err);
       dispatch(action.getAllError(err));
     });
 };
