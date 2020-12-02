@@ -31,7 +31,11 @@ useEffect(()=>{
     <Route path="/register" component={SiginUpPage} />
     <PrivateRouter path="/main" exact component={Main} />
     <PrivateRouter path="/presents" exact component={PresentPage} />
-    <PrivateRouter path="/tasks" exact component={ChildTaskPage} />
+    <PrivateRouter
+      path="/childTasks/:name/:gender"
+      exact
+      component={ChildTaskPage}
+    />
     <Redirect to={'/'} />
   </Switch>
  )

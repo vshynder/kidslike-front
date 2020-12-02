@@ -2,6 +2,7 @@ import { loaderReducer } from './laoderReducer';
 import habbitsReducer from './allHabbitsReducer';
 import addChildReducer from './addChildReducer';
 import allPresentReducer from './allPresentReducer';
+import AllTasksCurrentChild from './allTasksCurrentChild';
 import { authReducer } from './authReducer';
 import {persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist'
 import tasksReducer from './tasksReducer';

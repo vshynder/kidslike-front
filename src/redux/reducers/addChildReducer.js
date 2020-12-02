@@ -11,7 +11,7 @@ const fakeChildrens = [
     tasks: [{ title: 'Помыть посуду', reward: 5 }],
   },
   {
-    _id: '5fb7bf6baa3bd05d1b31c2f4',
+    _id: '5fc2b3af43def7b68ce8add0',
     name: 'Маша',
     gender: 'female',
     stars: 33,
