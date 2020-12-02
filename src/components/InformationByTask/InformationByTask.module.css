@@ -92,7 +92,7 @@
   top: 30px;
   right: 22px;
   z-index: 10;
-  visibility: hidden;
+  display: none;
 }
 .submenuItem::before {
   content: ' ';
@@ -110,20 +110,24 @@
 .additionButton:focus {
   color: #333333;
 }
-.additionButton:focus + .submenu {
-  visibility: visible;
+/* .additionButton:focus + .submenu {
+  display: flex;
   cursor: pointer;
-}
+} */
 
 .submenuItem {
   padding: 8px 15px;
   border-radius: 7px;
   background-color: #eeeeee;
   text-align: center;
+  border: none;
 }
 .submenuItem:hover {
   background-color: #ffbe9d;
   color: #fff;
+}
+.submenuItem:focus-within {
+  display: block;
 }
 @media (max-width: 768px) {
   .container {

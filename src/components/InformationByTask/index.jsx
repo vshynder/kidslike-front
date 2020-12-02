@@ -8,8 +8,15 @@ import Modal from '../Modal/Modal';
 import ChangeTaskForm from '../ChangeTaskForm/ChangeTaskForm';
 
 export default class InformationByTask extends Component {
+  constructor(props) {
+    super(props);
+    this.submenu = React.createRef();
+  }
   state = {
     isRenderModal: false,
+  };
+  focusSubmenu = (e) => {
+    this.submenu.current.focus();
   };
   handleOpenModal = (e) => {
     this.setState({ isRenderModal: true });
@@ -46,7 +53,7 @@ export default class InformationByTask extends Component {
           <span className={styles.secondSmallContainer}>
             <span className={styles.timeContainer}>
               <p className={styles.greyTitle}>Час на виконання:</p>
-              <p className={styles.taskDayText}>{task.daysToDo}день</p>
+              <p className={styles.taskDayText}>{task.daysToDo} день</p>
             </span>
             <span>
               <p className={styles.greyTitle}>Підтвердження</p>
@@ -60,12 +67,18 @@ export default class InformationByTask extends Component {
               </span>
             </span>
           </span>
-          <button
-            className={styles.additionButton}
-            onClick={this.handleOpenModal}
-          >
+          <button className={styles.additionButton} onClick={this.focusSubmenu}>
             ...
           </button>
+          <div ref={this.submenu} className={styles.submenu}>
+            <button
+              className={styles.submenuItem}
+              onClick={this.handleOpenModal}
+            >
+              Редагувати
+            </button>
+            <button className={styles.submenuItem}>Видалити</button>
+          </div>
         </div>
         {isRenderModal && (
           <Modal onClose={this.handleCloseModal}>
