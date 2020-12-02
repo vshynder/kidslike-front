@@ -70,82 +70,89 @@ class InformationByHabbit extends React.Component {
 
   render() {
     return (
-      <div className={style.canvas}>
+      <>
         {this.state.showModal && (
           <Modal onClose={this.handlesShowModal}>
             <ChangeHabbitForm updateHabbit={this.props.updateHabbit} />
           </Modal>
         )}
-        <button
-          ref={this.btnchange}
-          onClick={this.handlesShowDropDownMenu}
-          className={style.btnchange}
-        >
-          ...
-        </button>
-        {this.state.showDropDownMenu && (
-          <ChangeOrDelHabbit
-            onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
-            onHandlesShowModal={this.handlesShowModal}
-            refBtnChange={this.btnchange.current}
-            idHabbit={this.props.habbit._id}
-          />
-        )}
-
-        <div
-          className={
-            this.props.habbit.genderChild === 'male'
-              ? style.avatar_boy
-              : style.avatar_girl
-          }
-        >
-          <img
-            className={style.imgavatar}
-            src={
-              this.props.habbit.genderChild === 'male' ? image_boy : image_girl
-            }
-            alt={'pic'}
-          />
-          <p className={style.name_hover}>{this.props.habbit.ownerHabbits}</p>
-        </div>
-        <div>
-          <h3 className={style.title}>{this.props.habbit.nameHabbit}</h3>
-          {!this.state.complitedHabbit ? (
-            <ul className={style.conteiner}>
-              {this.props.habbit.sprintHabbit
-                .slice()
-                .split('')
-                .map((el, idx) => {
-                  return (
-                    <li className={this.renderCheckSprintHabbit(el)} key={idx}>
-                      {this.props.habbit.priceHabbit}
-                    </li>
-                  );
-                })}
-            </ul>
-          ) : (
-            <p className={style.complhabbit}>Complited!</p>
+        <div className={style.canvas}>
+          <button
+            ref={this.btnchange}
+            onClick={this.handlesShowDropDownMenu}
+            className={style.btnchange}
+          >
+            ...
+          </button>
+          {this.state.showDropDownMenu && (
+            <ChangeOrDelHabbit
+              onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
+              onHandlesShowModal={this.handlesShowModal}
+              refBtnChange={this.btnchange.current}
+              idHabbit={this.props.habbit._id}
+            />
           )}
-          <p className={style.bonusx}>x1.5</p>
-        </div>
-        <div className={style.btn_wrap}>
-          <h4 className={style.titleconfirm}>Підтвердження</h4>
-          <div className={style.conf_cont}>
-            <button
-              className={style.btnconfirm}
-              onClick={this.clickConfirmedDay}
-            >
-              <img src={iconconfirm} alt={'pic'}></img>
-            </button>
-            <button
-              className={style.btnfailure}
-              onClick={this.clickUnConfirmedDay}
-            >
-              <img src={iconcross} alt={'pic'}></img>
-            </button>
+
+          <div
+            className={
+              this.props.habbit.genderChild === 'male'
+                ? style.avatar_boy
+                : style.avatar_girl
+            }
+          >
+            <img
+              className={style.imgavatar}
+              src={
+                this.props.habbit.genderChild === 'male'
+                  ? image_boy
+                  : image_girl
+              }
+              alt={'pic'}
+            />
+            <p className={style.name_hover}>{this.props.habbit.ownerHabbits}</p>
+          </div>
+          <div>
+            <h3 className={style.title}>{this.props.habbit.nameHabbit}</h3>
+            {!this.state.complitedHabbit ? (
+              <ul className={style.conteiner}>
+                {this.props.habbit.sprintHabbit
+                  .slice()
+                  .split('')
+                  .map((el, idx) => {
+                    return (
+                      <li
+                        className={this.renderCheckSprintHabbit(el)}
+                        key={idx}
+                      >
+                        {this.props.habbit.priceHabbit}
+                      </li>
+                    );
+                  })}
+              </ul>
+            ) : (
+              <p className={style.complhabbit}>Complited!</p>
+            )}
+            <p className={style.bonusx}>x1.5</p>
+          </div>
+          <div className={style.btn_wrap}>
+            <h4 className={style.titleconfirm}>Підтвердження</h4>
+            <div className={style.conf_cont}>
+              <button
+                className={style.btnconfirm}
+                onClick={this.clickConfirmedDay}
+              >
+                <img src={iconconfirm} alt={'pic'}></img>
+              </button>
+              <button
+                className={style.btnfailure}
+                onClick={this.clickUnConfirmedDay}
+              >
+                <img src={iconcross} alt={'pic'}></img>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

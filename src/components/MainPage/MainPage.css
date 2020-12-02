@@ -150,8 +150,8 @@ body {
   .habitsInfo {
     display: block;
     width: 690px;
-    max-height: 463px;
-    overflow-y: scroll;
+    max-height: 563px;
+    /* overflow-y: scroll; */
   }
 
   .tasksinfo {

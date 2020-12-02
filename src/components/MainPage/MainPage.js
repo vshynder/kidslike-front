@@ -3,7 +3,7 @@ import Media from 'react-media';
 import { connect } from 'react-redux';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
-import InformationByHabbit from '../InformationByHabbit/InformationByHabbit';
+import InformationByHabbit from '../ContainerForAllHabbits/ContainerForAllHabbits';
 import InformationByTask from '../InformationByTask';
 import './MainPage.css';
 import Modal from '../Modal/Modal';
@@ -14,12 +14,13 @@ import task from '../../assets/images/tasks.png';
 import AddFormHabit from '../AddFormHabit';
 import AddFormTask from '../AddFormTask';
 import tasksOperation from '../../redux/operations/tasksOperation';
+import habitsOperation from '../../redux/operations/habbitOperation';
 
 class MainPosition extends Component {
   state = { modal: false, addFormHabit: false, addFromTask: false };
 
-  componentDidMount(){
-    this.props.getTasks()
+  componentDidMount() {
+    this.props.getTasks();
   }
 
   toggleModal = () => {
@@ -38,9 +39,8 @@ class MainPosition extends Component {
     const { modal } = this.state;
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
-    const {tasks} = this.props;
-    console.log(tasks)
-
+    const { tasks } = this.props;
+    console.log(tasks);
 
     return (
       <div className="container">
@@ -76,7 +76,7 @@ class MainPosition extends Component {
             <Fragment>
               {matches.small && (
                 <div className="familynfo">
-                  <Slider  onClick={this.toggleModal}></Slider>
+                  <Slider onClick={this.toggleModal}></Slider>
                 </div>
               )}
               {matches.medium && (
@@ -95,7 +95,7 @@ class MainPosition extends Component {
                       <h2 className="habitsInfo_header-title">Звички</h2>
                     </div>
                     <div className="habitsInfo_list">
-                      {/* <InformationByHabbit></InformationByHabbit> */}
+                      <InformationByHabbit />
                     </div>
                     <div className="habitsInfo_button">
                       <button
@@ -113,11 +113,10 @@ class MainPosition extends Component {
                         <h2 className="tasksinfo__header-title">Задачі</h2>
                       </div>
                       <div className="tasksinfo__list">
-                       {
-                         tasks && tasks.map((task ) => 
-          
-                             <InformationByTask  key={task._id} task={task}/>)
-                       }
+                        {tasks &&
+                          tasks.map((task) => (
+                            <InformationByTask key={task._id} task={task} />
+                          ))}
                       </div>
                       <div className="tasksinfo__button">
                         <button
@@ -143,11 +142,9 @@ const mapStateToProps = (state) => ({
   tasks: state.tasks,
 });
 
-
 const mapDispatchToProps = {
-  getTasks:tasksOperation.getAllTasks
-}
-
+  getTasks: tasksOperation.getAllTasks,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPosition);
 // export default MainPosition;
