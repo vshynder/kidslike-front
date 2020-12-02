@@ -8,7 +8,6 @@ class ContainerForAllHabbits extends React.Component {
     this.props.getAllHabbitsByUser();
   }
   render() {
-    console.log(this.props.allHabbits);
     const { allHabbits } = this.props;
     return (
       allHabbits.length > 0 &&
@@ -18,7 +17,7 @@ class ContainerForAllHabbits extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  allHabbits: state.habbitsReducer,
+  allHabbits: state.habbits,
 });
 
 const mapDispatchToProps = {

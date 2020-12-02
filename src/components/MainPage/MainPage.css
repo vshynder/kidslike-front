@@ -151,7 +151,7 @@ body {
     display: block;
     width: 690px;
     max-height: 563px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
   }
 
   .tasksinfo {

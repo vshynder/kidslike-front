@@ -41,7 +41,6 @@ class MainPosition extends Component {
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
     const { tasks } = this.props;
-    const { habits } = this.props;
 
     return (
       <div className="container">
@@ -96,7 +95,7 @@ class MainPosition extends Component {
                       <h2 className="habitsInfo_header-title">Звички</h2>
                     </div>
                     <div className="habitsInfo_list">
-                      {/* <InformationByHabbit /> */}
+                      <InformationByHabbit />
                       {/* {habits &&
                         habits.map((habit) => (
                           <InformationByHabbit habbit={habit} />

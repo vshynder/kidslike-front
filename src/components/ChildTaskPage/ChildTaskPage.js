@@ -20,14 +20,26 @@ export default class MainPosition extends Component {
         <Media
           queries={{
             small: '(max-width: 767px)',
-            medium: '(min-width: 768px) and (max-width: 1199px)',
-            large: '(min-width: 1200px)',
+            medium: '(min-width: 768px) and (max-width: 1249px)',
+            large: '(min-width: 1250px)',
           }}
         >
           {(matches) => (
             <Fragment>
-              {matches.small && <div className="tasksinfo"></div>}
-              {matches.medium && <div className="tasksinfo"></div>}
+              {matches.small && (
+                <div className="tasksinfo">
+                  <div className="tasksinfo">
+                    <TaskContainer match={this.props.match} />
+                  </div>
+                </div>
+              )}
+              {matches.medium && (
+                <div className="tasksinfo">
+                  <div className="tasksinfo">
+                    <TaskContainer match={this.props.match} />
+                  </div>
+                </div>
+              )}
               {matches.large && (
                 <div className="taskmain">
                   <div className="familynfo">
