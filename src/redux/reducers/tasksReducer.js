@@ -11,7 +11,7 @@ const confirmTask = (state, action) => {
 const notConfirmTask = (state, action) => {
   return [...state];
 };
-const tasks = createReducer([], {
+const tasks = createReducer(null, {
   [tasksAction.getAllTasksSuccess]: getTasks,
   [tasksAction.confirmTaskSuccess]: confirmTask,
   [tasksAction.notconfirmTaskRequest]: notConfirmTask,
