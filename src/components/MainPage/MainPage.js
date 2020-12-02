@@ -3,7 +3,7 @@ import Media from 'react-media';
 import { connect } from 'react-redux';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
-import InformationByHabbit from '../InformationByHabbit/InformationByHabbit';
+import InformationByHabbit from '../ContainerForAllHabbits/ContainerForAllHabbits';
 import InformationByTask from '../InformationByTask';
 import './MainPage.css';
 import Modal from '../Modal/Modal';
@@ -96,6 +96,7 @@ class MainPosition extends Component {
                       <h2 className="habitsInfo_header-title">Звички</h2>
                     </div>
                     <div className="habitsInfo_list">
+                      {/* <InformationByHabbit /> */}
                       {/* {habits &&
                         habits.map((habit) => (
                           <InformationByHabbit habbit={habit} />
@@ -144,12 +145,12 @@ class MainPosition extends Component {
 
 const mapStateToProps = (state) => ({
   tasks: state.tasks,
-  habits: state.habbits,
+  // habits: state.habbits,
 });
 
 const mapDispatchToProps = {
   getTasks: tasksOperation.getAllTasks,
-  getHabits: habitsOperation.getAllHabbitsByUser,
+  // getHabits: habitsOperation.getAllHabbitsByUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPosition);
