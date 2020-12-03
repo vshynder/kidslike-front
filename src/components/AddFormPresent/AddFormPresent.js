@@ -14,6 +14,7 @@ class AddFormPresent extends Component {
         reward:0,  
         childId:'5fc60fbdae9d580017b97052', // заглушка 
         children:[],  
+        formData:null,
     };
 
     componentDidMount(){
@@ -29,19 +30,29 @@ class AddFormPresent extends Component {
 
     handleChoseChild = e => {
         this.setState({childId:e.target.value})
+    };
+
+    onSelectImageHandler = (files) => {
+        const file = files[0];
+        // const formData = new FormData();
+        // formData.append('name','test')
+        // formData.append("file",formData)
+        console.log(file);
+        this.setState({formData:file})
     }
     handleCloseWindow = (e) =>{
        // если закрыть окно должны передать пропы false
     };
 
-    handleSubmit = e => {
+    handleSubmit =  async  e => {
         e.preventDefault();
 
-        const {title, reward, childId} = this.state
+        const {title, reward, childId,formData} = this.state
+    
+    
+        this.props.onAddPresent({title,reward,childId,formData})
 
-        this.props.onAddPresent({title,reward,childId})
-
-        this.setState({title:'',reward:'',childId:''})
+        this.setState({title:'',reward:'',childId:'',formData:null})
     }
 
     render(){
@@ -85,7 +96,7 @@ class AddFormPresent extends Component {
                         id="grade"
                         type="number"
                         min="0"
-                        max="99"
+                        max="999"
                         placeholder="00"
                         onChange={this.handleChangeBall}
                         />
@@ -94,7 +105,7 @@ class AddFormPresent extends Component {
                      <label className={style.present_form__label}>Завантажити фото (необов’язково)
 
                         <div className={style.present_form__upload_box}>
-                        <input type="file" className={style.present_form__upload_box_input} />
+                        <input type="file"   onChange={(e) => this.onSelectImageHandler(e.target.files)}className={style.present_form__upload_box_input} />
                         <p className={style.present_form__upload_box_text}> Оберіть файл </p>
                         <span className={style.present_form__upload_box_btn} > Обрати </span>
                         </div>

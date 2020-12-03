@@ -6,7 +6,8 @@ const setAuthToken = (token) => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   };
 
-const addPresent = ({title,reward,childId}) => (dispatch,getState) => {
+const addPresent = ({title,reward,childId, formData}) => (dispatch,getState) => {
+ 
   const {
         user: { accessToken: acToken },
       } = getState();
@@ -15,12 +16,12 @@ const addPresent = ({title,reward,childId}) => (dispatch,getState) => {
       };
 
 
-    console.log(title,reward,childId);
+    console.log(title,reward,childId,formData);
 
     setAuthToken(acToken);
     dispatch(action.addPresentRequest());
-
-    axios.post('https://kidslike-back-end.herokuapp.com/api/presents/', {title ,reward ,childId})
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+    axios.post('https://kidslike-back-end.herokuapp.com/api/presents/' ,{title ,reward ,childId},config)
     .then(res => {
         dispatch(action.addPresentSuccess(res.data));
     })
