@@ -56,12 +56,6 @@ class MainPosition extends Component {
           </Modal>
         )}
 
-        {modal && (
-          <Modal onClose={this.toggleModal}>
-            <AddFamilyForm onClose={this.toggleModal}></AddFamilyForm>
-          </Modal>
-        )}
-
         {addFromTask && (
           <Modal onClose={this.toggleAddFormTaskModal}>
             <AddFormTask></AddFormTask>
