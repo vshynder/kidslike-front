@@ -6,6 +6,7 @@ import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
 import operation from '../../redux/operations/presentOperation'
 import selector from '../../redux/selectors/ChildSelectors'
+import Form from '../AddChildForm/Form';
 const FormData = require('form-data');
 
 class AddFormPresent extends Component {
@@ -38,7 +39,7 @@ class AddFormPresent extends Component {
         this.setState({selectedFile:e.target.files[0]})
     }
     handleCloseWindow = (e) =>{
-        console.log('close window');
+       
         this.props.isOpenForm();
        // если закрыть окно должны передать пропы false
     };
@@ -48,7 +49,14 @@ class AddFormPresent extends Component {
 
         const {title, reward, childId,selectedFile} = this.state
     
-        this.props.onAddPresent({title,reward,childId})
+
+        const fD = new FormData();
+        fD.append('files',selectedFile);
+        fD.set('title',title);
+        fD.set('reward',reward)
+        fD.set('childId',childId)
+        console.log(fD);
+        this.props.onAddPresent(fD)
 
 
         this.setState({title:'',reward:'',childId:'',selectedFile:null})

@@ -39,12 +39,18 @@ export default class InformItemByPresent extends Component {
   };
 
   render() {
-    const { gender, image, title, bal, childId } = this.props;
+    const { gender, image, title, reward, childId ,idPresent} = this.props;
     const { display, modal } = this.state;
     return (
       <>
         {modal && (
-          <Modal children={<ChangeFormPresent />} onClose={this.onClose} />
+          <Modal children={<ChangeFormPresent 
+            onClose={this.onClose}
+             childId={childId}
+             title={title}
+             reward={reward}
+             idPresent={idPresent}
+             />} onClose={this.onClose} />
         )}
         <ul className={styles.presentItem_container}>
           <li className={styles.presentItem_changePresent}>
@@ -91,7 +97,7 @@ export default class InformItemByPresent extends Component {
             <div className={styles.presentItem_title}>
               <p className={styles.presentItem_name}>{title}</p>
               <div className={styles.presentItem_block__cost}>
-                <p className={styles.presentItem_cost}>{bal}</p>
+                <p className={styles.presentItem_cost}>{reward}</p>
               </div>
             </div>
             <div className={styles.presentItem_block__button}>

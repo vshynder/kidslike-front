@@ -1,54 +1,71 @@
 import React, { Component } from 'react';
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 import style from './ChangePresentForm.module.scss';
 import closeBtn  from "../../assets/images/close.svg";
 import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
-
 import operation from '../../redux/operations/presentOperation'
+import selector from '../../redux/selectors/ChildSelectors'
 import selectorChild from '../../redux/selectors/ChildSelectors'
 
 
 
 class ChangeFormPresent extends Component {
     state={
-        namePresent:'',  //запрос на сервер в поиске подарков 
-        ball:0,  // this.props.ball
-        choseChild:'',  //this.props.child
-        childrens:[ 'Masha', 'Sasha' ],  //заглушка детей )// axios or fetcc
+        title:'', 
+        reward:0,  
+        childId:'5fc60fbdae9d580017b97052', // заглушка 
+        children:[],  
+        selectedFile:null,
     };
 
     componentDidMount(){
-            // this.setState({childrens:this.props})
+        this.setState({children:this.props.children})
+        this.setState({reward:this.props.reward})
+        this.setState({title:this.props.title})
     }
 
     handleChangeName = (e) => {
-        this.setState({namePresent:e.target.value})
+        this.setState({title:e.target.value})
     }    
     handleChangeBall = (e) => {
-        this.setState({ball:e.target.value})
+        this.setState({reward:e.target.value})
     }
 
     handleChoseChild = e => {
-        this.setState({choseChild:e.target.value})
+        this.setState({childId:e.target.value})
+    };
+
+    onSelectImageHandler = (e) => {
+        console.log(e.target.files[0]);
+        this.setState({selectedFile:e.target.files[0]})
     }
     handleCloseWindow = (e) =>{
+        console.log('close');
+        this.props.onClose();
        // если закрыть окно должны передать пропы false
     };
 
     handleSubmit = e => {
         e.preventDefault();
 
-        // const {namePresent, ball, choseChild} = this.state
+        const {title, reward, childId,selectedFile} = this.state
+        const {idPresent} = this.props
+        const fD = new FormData();
+        fD.append('files',selectedFile);
+        fD.set('title',title);
+        fD.set('reward',reward)
+        console.log('accent');
+        this.props.updatePresent(fD,idPresent)
 
-        // this.props.onAddPresent({namePresent,ball,choseChild})
 
-        // this.setState({namePresent:'',ball:'',choseChild:''})
+        this.setState({title:'',reward:'',childId:'',selectedFile:null})
+        this.props.onClose();
     }
 
     render(){
-        const {children,namePresent ,choseChild} = this.state 
-        const {onDeletePresent} = this.props
+        const {children,title ,choseChild, reward} = this.state 
+        const {removePresent,idPresent } = this.props
 
         return (
             <div className={style.container_presents}>
@@ -66,7 +83,7 @@ class ChangeFormPresent extends Component {
                          <input 
                          className={style.present_form__input}
                          placeholder="Введіть назву"
-                         value={namePresent}
+                         value={title}
                          onChange={this.handleChangeName}
                          />
                     </label>
@@ -89,16 +106,17 @@ class ChangeFormPresent extends Component {
                         id="grade"
                         type="number"
                         min="0"
-                        max="99"
+                        max="999"
                         placeholder="00"
                         onChange={this.handleChangeBall}
+                        value={reward}
                         />
                      </label>
                 
                      <label className={style.present_form__label}>Завантажити фото (необов’язково)
 
                         <div className={style.present_form__upload_box}>
-                        <input type="file" className={style.present_form__upload_box_input} />
+                        <input type="file"   onChange={this.onSelectImageHandler} className={style.present_form__upload_box_input} />
                         <p className={style.present_form__upload_box_text}> Оберіть файл </p>
                         <span className={style.present_form__upload_box_btn} > Обрати </span>
                         </div>
@@ -107,7 +125,7 @@ class ChangeFormPresent extends Component {
                     <label className={style.present_form__label}>
               
                         <button className={style.present_form__delete_btn}
-                        onClick={()=> onDeletePresent(this.params.presentId)}  // передаем пропы id подарка для удаления 
+                        onClick={()=> removePresent(idPresent)}  // передаем пропы id подарка для удаления 
                         type='button' >  
     
                         <svg  className={style.present_form__delete_img}  width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,13 +153,17 @@ class ChangeFormPresent extends Component {
 }
 
 
-// const mapDispatchToProps = {
-//     // onAddPresent:constOperation.addTask// Operation  to do 
-// }
+const mapStatetoProps = (state)=> ({
+    children:selector.getChildrens(state)
+})
 
 
-// export default connect(null,mapDispatchToProps)(ChangeFormPresent)
-export default ChangeFormPresent;
+const mapDispatchToProps = {
+    updatePresent:operation.updatePresent,
+    removePresent:operation.removePresent
+}
+export default connect(mapStatetoProps,mapDispatchToProps)(ChangeFormPresent)
+// export default ChangeFormPresent;
 
 
 
