@@ -14,11 +14,7 @@ import task from '../../assets/images/tasks.png';
 import AddFormHabit from '../AddFormHabit';
 import AddFormTask from '../AddFormTask';
 import tasksOperation from '../../redux/operations/tasksOperation';
-<<<<<<< HEAD
-import ChildTask from '../ChildTask';
-=======
 import habitsOperation from '../../redux/operations/habbitOperation';
->>>>>>> 01e95aa090a6b6df8077f398a541033dd6504671
 
 class MainPosition extends Component {
   state = { modal: false, addFormHabit: false, addFromTask: false };
@@ -44,10 +40,7 @@ class MainPosition extends Component {
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
     const { tasks } = this.props;
-<<<<<<< HEAD
-=======
     console.log(tasks);
->>>>>>> 01e95aa090a6b6df8077f398a541033dd6504671
 
     return (
       <div className="container">
@@ -120,16 +113,10 @@ class MainPosition extends Component {
                         <h2 className="tasksinfo__header-title">Задачі</h2>
                       </div>
                       <div className="tasksinfo__list">
-<<<<<<< HEAD
-                        {tasks.map((task) => (
-                          <InformationByTask key={task._id} task={task} />
-                        ))}
-=======
                         {tasks &&
                           tasks.map((task) => (
                             <InformationByTask key={task._id} task={task} />
                           ))}
->>>>>>> 01e95aa090a6b6df8077f398a541033dd6504671
                       </div>
                       <div className="tasksinfo__button">
                         <button
