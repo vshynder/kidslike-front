@@ -4,19 +4,19 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, token, ...routeProps }) => {
   //   прибрати, коли буде готовий редакс.
-  const temp = true;
+  // const temp = true;
   return (
     <Route
       {...routeProps}
       render={(props) =>
-        temp ? <Component {...props} /> : <Redirect to="/" />
+        token ? <Component {...props} /> : <Redirect to="/" />
       }
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  //   token: state.user.accessToken,
+  token: state.user.accessToken,
   // шаблон. можливо для зміни
 });
 

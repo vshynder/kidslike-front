@@ -8,14 +8,14 @@ import presentSelector from '../../redux/selectors/presentSelector';
 const InformationListByPresent = ({ presents }) => {
   return (
     <div className={style.presentItem_container}>
-      <div className={style.presentItem_header}>
+      {/* <div className={style.presentItem_header}>
         <img
           className={style.presentItem_present}
           src={present}
           alt="present"
         />
         <h2 className={style.presentItem_title}>Подарунки</h2>
-      </div>
+      </div> */}
       <ul className={style.presentItem_childrens}>
         {presents.map((present) => (
           <li className={style.presentItem_item} key={present.id}>
@@ -33,7 +33,7 @@ const InformationListByPresent = ({ presents }) => {
           </li>
         ))}
       </ul>
-      <button className={style.presentItem_button}>Додати подарунок +</button>
+      {/* <button className={style.presentItem_button}>Додати подарунок +</button> */}
     </div>
   );
 };
