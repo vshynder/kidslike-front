@@ -6,15 +6,16 @@ import ballImg from "../../assets/images/changeHabbitStar.png";
 import tringl from '../../assets/images/changeHabbitSelect.png'
 import operation from '../../redux/operations/presentOperation'
 import selector from '../../redux/selectors/ChildSelectors'
-
+const FormData = require('form-data');
 
 class AddFormPresent extends Component {
+
     state={
         title:'', 
         reward:0,  
         childId:'5fc60fbdae9d580017b97052', // заглушка 
         children:[],  
-        formData:null,
+        selectedFile:null,
     };
 
     componentDidMount(){
@@ -32,27 +33,25 @@ class AddFormPresent extends Component {
         this.setState({childId:e.target.value})
     };
 
-    onSelectImageHandler = (files) => {
-        const file = files[0];
-        // const formData = new FormData();
-        // formData.append('name','test')
-        // formData.append("file",formData)
-        console.log(file);
-        this.setState({formData:file})
+    onSelectImageHandler = (e) => {
+        console.log(e.target.files[0]);
+        this.setState({selectedFile:e.target.files[0]})
     }
     handleCloseWindow = (e) =>{
+        console.log('close window');
+        this.props.isOpenForm();
        // если закрыть окно должны передать пропы false
     };
 
     handleSubmit =  async  e => {
         e.preventDefault();
 
-        const {title, reward, childId,formData} = this.state
+        const {title, reward, childId,selectedFile} = this.state
     
-    
-        this.props.onAddPresent({title,reward,childId,formData})
+        this.props.onAddPresent({title,reward,childId,selectedFile})
 
-        this.setState({title:'',reward:'',childId:'',formData:null})
+        this.setState({title:'',reward:'',childId:'',selectedFile:null})
+        this.props.isOpenForm();
     }
 
     render(){
@@ -105,7 +104,7 @@ class AddFormPresent extends Component {
                      <label className={style.present_form__label}>Завантажити фото (необов’язково)
 
                         <div className={style.present_form__upload_box}>
-                        <input type="file"   onChange={(e) => this.onSelectImageHandler(e.target.files)}className={style.present_form__upload_box_input} />
+                        <input type="file"   onChange={this.onSelectImageHandler} className={style.present_form__upload_box_input} />
                         <p className={style.present_form__upload_box_text}> Оберіть файл </p>
                         <span className={style.present_form__upload_box_btn} > Обрати </span>
                         </div>
