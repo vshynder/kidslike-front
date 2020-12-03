@@ -26,7 +26,7 @@ const getTasks = (childId) => (dispatch, getState) => {
       token.set(response.data.token);
       dispatch(getAllComplitedTasksActions.getAllTasksSuccess(response.data));
     })
-    .catch((error) => getAllComplitedTasksActions.getAllTasksError(error));
+    .catch((error) => console.log("error: getAllComplitedTasksOperation"));
 };
 
 export default {

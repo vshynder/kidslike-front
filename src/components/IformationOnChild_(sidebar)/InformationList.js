@@ -3,9 +3,11 @@ import InformationItem from './InformationItem';
 import house from '../../assets/InformationOnChild-Images/image20.svg';
 import style from './informationList.module.css';
 import { connect } from 'react-redux';
+import Modal from '../Modal/Modal'
 import childrenSelectors from '../../redux/selectors/ChildSelectors';
+import tasksSelector from '../../redux/selectors/tasksSelector'
 
-const InformationList = ({ childrens, onClick }) => {
+const InformationList = ({ childrens, onClick, tasks }) => {
   return (
     <div className={style.childrenSidebar_container}>
       <div className={style.childrenSidebar_header}>
@@ -60,6 +62,7 @@ const InformationList = ({ childrens, onClick }) => {
 
 const mapStateToProps = (state) => ({
   childrens: childrenSelectors.getChildrens(state),
+  tasks: tasksSelector.getTasks(state)
 });
 
 export default connect(mapStateToProps, null)(InformationList);
