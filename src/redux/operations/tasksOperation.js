@@ -1,7 +1,7 @@
 import axios from 'axios';
 import taskAction from '../actions/tasksAction';
 
-axios.defaults.baseURL = 'http://kidslike-back-end.herokuapp.com';
+// axios.defaults.baseURL = 'http://kidslike-back-end.herokuapp.com';
 
 const token = {
   set(token) {
@@ -23,7 +23,7 @@ const getAllTasks = () => (dispatch, getState) => {
   token.set(acToken);
   dispatch(taskAction.getAllTasksRequest());
   axios
-    .get('/api/tasks')
+    .get('http://kidslike-back-end.herokuapp.com/api/tasks')
     .then((response) => {
       return dispatch(taskAction.getAllTasksSuccess(...response.data));
     })
@@ -42,7 +42,7 @@ const сonfirmTask = (id) => (dispatch, getState) => {
   dispatch(taskAction.confirmTaskRequest());
 
   axios
-    .patch(`/api/tasks/confirm/${id}`)
+    .patch(`http://kidslike-back-end.herokuapp.com/api/tasks/confirm/${id}`)
     .then(() => dispatch(taskAction.confirmTaskSuccess()))
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
@@ -58,7 +58,7 @@ const notConfirmTask = (id) => (dispatch, getState) => {
   dispatch(taskAction.notconfirmTaskRequest());
 
   axios
-    .patch(`/api/tasks/notconfirm/${id}`)
+    .patch(`http://kidslike-back-end.herokuapp.com/api/tasks/notconfirm/${id}`)
     .then(() => dispatch(taskAction.notconfirmTaskSuccess()))
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
@@ -72,13 +72,26 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
     return;
   }
 
-  token.set(acToken);
-  dispatch(taskAction.addTaskRequest);
+  dispatch(taskAction.addTaskRequest());
+  console.log(childId, title, reward, daysToDo);
 
+  const url = 'http://kidslike-back-end.herokuapp.com/api/tasks/' + childId;
+  const body = {
+    title,
+    reward,
+    daysToDo,
+  };
   axios
-    .post(`/api/tasks/${childId}`, { title, reward, daysToDo })
-    .then((res) => dispatch(taskAction.addTaskSuccess(res.data)))
-    .catch((err) => dispatch(taskAction.addTaskError(err)));
+    .post(url, body, {
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      dispatch(taskAction.addTaskSuccess(response.data));
+    })
+    .catch((error) => console.log(error));
 };
 
 export default {

@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useDispatch } from 'react';
 import styles from './addFormTask.module.scss';
 
-/*import star from '../../assets/images/changeHabbitStar.png';
-import select from '../../assets/images/changeHabbitSelect.png';*/
+import star from '../../assets/images/changeHabbitStar.png';
+import select from '../../assets/images/changeHabbitSelect.png';
 
-const AddFormTask = () => {
+import taskOpeartions from '../../redux/operations/tasksOperation';
+import { connect } from 'react-redux';
+
+const AddFormTask = ({ children, addTask }) => {
+  const [childId, setChildId] = useState('');
+  const [title, setTitle] = useState('');
+  const [reward, setReward] = useState('');
+  const [time, setTime] = useState('');
+
   const handleCloseClick = () => {
     console.log('Close mark clicked');
   };
@@ -15,6 +23,8 @@ const AddFormTask = () => {
 
   const handleSave = () => {
     console.log('save');
+    console.log('child id: ', childId);
+    addTask(childId, title, reward, time);
   };
 
   return (
@@ -39,15 +49,31 @@ const AddFormTask = () => {
           id="name"
           type="text"
           placeholder="Введіть назву"
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
 
       <div className={styles.changehabbit__input}>
         <label htmlFor="task">Призначення задачі</label>
-        <select className={styles.changehabbit__inputLong} id="task">
+        <select
+          value={childId}
+          className={styles.changehabbit__inputLong}
+          id="task"
+          onChange={(e) => setChildId(e.target.value)}
+        >
           <option>Оберіть дитину</option>
+          {children &&
+            children.map((child) => (
+              <option key={child._id} value={child._id}>
+                {child.name}
+              </option>
+            ))}
         </select>
-        <img className={styles.changehabbit__inputSelect} src="" alt="select" />
+        <img
+          className={styles.changehabbit__inputSelect}
+          src={select}
+          alt="select"
+        />
       </div>
 
       <div
@@ -61,8 +87,9 @@ const AddFormTask = () => {
           min="0"
           max="99"
           placeholder="00"
+          onChange={(e) => setReward(e.target.value)}
         />
-        <img className={styles.changehabbit__inputStar} src="" alt="star" />
+        <img className={styles.changehabbit__inputStar} src={star} alt="star" />
         <label className={styles.label__day} htmlFor="day">
           Дні на виконання (необов'язково)
         </label>
@@ -73,6 +100,7 @@ const AddFormTask = () => {
           min="0"
           max="99"
           placeholder="00"
+          onChange={(e) => setTime(e.target.value)}
         />
       </div>
 
@@ -91,4 +119,13 @@ const AddFormTask = () => {
   );
 };
 
-export default AddFormTask;
+const mapStateToProps = (state) => ({
+  children: state.childrens,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addTask: (id, title, reward, time) =>
+    dispatch(taskOpeartions.addTask(id, title, reward, time)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddFormTask);

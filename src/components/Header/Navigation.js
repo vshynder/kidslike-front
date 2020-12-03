@@ -25,11 +25,11 @@ export default function Navigation() {
       </NavLink>
       <NavLink
         className={
-          location.pathname === '/tasks'
+          location.pathname === '/childTasks'
             ? styles.header__navigation_button__active
             : styles.header__navigation_button
         }
-        to="/tasks"
+        to="/childTasks"
       >
         <img className={styles.header__navigation_button_img} src={task} />
         <span className={styles.header__navigation_button_text}>

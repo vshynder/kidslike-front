@@ -28,6 +28,7 @@ class AddFormHabit extends Component {
   };
 
   handleChoseChild = (e) => {
+    console.log(e.target.value);
     this.setState({ childId: e.target.value });
   };
 
@@ -40,7 +41,16 @@ class AddFormHabit extends Component {
   };
 
   handleSave = () => {
-    console.log('save');
+    const { title, bal, childId } = this.state;
+
+    console.log('valera id', childId);
+    this.props.onAddHabit({
+      nameHabbit: title,
+      priceHabbit: bal,
+      idChild: childId,
+    });
+
+    this.setState({ title: '', bal: '', childId: '' });
   };
 
   handleSubmit = (e) => {
@@ -88,7 +98,10 @@ class AddFormHabit extends Component {
             className={styles.changehabbit__inputLong}
           >
             {children.map((child) => (
-              <option key={child._id} value={child._id}>
+              <option
+                key={child._id ? child._id : child.id}
+                value={child._id ? child._id : child.id}
+              >
                 {' '}
                 {child.name}{' '}
               </option>

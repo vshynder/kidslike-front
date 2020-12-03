@@ -7,7 +7,7 @@ const addHabit = (value) => (dispatch) => {
   dispatch(action.addHabitRequest());
 
   axios
-    .post('/api/habbits', value)
+    .post('https://kidslike-back-end.herokuapp.com/api/habbits', value)
     .then((res) => {
       dispatch(action.addHabitSuccess(res.data));
     })
@@ -22,7 +22,7 @@ const getAllHabbitsByUser = (value) => (dispatch, getState) => {
   }`; // При авторизации токен не был записан в axios.defaults.headers.common.Authorization
 
   axios
-    .get('/api/habbits')
+    .get('https://kidslike-back-end.herokuapp.com/api/habbits')
     .then((response) => {
       dispatch(action.getAllSuccess(response.data));
     })
@@ -34,7 +34,10 @@ const getAllHabbitsByUser = (value) => (dispatch, getState) => {
 const checkHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updateCheckedRequest());
   axios
-    .patch('/api/habbits/checkhabbit', value)
+    .patch(
+      'https://kidslike-back-end.herokuapp.com/api/habbits/checkhabbit',
+      value,
+    )
     .then((response) => {
       dispatch(
         action.updateCheckedSuccess({
@@ -50,7 +53,7 @@ const delHabbit = (value) => (dispatch, getState) => {
   dispatch(action.deletedRequest());
 
   axios
-    .delete('/api/habbits/' + value)
+    .delete('https://kidslike-back-end.herokuapp.com/api/habbits/' + value)
     .then((response) => {
       dispatch(action.deletedSuccess({ idHabbit: value }));
     })
@@ -61,7 +64,10 @@ const updateHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updRequest());
 
   axios
-    .patch('/api/habbits/updatehabbit', value)
+    .patch(
+      'https://kidslike-back-end.herokuapp.com/api/habbits/updatehabbit',
+      value,
+    )
     .then((response) => {
       dispatch(
         action.updSuccess({
