@@ -47,7 +47,7 @@ const AddFormTask = () => {
         <select className={styles.changehabbit__inputLong} id="task">
           <option>Оберіть дитину</option>
         </select>
-        <img className={styles.changehabbit__inputSelect} src=""  alt="select"/>
+        <img className={styles.changehabbit__inputSelect} src="" alt="select" />
       </div>
 
       <div
@@ -63,7 +63,9 @@ const AddFormTask = () => {
           placeholder="00"
         />
         <img className={styles.changehabbit__inputStar} src="" alt="star" />
-        <label className={styles.label__day} htmlFor="day">Дні на виконання (необов'язково)</label>
+        <label className={styles.label__day} htmlFor="day">
+          Дні на виконання (необов'язково)
+        </label>
         <input
           className={`${styles.changehabbit__inputLong} ${styles.changehabbit__inputShort}`}
           id="day"
@@ -73,8 +75,7 @@ const AddFormTask = () => {
           placeholder="00"
         />
       </div>
-    
-        
+
       <div className={styles.changehabbit__btns}>
         <button onClick={handleCancel} className={styles.changehabbit__button}>
           Відміна

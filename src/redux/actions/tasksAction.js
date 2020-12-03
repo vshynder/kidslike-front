@@ -12,6 +12,10 @@ const notconfirmTaskRequest = createAction('tasks/confirmTask');
 const notconfirmTaskSuccess = createAction('present/confirmTask');
 const notconfirmTaskError = createAction('present/confirmTask');
 
+const addTaskRequest = createAction('tasks/addRequest');
+const addTaskSuccess = createAction('tasks/addSucces');
+const addTaskError = createAction('tasks/addError');
+
 export default {
   getAllTasksRequest,
   getAllTasksSuccess,
@@ -22,4 +26,7 @@ export default {
   notconfirmTaskRequest,
   notconfirmTaskSuccess,
   notconfirmTaskError,
+  addTaskRequest,
+  addTaskSuccess,
+  addTaskError,
 };

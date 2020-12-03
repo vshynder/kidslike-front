@@ -1,5 +1,4 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
 import presentAction from '../actions/presentAction';
 
 // веременные подарки
@@ -22,6 +21,10 @@ const present = [
   },
 ];
 
+const getAllPresents = (state,action) =>{
+  return (state = action.payload);
+}
+
 const newPresent = (state, action) => {
   return [...state, action.payload];
 };
@@ -34,10 +37,11 @@ const updatePresent = (state, action) => {
   return [...state, action.payload];
 };
 
-const presents = createReducer(present, {
+const presents = createReducer(null, {
   [presentAction.addPresentSuccess]: newPresent,
   [presentAction.removePresentSuccess]: removePresent,
   [presentAction.updatePresentSuccess]: updatePresent,
+  [presentAction.getAllPresentSuccess]: getAllPresents,
 });
 
 export default {
