@@ -2,6 +2,10 @@ import { createReducer } from '@reduxjs/toolkit';
 import actions from '../actions/allHabbitsAction';
 
 export const habbitsReducer = createReducer([], {
+  [actions.addHabitSuccess]: (state, action) => {
+    state.push(action.payload);
+  },
+
   [actions.getAllSuccess]: (state, action) => {
     return (state = action.payload);
   },
@@ -17,7 +21,6 @@ export const habbitsReducer = createReducer([], {
     return state.filter((el) => el._id !== action.payload.idHabbit);
   },
   [actions.updSuccess]: (state, action) => {
-    console.log('action.payload ', action.payload);
     return state.map((el) =>
       el._id === action.payload.changeId ? (el = action.payload.data) : el,
     );
