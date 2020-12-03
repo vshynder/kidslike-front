@@ -63,7 +63,7 @@ const notConfirmTask = (id) => (dispatch, getState) => {
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
-const addTask = (id) => (dispatch, getState) => {
+const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
   const {
     user: { accessToken: acToken },
   } = getState();
@@ -76,7 +76,7 @@ const addTask = (id) => (dispatch, getState) => {
   dispatch(taskAction.addTaskRequest);
 
   axios
-    .post(`/api/tasks/${id}`)
+    .post(`/api/tasks/${childId}`, { title, reward, daysToDo })
     .then((res) => dispatch(taskAction.addTaskSuccess(res.data)))
     .catch((err) => dispatch(taskAction.addTaskError(err)));
 };
