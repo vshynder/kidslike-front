@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import profilePhoto from './profile-example.png';
 import exitButton from './exit.svg';
 import styles from './UserInfo.module.css';
 import Modal from '../Modal/Modal';

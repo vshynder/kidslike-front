@@ -74,15 +74,56 @@
   background-color: #fff;
   border: none;
   position: absolute;
-  top: 16px;
-  right: 15px;
+  top: 1px;
+  right: 26px;
   color: #bdbdbd;
   font-size: 15px;
+}
+
+.submenu {
+  display: flex;
+  position: absolute;
+  border-radius: 10px;
+  padding: 5px;
+  height: 78px;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #dddddd;
+  top: 30px;
+  right: 22px;
+  z-index: 10;
+}
+.submenu::before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 10px;
+  top: -15px;
+  border: 8px solid;
+  border-color: transparent #dddddd #dddddd transparent;
 }
 .additionButton:hover {
   color: #333333;
 }
+.additionButton:focus {
+  color: #333333;
+}
 
+.submenuItem {
+  padding: 8px 15px;
+  border-radius: 7px;
+  background-color: #eeeeee;
+  text-align: center;
+  border: none;
+}
+.submenuItem:hover {
+  background-color: #ffbe9d;
+  color: #fff;
+}
+.submenuItem:focus-within {
+  display: block;
+}
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
