@@ -2,10 +2,25 @@ import axios from 'axios';
 import action from '../actions/presentAction'
 
 
-const addPresent = ({title,bal,childId}) => dispatch => {
+const setAuthToken = (token) => {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  };
+
+const addPresent = ({title,reward,childId}) => (dispatch,getState) => {
+  const {
+        user: { accessToken: acToken },
+      } = getState();
+      if (!acToken) {
+        return;
+      };
+
+
+    console.log(title,reward,childId);
+
+    setAuthToken(acToken);
     dispatch(action.addPresentRequest());
 
-    axios.post('http://localhost:1717/api/presents/addPresent', {title ,bal ,childId})
+    axios.post('https://kidslike-back-end.herokuapp.com/api/presents/', {title ,reward ,childId})
     .then(res => {
         dispatch(action.addPresentSuccess(res.data));
     })
@@ -15,7 +30,7 @@ const addPresent = ({title,bal,childId}) => dispatch => {
 const updatePresent = ({title,bal,childId}) => dispatch =>{
     dispatch(action.updatePresentRequest());
 
-    axios.patch('http://localhost:1717/api/presents/update', {title,bal,childId}) ///  заглушка на end point 
+    axios.patch('kidslike-back-end.herokuapp.com/api/presents/update', {title,bal,childId}) ///  заглушка на end point 
         .then(res => {
             dispatch(action.updatePresentSuccess(res.data));
         })
@@ -25,7 +40,7 @@ const updatePresent = ({title,bal,childId}) => dispatch =>{
 
 const removePresent = id => dispatch => {
     dispatch(action.removePresentRequest());
-    axios.delete(`http://localhost:1717/api/presents/${id}`)// временна заглушка .. передаем id present для удаления 
+    axios.delete(`kidslike-back-end.herokuapp.com/api/presents/${id}`)// временна заглушка .. передаем id present для удаления 
     .then(()=>dispatch(action.removePresentSuccess(id)))
     .catch(error => dispatch(action.removePresentError(error)))
 }

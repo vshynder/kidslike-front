@@ -11,8 +11,8 @@ import selector from '../../redux/selectors/ChildSelectors'
 class AddFormPresent extends Component {
     state={
         title:'', 
-        bal:0,  
-        childId:'',  
+        reward:0,  
+        childId:'5fc60fbdae9d580017b97052', // заглушка 
         children:[],  
     };
 
@@ -24,7 +24,7 @@ class AddFormPresent extends Component {
         this.setState({title:e.target.value})
     }    
     handleChangeBall = (e) => {
-        this.setState({bal:e.target.value})
+        this.setState({reward:e.target.value})
     }
 
     handleChoseChild = e => {
@@ -37,11 +37,11 @@ class AddFormPresent extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        const {title, bal, childId} = this.state
+        const {title, reward, childId} = this.state
 
-        this.props.onAddPresent({title,bal,childId})
+        this.props.onAddPresent({title,reward,childId})
 
-        this.setState({title:'',bal:'',childId:''})
+        this.setState({title:'',reward:'',childId:''})
     }
 
     render(){

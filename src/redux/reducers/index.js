@@ -21,6 +21,7 @@ export const store = configureStore({
     childrens: addChildReducer.childrens,
     habbits: habbitsReducer, // Для тестирования, логику нужно переиспользовать
     presents: allPresentReducer.presents,
+    currentChildTasks: AllTasksCurrentChild.allTasksCurrentChild,
     tasks:tasksReducer.tasks,
     user: persistReducer(authPersistConfig,authReducer),
   },
