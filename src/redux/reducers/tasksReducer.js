@@ -11,10 +11,15 @@ const confirmTask = (state, action) => {
 const notConfirmTask = (state, action) => {
   return [...state];
 };
+
+const addTask = (state, action) => {
+  return [...state, action.payload];
+};
 const tasks = createReducer(null, {
   [tasksAction.getAllTasksSuccess]: getTasks,
   [tasksAction.confirmTaskSuccess]: confirmTask,
   [tasksAction.notconfirmTaskRequest]: notConfirmTask,
+  [tasksAction.addTaskSuccess]: addTask,
 });
 
 export default {

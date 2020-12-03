@@ -63,8 +63,27 @@ const notConfirmTask = (id) => (dispatch, getState) => {
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
+const addTask = (id) => (dispatch, getState) => {
+  const {
+    user: { accessToken: acToken },
+  } = getState();
+
+  if (!acToken) {
+    return;
+  }
+
+  token.set(acToken);
+  dispatch(taskAction.addTaskRequest);
+
+  axios
+    .post(`/api/tasks/${id}`)
+    .then((res) => dispatch(taskAction.addTaskSuccess(res.data)))
+    .catch((err) => dispatch(taskAction.addTaskError(err)));
+};
+
 export default {
   getAllTasks,
   сonfirmTask,
   notConfirmTask,
+  addTask,
 };
