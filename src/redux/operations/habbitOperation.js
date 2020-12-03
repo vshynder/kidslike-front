@@ -11,19 +11,23 @@ const addHabit = (value) => (dispatch) => {
     .then((res) => {
       dispatch(action.addHabitSuccess(res.data));
     })
-    .catch((error) => dispatch(action.addHabitError(error)));
+    .catch((err) => dispatch(action.addHabitError(err.message)));
 };
 
 const getAllHabbitsByUser = (value) => (dispatch, getState) => {
   dispatch(action.getAllRequest());
+
+  axios.defaults.headers.common.Authorization = `Bearer ${
+    getState().user.accessToken
+  }`; // При авторизации токен не был записан в axios.defaults.headers.common.Authorization
+
   axios
     .get('/api/habbits')
     .then((response) => {
       dispatch(action.getAllSuccess(response.data));
     })
     .catch((err) => {
-      console.log('response.data: ', err);
-      dispatch(action.getAllError(err));
+      dispatch(action.getAllError(err.message));
     });
 };
 
@@ -39,7 +43,7 @@ const checkHabbit = (value) => (dispatch, getState) => {
         }),
       );
     })
-    .catch((err) => dispatch(action.updateCheckedError(err)));
+    .catch((err) => dispatch(action.updateCheckedError(err.message)));
 };
 
 const delHabbit = (value) => (dispatch, getState) => {
@@ -50,7 +54,7 @@ const delHabbit = (value) => (dispatch, getState) => {
     .then((response) => {
       dispatch(action.deletedSuccess({ idHabbit: value }));
     })
-    .catch((err) => dispatch(action.deletedError()));
+    .catch((err) => dispatch(action.deletedError(err.message)));
 };
 
 const updateHabbit = (value) => (dispatch, getState) => {
@@ -66,7 +70,7 @@ const updateHabbit = (value) => (dispatch, getState) => {
         }),
       );
     })
-    .catch((err) => dispatch(action.updError(err)));
+    .catch((err) => dispatch(action.updError(err.message)));
 };
 
 export default {
