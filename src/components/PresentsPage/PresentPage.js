@@ -61,7 +61,7 @@ export default class PresentPosition extends Component {
                       <h2 className="presents_header-title">Подарунки</h2>
                     </div>
                     <div className="presents_list">
-                      {/* <InformationByHabbit></InformationByHabbit> */}
+                      <InformListByPresent></InformListByPresent>
                     </div>
                     <div className="presents_button">
                       <button
@@ -82,7 +82,7 @@ export default class PresentPosition extends Component {
                       <h2 className="presents_header-title">Подарунки</h2>
                     </div>
                     <div className="presents_list">
-                      {/* <InformationByHabbit></InformationByHabbit> */}
+                      <InformListByPresent></InformListByPresent>
                     </div>
                     <div className="presents_button">
                       <button
@@ -107,15 +107,6 @@ export default class PresentPosition extends Component {
                     </div>
                     <div className="presents_list">
                       <InformListByPresent></InformListByPresent>
-
-                      {/* 
-                      {presents &&
-                        presents.map((present) => (
-                          <InformListByPresent
-                            key={present._id}
-                            present={present}
-                          />
-                        ))} */}
                     </div>
                     <div className="presents_button">
                       <button
@@ -135,13 +126,3 @@ export default class PresentPosition extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => ({
-//   presents: state.presents,
-// });
-
-// const mapDispatchToProps = {
-//   getPresents: ,
-// };
-
-// export default connect(mapStateToProps)(PresentPosition);
