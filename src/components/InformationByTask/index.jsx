@@ -12,16 +12,23 @@ import { connect } from 'react-redux';
 class InformationByTask extends Component {
   state = {
     isRenderModal: false,
+    isRenderSubmenu: false,
+  };
+
+  handleOpenSubmenu = (e) => {
+    this.setState({ isRenderSubmenu: true });
+  };
+  handleCloseSubmenu = (e) => {
+    this.setState({ isRenderSubmenu: false });
   };
   handleOpenModal = (e) => {
-    this.setState({ isRenderModal: true });
+    this.setState({ isRenderModal: true, isRenderSubmenu: false });
   };
   handleCloseModal = (e) => {
     this.setState({ isRenderModal: false });
   };
   render() {
-    const { isRenderModal } = this.state;
-    console.log(this.props);
+    const { isRenderModal, isRenderSubmenu } = this.state;
     const { title, reward, daysToDo } = this.props.task;
     return (
       <>
@@ -71,10 +78,25 @@ class InformationByTask extends Component {
           </span>
           <button
             className={styles.additionButton}
-            onClick={this.handleOpenModal}
+            onFocus={this.handleOpenSubmenu}
           >
             ...
           </button>
+          {isRenderSubmenu && (
+            <div
+              ref={this.submenu}
+              className={styles.submenu}
+              onMouseLeave={this.handleCloseSubmenu}
+            >
+              <button
+                className={styles.submenuItem}
+                onClick={this.handleOpenModal}
+              >
+                Редагувати
+              </button>
+              <button className={styles.submenuItem}>Видалити</button>
+            </div>
+          )}
         </div>
         {isRenderModal && (
           <Modal onClose={this.handleCloseModal}>
