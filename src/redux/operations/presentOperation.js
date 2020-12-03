@@ -27,7 +27,7 @@ const addPresent = ({title,reward,childId, selectedFile}) => (dispatch,getState)
     setAuthToken(acToken);
     dispatch(action.addPresentRequest());
     
-    axios.post('https://kidslike-back-end.herokuapp.com/api/presents/' ,{title,reward,childId,selectedFile},options)
+    axios.post('https://kidslike-back-end.herokuapp.com/api/presents/' ,{title,reward,childId})
     .then(res => {
       console.log(res);
         dispatch(action.addPresentSuccess(res.data));

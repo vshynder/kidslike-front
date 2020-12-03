@@ -48,7 +48,8 @@ class AddFormPresent extends Component {
 
         const {title, reward, childId,selectedFile} = this.state
     
-        this.props.onAddPresent({title,reward,childId,selectedFile})
+        this.props.onAddPresent({title,reward,childId})
+
 
         this.setState({title:'',reward:'',childId:'',selectedFile:null})
         this.props.isOpenForm();
