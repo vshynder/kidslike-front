@@ -40,7 +40,7 @@ export default class PresentPosition extends Component {
         )}
         {addFormPresent && (
           <Modal onClose={this.toggleAddFormPresentModal}>
-            <AddFormPresent></AddFormPresent>
+            <AddFormPresent isOpenForm={this.toggleAddFormPresentModal}></AddFormPresent>
           </Modal>
         )}
 
