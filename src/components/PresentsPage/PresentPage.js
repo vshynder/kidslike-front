@@ -1,16 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import Media from 'react-media';
 import Header from '../Header';
+import { connect } from 'react-redux';
 
 import Slider from '../IformationOnChild_(sidebar)/InformationList';
 import PresentsIcon from '../../assets/images/presentsIcon.png';
 import Modal from '../Modal/Modal';
 import AddFamilyForm from '../AddChildForm/Form';
 import AddFormPresent from '../AddFormPresent/AddFormPresent';
+import InformListByPresent from '../InformationByPresent/InformListByPresent';
 
 import './PresentPage.css';
 
-export default class MainPosition extends Component {
+export default class PresentPosition extends Component {
   state = { modal: false, addFormPresent: false };
 
   toggleModal = () => {
@@ -24,6 +26,8 @@ export default class MainPosition extends Component {
   render() {
     const { modal } = this.state;
     const { addFormPresent } = this.state;
+    const { presents } = this.props;
+
     return (
       <div className="presentcontainer">
         <header className="presentheader">
@@ -102,7 +106,16 @@ export default class MainPosition extends Component {
                       <h2 className="presents_header-title">Подарунки</h2>
                     </div>
                     <div className="presents_list">
-                      {/* <InformationByHabbit></InformationByHabbit> */}
+                      <InformListByPresent></InformListByPresent>
+
+                      {/* 
+                      {presents &&
+                        presents.map((present) => (
+                          <InformListByPresent
+                            key={present._id}
+                            present={present}
+                          />
+                        ))} */}
                     </div>
                     <div className="presents_button">
                       <button
@@ -122,3 +135,13 @@ export default class MainPosition extends Component {
     );
   }
 }
+
+// const mapStateToProps = (state) => ({
+//   presents: state.presents,
+// });
+
+// const mapDispatchToProps = {
+//   getPresents: ,
+// };
+
+// export default connect(mapStateToProps)(PresentPosition);

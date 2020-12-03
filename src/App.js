@@ -16,35 +16,29 @@ import './assets/fonts.css';
 import './assets/basic.css';
 import authOperation from './redux/operations/authOperations';
 
-
-
-
-const App = ({onGetCurrentUser}) => {
-
-useEffect(()=>{
-  onGetCurrentUser();
-  },[])
- return (
-  <Switch>
-    <Route path="/" exact component={AuthPage} />
-    <Route path="/login" exact component={SignInPage} />
-    <Route path="/register" component={SiginUpPage} />
-    <PrivateRouter path="/main" exact component={Main} />
-    <PrivateRouter path="/presents" exact component={PresentPage} />
-    <PrivateRouter
-      path="/childTasks/:name/:gender"
-      exact
-      component={ChildTaskPage}
-    />
-    <Redirect to={'/'} />
-  </Switch>
- )
+const App = ({ onGetCurrentUser }) => {
+  useEffect(() => {
+    onGetCurrentUser();
+  }, []);
+  return (
+    <Switch>
+      <Route path="/" exact component={AuthPage} />
+      <Route path="/login" exact component={SignInPage} />
+      <Route path="/register" component={SiginUpPage} />
+      <PrivateRouter path="/main" exact component={Main} />
+      <PrivateRouter path="/presents" exact component={PresentPage} />
+      <PrivateRouter
+        path="/childTasks/:name/:gender"
+        exact
+        component={ChildTaskPage}
+      />
+      <Redirect to={'/'} />
+    </Switch>
+  );
 };
 
-
 const mapDispatchProps = {
-  onGetCurrentUser:authOperation.getCurrentUser
-}
+  onGetCurrentUser: authOperation.getCurrentUser,
+};
 
-export default connect(null,mapDispatchProps)(App);
-
+export default connect(null, mapDispatchProps)(App);
