@@ -32,6 +32,25 @@ const childrens = createReducer([], {
   ],
   [getChildrensActions.getAllChildrensSuccess]: (state, action) =>
     (state = action.payload),
+  [allHabbitsAction.updateCheckedSuccess]: (state, action) => {
+    state.map((child) => {
+      let x = child.habbits.find((hab) => hab._id === action.payload.idHabbit);
+
+      if (x && x.priceHabbit) {
+        child.stars = Number(child.stars) + x.priceHabbit;
+        if (action.payload.bonus) {
+          child.stars = Number(child.stars) + x.priceHabbit * 10 * 0.5;
+        }
+      }
+    });
+  },
+  [allHabbitsAction.addHabitSuccess]: (state, action) => {
+    state.map((child) => {
+      if (child._id === action.payload.idChild) {
+        child.habbits.push(action.payload);
+      }
+    });
+  },
 });
 
 export default {

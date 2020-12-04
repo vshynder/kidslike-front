@@ -100,7 +100,7 @@ const AddFormTask = ({ children, addTask, onClose }) => {
       </div>
 
       <div className={styles.changehabbit__btns}>
-        <button onClick={handleCancel} className={styles.changehabbit__button}>
+        <button onClick={onClose} className={styles.changehabbit__button}>
           Відміна
         </button>
         <button
