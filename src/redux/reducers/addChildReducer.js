@@ -2,6 +2,7 @@ import addChildActions from '../../components/AddChildForm/AddChildActions';
 import getChildrensActions from '../actions/getAllChildrens';
 import { createReducer } from '@reduxjs/toolkit';
 import { act } from 'react-dom/test-utils';
+import allHabbitsAction from '../actions/allHabbitsAction';
 
 // const fakeChildrens = [
 //   // Заглушка
