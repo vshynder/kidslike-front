@@ -5,21 +5,13 @@ import star from '../../assets/images/changeHabbitStar.png';
 import select from '../../assets/images/changeHabbitSelect.png';
 
 const ChangeHabbitForm = () => {
-  const handleCloseClick = () => {
-    console.log('Close mark clicked');
-  };
+  const handleCloseClick = () => {};
 
-  const handleDeleteHabbit = () => {
-    console.log('deleting habbit...');
-  };
+  const handleDeleteHabbit = () => {};
 
-  const handleCancel = () => {
-    console.log('cancel');
-  };
+  const handleCancel = () => {};
 
-  const handleSave = () => {
-    console.log('save');
-  };
+  const handleSave = () => {};
 
   return (
     <div className={styles.changehabbit__form}>

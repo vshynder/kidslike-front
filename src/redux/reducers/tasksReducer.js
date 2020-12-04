@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import tasksAction from '../actions/tasksAction';
 
 const getTasks = (state, action) => {
-  return [...state, action.payload];
+  return [...state, ...action.payload];
 };
 
 const confirmTask = (state, action) => {
@@ -12,14 +12,18 @@ const notConfirmTask = (state, action) => {
   return [...state];
 };
 
-const addTask = (state, action) => {
-  return [...state, action.payload];
-};
-const tasks = createReducer(null, {
+// const addTask = (state, action) => {
+//   return [...state, action.payload];
+// };
+
+const tasks = createReducer([], {
   [tasksAction.getAllTasksSuccess]: getTasks,
   [tasksAction.confirmTaskSuccess]: confirmTask,
+  [tasksAction.deleteTaskSuccess]: (state, action) => state.filter((task) => task._id !== action.payload),
   [tasksAction.notconfirmTaskRequest]: notConfirmTask,
-  [tasksAction.addTaskSuccess]: addTask,
+  [tasksAction.addTaskSuccess]: (state, action) => {
+    return [...state, action.payload];
+  },
 });
 
 export default {

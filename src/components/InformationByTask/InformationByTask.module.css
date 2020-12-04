@@ -6,6 +6,7 @@
   position: relative;
   border-radius: 20px;
   background-color: #fff;
+  margin-bottom: 15px;
 }
 .firstSmallContainer {
   display: flex;

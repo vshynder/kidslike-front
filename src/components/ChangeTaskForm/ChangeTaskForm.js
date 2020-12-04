@@ -33,9 +33,7 @@ const {
 } = styles;
 
 function ChangeTaskForm({ onClose }) {
-  const handleDeleteTask = () => {
-    console.log('deleting task...');
-  };
+  const handleDeleteTask = () => {};
 
   return (
     <div id={wrapper}>

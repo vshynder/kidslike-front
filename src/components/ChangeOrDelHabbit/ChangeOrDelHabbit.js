@@ -30,7 +30,6 @@ class ChangeOrDelHabbit extends React.Component {
 
   render() {
     let { idHabbit } = this.props;
-    console.log('idHabbit: ', idHabbit);
     // idHabbit = '5fbff003d990eb2fa898f219'; // Заглушка для удаления хеббита
     return (
       <div ref={this.refModalmini} className={styles.modalmini}>

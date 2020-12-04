@@ -15,14 +15,14 @@ import AddFormHabit from '../AddFormHabit';
 import AddFormTask from '../AddFormTask';
 import tasksOperation from '../../redux/operations/tasksOperation';
 import habitsOperation from '../../redux/operations/habbitOperation';
-import getChildrensOperation from '../../redux/operations/getAllChildrens'
+import getChildrensOperation from '../../redux/operations/getAllChildrens';
 
 class MainPosition extends Component {
   state = { modal: false, addFormHabit: false, addFromTask: false };
 
   componentDidMount() {
-    this.props.getTasks();
     this.props.getChildrens();
+    this.props.getTasks();
   }
 
   toggleModal = () => {
@@ -42,8 +42,7 @@ class MainPosition extends Component {
     const { addFormHabit } = this.state;
     const { addFromTask } = this.state;
     const { tasks } = this.props;
-    console.log(tasks);
-
+    // console.log(tasks);
 
     return (
       <div className="container">
@@ -52,13 +51,13 @@ class MainPosition extends Component {
         </header>
         {addFormHabit && (
           <Modal onClose={this.toggleAddFormHabitModal}>
-            <AddFormHabit></AddFormHabit>
+            <AddFormHabit onClose={this.toggleAddFormHabitModal}></AddFormHabit>
           </Modal>
         )}
 
         {addFromTask && (
           <Modal onClose={this.toggleAddFormTaskModal}>
-            <AddFormTask></AddFormTask>
+            <AddFormTask onClose={this.toggleAddFormTaskModal}></AddFormTask>
           </Modal>
         )}
 
@@ -92,7 +91,7 @@ class MainPosition extends Component {
                       <h2 className="habitsInfo_header-title">Звички</h2>
                     </div>
                     <div className="habitsInfo_list">
-                    <InformationByHabbit />
+                      <InformationByHabbit />
                     </div>
                     <div className="habitsInfo_button">
                       <button
@@ -110,7 +109,7 @@ class MainPosition extends Component {
                         <h2 className="tasksinfo__header-title">Задачі</h2>
                       </div>
                       <div className="tasksinfo__list">
-                      {tasks &&
+                        {tasks &&
                           tasks.map((task) => (
                             <InformationByTask key={task._id} task={task} />
                           ))}
@@ -139,12 +138,10 @@ const mapStateToProps = (state) => ({
   tasks: state.tasks,
 });
 
-
 const mapDispatchToProps = {
-  getTasks:tasksOperation.getAllTasks,
-  getChildrens:getChildrensOperation.getChildrens
-}
-
+  getTasks: tasksOperation.getAllTasks,
+  getChildrens: getChildrensOperation.getChildrens,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPosition);
 // export default MainPosition;

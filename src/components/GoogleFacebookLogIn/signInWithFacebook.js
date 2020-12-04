@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { FacebookProvider, FacebookAuth } from "./firebase";
+import React, { useState, useEffect } from 'react';
+import { FacebookProvider, FacebookAuth } from './firebase';
 
 export default function SignInWithFacebook() {
   const [state, setState] = useState({
-    username: "",
-    url: "",
+    username: '',
+    url: '',
     user: null,
     buttonCheck: false,
   });
@@ -29,7 +29,6 @@ export default function SignInWithFacebook() {
           user: result.user,
           buttonCheck: true,
         });
-        console.log(state);
       })
       .catch(function (error) {
         console.log(error.message);
@@ -40,12 +39,11 @@ export default function SignInWithFacebook() {
     FacebookAuth.signOut()
       .then(() => {
         setState({
-          username: "",
-          url: "",
+          username: '',
+          url: '',
           user: null,
           buttonCheck: false,
         });
-        console.log("Logged Out Successfully");
       })
       .catch((error) => {
         console.log(error);
@@ -59,11 +57,11 @@ export default function SignInWithFacebook() {
           Log Out
         </button>
       ) : (
-          <button id="facebook-btn" className="button" onClick={handleLogin}>
-            <i id="facebook" class="fab fa-facebook"></i>
+        <button id="facebook-btn" className="button" onClick={handleLogin}>
+          <i id="facebook" class="fab fa-facebook"></i>
           Увійти за допомогою Facebook
-          </button>
-        )}
+        </button>
+      )}
     </div>
   );
 }

@@ -10,7 +10,6 @@ import styles from './styles.module.scss';
 export default function Logo() {
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
   // location.pathname - path v Route
   const whiteLogoLocations = ['/', '/login', '/register'];
 
