@@ -131,10 +131,38 @@ const deleteTask = (taskId) => (dispatch, getState) => {
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
+const repeatTask = (taskId) => (dispatch, getState) => {
+  const {
+    user: { accessToken: acToken },
+  } = getState();
+
+  if (!acToken) {
+    return;
+  }
+  dispatch(taskAction.repeatTaskRequest());
+
+  const url =
+    'http://kidslike-back-end.herokuapp.com' + '/api/tasks/repeat/' + taskId;
+
+  axios
+    .patch(
+      url,
+      {},
+      {
+        headers: {
+          Authorization: 'Bearer ' + acToken,
+        },
+      },
+    )
+    .then((response) => dispatch(taskAction.repeatTaskSuccess(response.data)))
+    .catch((error) => console.log(error));
+};
+
 export default {
   getAllTasks,
   сonfirmTask,
   notConfirmTask,
   addTask,
   deleteTask,
+  repeatTask,
 };

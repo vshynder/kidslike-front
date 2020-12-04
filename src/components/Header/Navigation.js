@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { NavLink, useLocation } from 'react-router-dom';
+import Media from 'react-media';
 
 import family from '../../assets/images/navigation/family.png';
 import present from '../../assets/images/navigation/present.png';
@@ -23,19 +24,52 @@ export default function Navigation() {
         <img className={styles.header__navigation_button_img} src={family} />
         <span className={styles.header__navigation_button_text}>Сім'я</span>
       </NavLink>
-      <NavLink
-        className={
-          location.pathname === '/childTasks'
-            ? styles.header__navigation_button__active
-            : styles.header__navigation_button
-        }
-        to="/childTasks"
+      <Media
+        queries={{
+          small: '(max-width: 767px)',
+          medium: '(min-width: 768px) and (max-width: 1250px)',
+          large: '(min-width: 1250px)',
+        }}
       >
-        <img className={styles.header__navigation_button_img} src={task} />
-        <span className={styles.header__navigation_button_text}>
-          Звички і задачі
-        </span>
-      </NavLink>
+        {(matches) =>
+          matches.large ? (
+            <NavLink
+              className={
+                location.pathname === '/main'
+                  ? styles.header__navigation_button__active
+                  : styles.header__navigation_button
+              }
+              to="/main"
+            >
+              <img
+                className={styles.header__navigation_button_img}
+                src={task}
+              />
+              <span className={styles.header__navigation_button_text}>
+                Звички і задачі
+              </span>
+            </NavLink>
+          ) : (
+            <NavLink
+              className={
+                location.pathname === '/tasks'
+                  ? styles.header__navigation_button__active
+                  : styles.header__navigation_button
+              }
+              to="/tasks"
+            >
+              <img
+                className={styles.header__navigation_button_img}
+                src={task}
+              />
+              <span className={styles.header__navigation_button_text}>
+                Звички і задачі
+              </span>
+            </NavLink>
+          )
+        }
+      </Media>
+
       <NavLink
         className={
           location.pathname === '/presents'

@@ -9,16 +9,31 @@ import Main from './components/MainPage/MainPage.js';
 import ChildTaskPage from './components/ChildTaskPage/ChildTaskPage';
 import PrivateRouter from './components/MainPage/PrivateRoutes';
 import PresentPage from './components/PresentsPage/PresentPage';
+import TasksPage from './components/TasksPage';
 
 import SignInPage from './components/SignInPage/SignInPage';
 
 import './assets/fonts.css';
 import './assets/basic.css';
 import authOperation from './redux/operations/authOperations';
+import taskOperations from './redux/operations/tasksOperation';
+import presentOperations from './redux/operations/presentOperation';
+import habbitsOperations from './redux/operations/habbitOperation';
 
-const App = ({ onGetCurrentUser }) => {
+const App = ({
+  userToken,
+  getAllHabbits,
+  onGetCurrentUser,
+  getAllTasks,
+  getAllPresents,
+}) => {
   useEffect(() => {
     onGetCurrentUser();
+    if (userToken) {
+      getAllTasks();
+      getAllPresents();
+      getAllHabbits();
+    }
   }, []);
   return (
     <Switch>
@@ -32,13 +47,21 @@ const App = ({ onGetCurrentUser }) => {
         exact
         component={ChildTaskPage}
       />
+      <PrivateRouter path="/tasks" exact component={TasksPage} />
       <Redirect to={'/'} />
     </Switch>
   );
 };
 
-const mapDispatchProps = {
-  onGetCurrentUser: authOperation.getCurrentUser,
-};
+const mapStateToProps = (state) => ({
+  userToken: state.user.accessToken,
+});
 
-export default connect(null, mapDispatchProps)(App);
+const mapDispatchProps = (dispatch) => ({
+  onGetCurrentUser: () => dispatch(authOperation.getCurrentUser()),
+  getAllTasks: () => dispatch(taskOperations.getAllTasks()),
+  getAllPresents: () => dispatch(presentOperations.getAllPresents()),
+  getAllHabbits: () => dispatch(habbitsOperations.getAllHabbitsByUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchProps)(App);
