@@ -13,6 +13,7 @@ class InformationByTask extends Component {
   state = {
     isRenderModal: false,
     isRenderSubmenu: false,
+    isRenderConfirmation: false,
   };
 
   handleOpenSubmenu = (e) => {
@@ -27,8 +28,12 @@ class InformationByTask extends Component {
   handleCloseModal = (e) => {
     this.setState({ isRenderModal: false });
   };
+  confirmTask = (e) => {
+    this.props.onConfirmTask();
+    this.setState({ isRenderConfirmation: true });
+  };
   render() {
-    const { isRenderModal, isRenderSubmenu } = this.state;
+    const { isRenderModal, isRenderSubmenu, isRenderConfirmation } = this.state;
     const { title, reward, daysToDo } = this.props.task;
     return (
       <>
@@ -60,20 +65,24 @@ class InformationByTask extends Component {
             </span>
             <span>
               <p className={styles.greyTitle}>Підтвердження</p>
-              <span className={styles.confirmationContainer}>
-                <button
-                  className={styles.confirmationButton}
-                  onClick={this.props.onConfirmTask}
-                >
-                  <img src={iconconfirm} alt={'pic'}></img>
-                </button>
-                <button
-                  className={styles.confirmationButton}
-                  onClick={this.props.onNotConfirmTask}
-                >
-                  <img src={iconcross} alt={'pic'}></img>
-                </button>
-              </span>
+              {isRenderConfirmation ? (
+                <p className={styles.complitedButton}>Complited!</p>
+              ) : (
+                <span className={styles.confirmationContainer}>
+                  <button
+                    className={styles.confirmationButton}
+                    onClick={this.confirmTask}
+                  >
+                    <img src={iconconfirm} alt={'pic'}></img>
+                  </button>
+                  <button
+                    className={styles.confirmationButton}
+                    onClick={this.props.onNotConfirmTask}
+                  >
+                    <img src={iconcross} alt={'pic'}></img>
+                  </button>
+                </span>
+              )}
             </span>
           </span>
           <button
@@ -94,7 +103,12 @@ class InformationByTask extends Component {
               >
                 Редагувати
               </button>
-              <button onClick={this.props.onDelete} className={styles.submenuItem}>Видалити</button>
+              <button
+                onClick={this.props.onDelete}
+                className={styles.submenuItem}
+              >
+                Видалити
+              </button>
             </div>
           )}
         </div>
@@ -112,7 +126,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onConfirmTask: () => dispatch(tasksOperation.сonfirmTask(ownProps.task._id)),
   onNotConfirmTask: () =>
     dispatch(tasksOperation.notConfirmTask(ownProps.task._id)),
-    onDelete: () => dispatch(tasksOperation.deleteTask(ownProps.task._id))
+  onDelete: () => dispatch(tasksOperation.deleteTask(ownProps.task._id)),
 });
 
 export default connect(null, mapDispatchToProps)(InformationByTask);

@@ -125,6 +125,10 @@
 .submenuItem:focus-within {
   display: block;
 }
+.complitedButton {
+  font-weight: 700;
+  color: #fd8548;
+}
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
