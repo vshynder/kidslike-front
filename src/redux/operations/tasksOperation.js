@@ -22,10 +22,17 @@ const getAllTasks = () => (dispatch, getState) => {
   }
   token.set(acToken);
   dispatch(taskAction.getAllTasksRequest());
+
+  const url = 'http://kidslike-back-end.herokuapp.com/api/tasks'
   axios
-    .get('http://kidslike-back-end.herokuapp.com/api/tasks')
+    .get(url, {
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+    })
     .then((response) => {
-      return dispatch(taskAction.getAllTasksSuccess(...response.data));
+      console.log("response: ", response.data)
+      return dispatch(taskAction.getAllTasksSuccess(response.data));
     })
     .catch((err) => dispatch(taskAction.getAllTasksError(err)));
 };
@@ -40,9 +47,15 @@ const сonfirmTask = (id) => (dispatch, getState) => {
   }
   token.set(acToken);
   dispatch(taskAction.confirmTaskRequest());
+ 
+const url = `http://kidslike-back-end.herokuapp.com/api/tasks/confirm/${id}`
 
   axios
-    .patch(`http://kidslike-back-end.herokuapp.com/api/tasks/confirm/${id}`)
+    .patch(url, {
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+    })
     .then(() => dispatch(taskAction.confirmTaskSuccess()))
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
@@ -57,8 +70,14 @@ const notConfirmTask = (id) => (dispatch, getState) => {
   token.set(acToken);
   dispatch(taskAction.notconfirmTaskRequest());
 
+  const url = `http://kidslike-back-end.herokuapp.com/api/tasks/notconfirm/${id}`
+
   axios
-    .patch(`http://kidslike-back-end.herokuapp.com/api/tasks/notconfirm/${id}`)
+    .patch(url, {
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+    })
     .then(() => dispatch(taskAction.notconfirmTaskSuccess()))
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
@@ -92,6 +111,27 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
       dispatch(taskAction.addTaskSuccess(response.data));
     })
     .catch((error) => console.log(error));
+}
+
+    const deleteTask = (taskId) => (dispatch, getState) => {
+      const {
+        user: { accessToken: acToken },
+      } = getState();
+    
+      if (!acToken) {
+        return;
+      }  
+      dispatch(taskAction.deleteTaskRequest())
+      const url = 'http://kidslike-back-end.herokuapp.com/api/tasks/' + taskId
+
+    axios
+    .delete(url, {
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+    })
+    .then(() => dispatch(taskAction.deleteTaskSuccess(taskId)))
+    .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));  
 };
 
 export default {
@@ -99,4 +139,5 @@ export default {
   сonfirmTask,
   notConfirmTask,
   addTask,
+  deleteTask,
 };

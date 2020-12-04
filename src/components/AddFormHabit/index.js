@@ -33,11 +33,11 @@ class AddFormHabit extends Component {
   };
 
   handleCloseClick = () => {
-    console.log('Close mark clicked');
+    this.props.onClose()
   };
 
   handleCancel = () => {
-    console.log('cancel');
+    this.props.onClose()
   };
 
   handleSave = () => {

@@ -21,8 +21,8 @@ class MainPosition extends Component {
   state = { modal: false, addFormHabit: false, addFromTask: false };
 
   componentDidMount() {
-    this.props.getTasks();
     this.props.getChildrens();
+    this.props.getTasks();
   }
 
   toggleModal = () => {
@@ -52,13 +52,13 @@ class MainPosition extends Component {
         </header>
         {addFormHabit && (
           <Modal onClose={this.toggleAddFormHabitModal}>
-            <AddFormHabit></AddFormHabit>
+            <AddFormHabit onClose={this.toggleAddFormHabitModal}></AddFormHabit>
           </Modal>
         )}
 
         {addFromTask && (
           <Modal onClose={this.toggleAddFormTaskModal}>
-            <AddFormTask></AddFormTask>
+            <AddFormTask onClose={this.toggleAddFormTaskModal}></AddFormTask>
           </Modal>
         )}
 

@@ -44,6 +44,19 @@ class InformationList extends Component {
                   male={children.gender}
                   name={children.name}
                   balance={children.stars ? children.stars : 0}
+                  // firstTasks={
+                  //   tasks.length > 0
+                  //     ? tasks.filter((item) => {
+                  //       let arr = []
+                  //       if(children.id === item.childId) {
+                  //         arr.push(item)
+                  //       }
+                  //         if (arr[0].tittle) {
+                  //           return arr[0].tittle;
+                  //         }
+                  //       })
+                  //     : ''
+                  // }
                   // firstTask={
                   //   children.tasks
                   //     ? children.tasks[0]

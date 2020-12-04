@@ -7,7 +7,7 @@ import select from '../../assets/images/changeHabbitSelect.png';
 import taskOpeartions from '../../redux/operations/tasksOperation';
 import { connect } from 'react-redux';
 
-const AddFormTask = ({ children, addTask }) => {
+const AddFormTask = ({ children, addTask, onClose }) => {
   const [childId, setChildId] = useState('');
   const [title, setTitle] = useState('');
   const [reward, setReward] = useState('');
@@ -25,12 +25,13 @@ const AddFormTask = ({ children, addTask }) => {
     console.log('save');
     console.log('child id: ', childId);
     addTask(childId, title, reward, time);
+    onClose()
   };
 
   return (
     <div className={styles.changehabbit__form}>
       <svg
-        onClick={handleCloseClick}
+        onClick={onClose}
         className={styles.changehabbit__close}
         width="12"
         height="12"
