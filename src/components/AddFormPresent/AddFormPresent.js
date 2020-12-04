@@ -150,7 +150,7 @@ class AddFormPresent extends Component {
               onClick={this.handleCloseWindow}
             >
               {' '}
-              Видмина{' '}
+              Відміна{' '}
             </button>
           </div>
         </form>

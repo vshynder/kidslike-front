@@ -82,6 +82,7 @@ body {
   .habitsInfo_button {
     display: flex;
     justify-content: start;
+    margin-bottom: 50px;
   }
   .habitsInfo_button-button {
     border: 1px solid #bdbdbd;
