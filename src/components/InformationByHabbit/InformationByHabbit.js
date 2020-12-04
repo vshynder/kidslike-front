@@ -73,7 +73,10 @@ class InformationByHabbit extends React.Component {
       <>
         {this.state.showModal && (
           <Modal onClose={this.handlesShowModal}>
-            <ChangeHabbitForm onClose={this.handlesShowModal} />
+            <ChangeHabbitForm
+              onClose={this.handlesShowModal}
+              currentHabbit={this.props.habbit}
+            />
           </Modal>
         )}
         <div className={style.canvas}>
@@ -134,23 +137,25 @@ class InformationByHabbit extends React.Component {
             )}
             <p className={style.bonusx}>x1.5</p>
           </div>
-          <div className={style.btn_wrap}>
-            <h4 className={style.titleconfirm}>Підтвердження</h4>
-            <div className={style.conf_cont}>
-              <button
-                className={style.btnconfirm}
-                onClick={this.clickConfirmedDay}
-              >
-                <img src={iconconfirm} alt={'pic'}></img>
-              </button>
-              <button
-                className={style.btnfailure}
-                onClick={this.clickUnConfirmedDay}
-              >
-                <img src={iconcross} alt={'pic'}></img>
-              </button>
+          {!this.state.complitedHabbit && (
+            <div className={style.btn_wrap}>
+              <h4 className={style.titleconfirm}>Підтвердження</h4>
+              <div className={style.conf_cont}>
+                <button
+                  className={style.btnconfirm}
+                  onClick={this.clickConfirmedDay}
+                >
+                  <img src={iconconfirm} alt={'pic'}></img>
+                </button>
+                <button
+                  className={style.btnfailure}
+                  onClick={this.clickUnConfirmedDay}
+                >
+                  <img src={iconcross} alt={'pic'}></img>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </>
     );
@@ -164,7 +169,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   onCheckHabbit: habbitOperation.checkHabbit,
-  updateHabbit: habbitOperation.updateHabbit, // !!! ДЛЯ передачи в ChangeHabbitForm, или подписаться  на updateHabbit в ней
+  //updateHabbit: habbitOperation.updateHabbit, // !!! ДЛЯ передачи в ChangeHabbitForm, или подписаться  на updateHabbit в ней
 };
 
 export default connect(

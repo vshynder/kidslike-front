@@ -29,7 +29,6 @@ class AddFormHabit extends Component {
   };
 
   handleChoseChild = (e) => {
-    console.log('e.target.value---', e.target.value);
     this.setState({ childId: e.target.value });
   };
 
