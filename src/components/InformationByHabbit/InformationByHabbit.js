@@ -5,15 +5,48 @@ import image_girl from './img/image_girl.svg';
 import iconconfirm from './img/Vector_103_check_mark.svg';
 import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
-
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
+import habbitOperation from '../../redux/operations/habbitOperation';
+
+import ChangeHabbitForm from '../ChangeHabbitForm';
+import Modal from '../Modal/Modal';
 
 class InformationByHabbit extends React.Component {
-  state = { showDropDownMenu: false, showModal: false };
+  state = { showDropDownMenu: false, showModal: false, complitedHabbit: false };
+
   btnchange = React.createRef();
+  componentDidMount() {
+    if (!this.props.habbit.sprintHabbit.includes('1')) {
+      this.setState({ complitedHabbit: true });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      !this.props.habbit.sprintHabbit.includes('1') &&
+      prevState.complitedHabbit === false
+    ) {
+      this.setState({ complitedHabbit: true });
+    }
+  }
+
   handlesShowDropDownMenu = (e) => {
     this.setState({
       showDropDownMenu: !this.state.showDropDownMenu,
+    });
+  };
+
+  clickConfirmedDay = (e) => {
+    this.props.onCheckHabbit({
+      confirmed: true,
+      idHabbit: this.props.habbit._id,
+    });
+  };
+
+  clickUnConfirmedDay = (e) => {
+    this.props.onCheckHabbit({
+      confirmed: false,
+      idHabbit: this.props.habbit._id,
     });
   };
 
@@ -34,96 +67,107 @@ class InformationByHabbit extends React.Component {
       return style.containerlidischeck;
     }
   };
-  render() {
-    console.log('props: ', this.props);
 
+  render() {
     return (
-      <div className={style.canvas}>
-        {
-          /* {this.state.showModal && (
-          <Modal>
-            <ChangeHabbitForm  forCloseModal={this.handlesShowModal}/>
+      <>
+        {this.state.showModal && (
+          <Modal onClose={this.handlesShowModal}>
+            <ChangeHabbitForm />
           </Modal>
-        )} */
-          this.state.showModal && ( // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
-            <div style={{ position: 'absolute', backgroundColor: '#ddd' }}>
-              MODAL WINDOW DUMMY
-            </div>
-          ) // ЗАГЛУШКА МОДАЛЬНОГО ОКНА
-        }
-        <button
-          ref={this.btnchange}
-          onClick={this.handlesShowDropDownMenu}
-          className={style.btnchange}
-        >
-          ...
-        </button>
-        {this.state.showDropDownMenu && (
-          <ChangeOrDelHabbit
-            onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
-            onHandlesShowModal={this.handlesShowModal}
-            refBtnChange={this.btnchange.current}
-          />
         )}
-        <div
-          className={
-            this.props.habbitUser.genderChild === 'male'
-              ? style.avatar_boy
-              : style.avatar_girl
-          }
-        >
-          <img
-            className={style.imgavatar}
-            src={
-              this.props.habbitUser.genderChild === 'male'
-                ? image_boy
-                : image_girl
+        <div className={style.canvas}>
+          <button
+            ref={this.btnchange}
+            onClick={this.handlesShowDropDownMenu}
+            className={style.btnchange}
+          >
+            ...
+          </button>
+          {this.state.showDropDownMenu && (
+            <ChangeOrDelHabbit
+              onHandlesShowDropDownMenu={this.handlesShowDropDownMenu}
+              onHandlesShowModal={this.handlesShowModal}
+              refBtnChange={this.btnchange.current}
+              idHabbit={this.props.habbit._id}
+            />
+          )}
+
+          <div
+            className={
+              this.props.habbit.genderChild === 'male'
+                ? style.avatar_boy
+                : style.avatar_girl
             }
-            alt={'pic'}
-          />
-          <p className={style.name_hover}>
-            {this.props.habbitUser.ownerHabbits}
-          </p>
-        </div>
-        <div>
-          <h3 className={style.title}>{this.props.habbitUser.nameHabbit}</h3>
-          <ul className={style.conteiner}>
-            {this.props.habbitUser.sprintHabbit.split('').map((el, idx) => {
-              return (
-                <li className={this.renderCheckSprintHabbit(el)} key={idx}>
-                  {this.props.habbitUser.priceHabbit}
-                </li>
-              );
-            })}
-          </ul>
-          <p className={style.bonusx}>x1.5</p>
-        </div>
-        <div className={style.btn_wrap}>
-          <h4 className={style.titleconfirm}>Підтвердження</h4>
-          <div className={style.conf_cont}>
-            <button className={style.btnconfirm}>
-              <img src={iconconfirm} alt={'pic'}></img>
-            </button>
-            <button className={style.btnfailure}>
-              <img src={iconcross} alt={'pic'}></img>
-            </button>
+          >
+            <img
+              className={style.imgavatar}
+              src={
+                this.props.habbit.genderChild === 'male'
+                  ? image_boy
+                  : image_girl
+              }
+              alt={'pic'}
+            />
+            <p className={style.name_hover}>{this.props.habbit.ownerHabbits}</p>
+          </div>
+          <div>
+            <h3 className={style.title}>{this.props.habbit.nameHabbit}</h3>
+            {!this.state.complitedHabbit ? (
+              <ul className={style.conteiner}>
+                {this.props.habbit.sprintHabbit
+                  .slice()
+                  .split('')
+                  .map((el, idx) => {
+                    return (
+                      <li
+                        className={this.renderCheckSprintHabbit(el)}
+                        key={idx}
+                      >
+                        {this.props.habbit.priceHabbit}
+                      </li>
+                    );
+                  })}
+              </ul>
+            ) : (
+              <p className={style.complhabbit}>Complited!</p>
+            )}
+            <p className={style.bonusx}>x1.5</p>
+          </div>
+          <div className={style.btn_wrap}>
+            <h4 className={style.titleconfirm}>Підтвердження</h4>
+            <div className={style.conf_cont}>
+              <button
+                className={style.btnconfirm}
+                onClick={this.clickConfirmedDay}
+              >
+                <img src={iconconfirm} alt={'pic'}></img>
+              </button>
+              <button
+                className={style.btnfailure}
+                onClick={this.clickUnConfirmedDay}
+              >
+                <img src={iconcross} alt={'pic'}></img>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  habbitUser: {
-    sprintHabbit: '+-++111111',
-    idChild: '5fb4f73805dba90ca4fbf464',
-    nameHabbit: 'Play football',
-    priceHabbit: 2,
-    ownerHabbits: 'Sanchez',
-    genderChild: 'male',
-  },
-}); // Заглушка - компонет InformationByHabbit получит пропсом обьект habbitUser
-// при рендере коллекции  всех привычек детей пользователя
+const mapStateToProps = (state, ownProps) => {
+  const habbit = state.habbits.find((el) => el._id === ownProps.id);
+  return { habbit };
+};
 
-export default connect(mapStateToProps)(InformationByHabbit);
+const mapDispatchToProps = {
+  onCheckHabbit: habbitOperation.checkHabbit,
+  updateHabbit: habbitOperation.updateHabbit, // !!! ДЛЯ передачи в ChangeHabbitForm, или подписаться  на updateHabbit в ней
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(InformationByHabbit);

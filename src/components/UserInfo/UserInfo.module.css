@@ -19,9 +19,10 @@
   border-radius: 50%;
 }
 .userPhoto {
-  width: 24px;
+  width: 100%;
+  border-radius: 50%;
 }
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   .userInfoContainer {
     width: 255px;
   }

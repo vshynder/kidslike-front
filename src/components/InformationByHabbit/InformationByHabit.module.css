@@ -1,6 +1,3 @@
-body {
-  background-color: #e3f8fc;
-}
 .canvas {
   position: relative;
   box-sizing: border-box;
@@ -12,6 +9,9 @@ body {
   padding: 25px;
   opacity: 0.9;
   border-radius: 20px;
+  margin: 0 auto 15px;
+}
+.canvas:nth-last-child(1) {
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@ body {
 }
 .avatar_girl {
   composes: avatar;
-  background-image: url(./img/Ellipse_pink.svg) no-repeat center;
+  background: url(./img/Ellipse_pink.svg) no-repeat center;
 }
 
 .imgavatar {
@@ -97,6 +97,7 @@ body {
 }
 
 .conteiner {
+  list-style: none;
   padding: 0px 15px 0 15px;
   display: flex;
 }
@@ -143,6 +144,19 @@ body {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+
+.complhabbit {
+  padding: 0px 15px 0 15px;
+  width: 430px;
+  height: 40px;
+  font-family: Rubik, Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  line-height: 40px;
+  font-weight: 700;
+  color: #fd8548;
+  text-align: center;
+}
+
 .title {
   padding-left: 20px;
   padding-bottom: 10px;
@@ -171,6 +185,7 @@ body {
     width: 280px;
     height: 197px;
     justify-content: center;
+    margin: 0 auto 7px;
   }
 
   .avatar {
@@ -206,5 +221,15 @@ body {
   }
   .bonusx {
     padding-right: 10px;
+  }
+  .complhabbit {
+    width: 254px;
+    height: 27px;
+    font-family: Rubik, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #fd8548;
+    text-align: center;
   }
 }

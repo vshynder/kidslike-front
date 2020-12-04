@@ -79,12 +79,11 @@
       width: 170px;
       padding-left: 47px;
 
-      /*text-decoration: underline;
+      text-decoration: underline;
       &::placeholder {
         text-decoration: underline;
-      }*/
+      }
     }
-
     & > label {
       font-family: 'Rubik';
       font-style: normal;
@@ -114,7 +113,7 @@
   }
 
   &__btns {
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
   &__button {

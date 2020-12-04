@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import style from './AddChildForm.module.css';
+import { connect } from 'react-redux';
+import addChildOperations from '../../redux/operations/AddChildOperation.js';
 
-export default class AddChildForm extends Component {
+class AddChildForm extends Component {
   state = {
+    name: '',
     male: false,
     female: false,
+    gender: '',
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
   };
 
   onClickFemale = () => {
     this.setState({
       female: true,
       male: false,
+      gender: 'female',
     });
   };
 
@@ -18,20 +29,29 @@ export default class AddChildForm extends Component {
     this.setState({
       male: true,
       female: false,
+      gender: 'male',
     });
   };
 
+  preventSubmit = (e) => {
+    e.preventDefault();
+    this.props.onClose();
+  };
+
   render() {
-    const { male, female } = this.state;
+    const { male, female, name, gender } = this.state;
+    const { addChildRequest, onClose } = this.props;
     return (
       <div className={style.addChildForm_container}>
-        <button className={style.addChildForm_button__close} />
+        <button onClick={onClose} className={style.addChildForm_button__close} />
         <h2 className={style.addChildForm_title}>Додавання дитини</h2>
-        <form>
+        <form onSubmit={this.preventSubmit}>
           <label className={style.addChildForm_label__name}>
             <p className={style.addChildForm_title__name}>Iм`я дитини</p>
             <input
               className={style.addChildForm_input__name}
+              onChange={this.handleChange}
+              value={name}
               type="text"
               placeholder="Iм`я"
             />
@@ -79,7 +99,10 @@ export default class AddChildForm extends Component {
             <button className={style.addChildForm_button__cancel}>
               Вiдмiна
             </button>
-            <button className={style.addChildForm_button__save}>
+            <button
+              className={style.addChildForm_button__save}
+              onClick={() => addChildRequest(name, gender)}
+            >
               Зберегти
             </button>
           </div>
@@ -88,3 +111,9 @@ export default class AddChildForm extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  addChildRequest: addChildOperations.addChild,
+};
+
+export default connect(null, mapDispatchToProps)(AddChildForm);
