@@ -16,6 +16,10 @@ const addTaskRequest = createAction('tasks/addRequest');
 const addTaskSuccess = createAction('tasks/addSucces');
 const addTaskError = createAction('tasks/addError');
 
+const deleteTaskRequest = createAction('tasks/deleteRequest');
+const deleteTaskSuccess = createAction('tasks/deleteSucces');
+const deleteTaskError = createAction('tasks/deleteError');
+
 export default {
   getAllTasksRequest,
   getAllTasksSuccess,
@@ -29,4 +33,7 @@ export default {
   addTaskRequest,
   addTaskSuccess,
   addTaskError,
+  deleteTaskRequest,
+  deleteTaskSuccess,
+  deleteTaskError
 };

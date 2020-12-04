@@ -94,7 +94,7 @@ class InformationByTask extends Component {
               >
                 Редагувати
               </button>
-              <button className={styles.submenuItem}>Видалити</button>
+              <button onClick={this.props.onDelete} className={styles.submenuItem}>Видалити</button>
             </div>
           )}
         </div>
@@ -112,6 +112,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onConfirmTask: () => dispatch(tasksOperation.сonfirmTask(ownProps.task._id)),
   onNotConfirmTask: () =>
     dispatch(tasksOperation.notConfirmTask(ownProps.task._id)),
+    onDelete: () => dispatch(tasksOperation.deleteTask(ownProps.task._id))
 });
 
 export default connect(null, mapDispatchToProps)(InformationByTask);
