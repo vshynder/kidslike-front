@@ -7,8 +7,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
+    padding-top: 50px;
     position: relative;
+    background-color: #fff;
   }
 
   &__close {
@@ -24,7 +25,7 @@
   }
 
   &__title {
-    font-family: 'Rubick';
+    font-family: 'Rubik';
     font-weight: 900;
     font-size: 26px;
     line-height: 31px;
@@ -34,9 +35,8 @@
   &__input {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     &Select {
       display: block;
@@ -66,9 +66,7 @@
       outline: none;
       border: 1px solid #bdbdbd;
       border-radius: 15px;
-
-      margin-bottom: 10px;
-      padding: 0;
+      padding: 0 8px 0 8px;
 
       font-family: 'Rubik';
       font-style: normal;
@@ -81,10 +79,10 @@
       width: 170px;
       padding-left: 47px;
 
-      text-decoration: underline;
+      /*text-decoration: underline;
       &::placeholder {
         text-decoration: underline;
-      }
+      }*/
     }
 
     & > label {

@@ -60,7 +60,7 @@ const AddFormTask = () => {
           type="number"
           min="0"
           max="99"
-          placeholder="00"
+          placeholder="__"
         />
         <img className={styles.changehabbit__inputStar} src="" alt="star" />
         <label className={styles.label__day} htmlFor="day">Дні на виконання (необов'язково)</label>
@@ -70,7 +70,7 @@ const AddFormTask = () => {
           type="number"
           min="0"
           max="99"
-          placeholder="00"
+          placeholder="___"
         />
       </div>
     
