@@ -20,6 +20,7 @@ const TasksContainer = ({ match, allTasks }) => {
         {allTasks !== null && allTasks.length > 0 ? (
           allTasks.map((task) => (
             <ChildTask
+              id={task._id}
               gender={match.params.gender}
               daysToDo={task.daysToDo}
               reward={task.reward}
