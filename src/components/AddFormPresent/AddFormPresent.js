@@ -94,6 +94,8 @@ class AddFormPresent extends Component {
               value={childId}
               className={style.present_form__input}
             >
+              <option>оберіть дитину</option>
+
               {children.map((child) => (
                 <option key={child._id} value={child._id}>
                   {' '}

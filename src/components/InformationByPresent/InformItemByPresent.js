@@ -7,8 +7,10 @@ import maleImage from '../../assets/informationByPresent/Group 292.png';
 import femaleImage from '../../assets/informationByPresent/Group 291.png';
 import subMenu_disable from '../../assets/informationByPresent/Group 280.svg';
 import subMenu_active from '../../assets/informationByPresent/Group 281.svg';
+import { connect } from 'react-redux';
+import operation from '../../redux/operations/presentOperation';
 
-export default class InformItemByPresent extends Component {
+class InformItemByPresent extends Component {
   state = {
     display: 'none',
     modal: false,
@@ -39,22 +41,35 @@ export default class InformItemByPresent extends Component {
   };
 
   render() {
-    const { gender, image, title, reward, childId ,idPresent} = this.props;
+    const {
+      gender,
+      image,
+      title,
+      reward,
+      childId,
+      idPresent,
+      removePresent,
+    } = this.props;
     const { display, modal } = this.state;
     return (
       <>
         {modal && (
-          <Modal children={<ChangeFormPresent 
+          <Modal
+            children={
+              <ChangeFormPresent
+                onClose={this.onClose}
+                childId={childId}
+                title={title}
+                reward={reward}
+                idPresent={idPresent}
+              />
+            }
             onClose={this.onClose}
-             childId={childId}
-             title={title}
-             reward={reward}
-             idPresent={idPresent}
-             />} onClose={this.onClose} />
+          />
         )}
         <ul className={styles.presentItem_container}>
           <li className={styles.presentItem_changePresent}>
-            <button
+            <div
               className={styles.presentItem_button__submenu}
               onClick={this.onChangeSubmenu}
             >
@@ -76,12 +91,15 @@ export default class InformItemByPresent extends Component {
                   </button>
                 </li>
                 <li>
-                  <button className={styles.presentItem_subMenu__button}>
+                  <button
+                    onClick={() => removePresent(idPresent)}
+                    className={styles.presentItem_subMenu__button}
+                  >
                     Видалити
                   </button>
                 </li>
               </ul>
-            </button>
+            </div>
           </li>
           <li className={styles.presentItem_images}>
             <img
@@ -109,3 +127,9 @@ export default class InformItemByPresent extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  removePresent: operation.removePresent,
+};
+
+export default connect(null, mapDispatchToProps)(InformItemByPresent);

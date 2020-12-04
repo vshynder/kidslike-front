@@ -29,7 +29,7 @@ export default function Navigation() {
             ? styles.header__navigation_button__active
             : styles.header__navigation_button
         }
-        to="/childTasks"
+        to="/main"
       >
         <img className={styles.header__navigation_button_img} src={task} />
         <span className={styles.header__navigation_button_text}>
