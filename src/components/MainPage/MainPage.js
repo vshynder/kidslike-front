@@ -101,26 +101,26 @@ class MainPosition extends Component {
                         Додати звичку +
                       </button>
                     </div>
-                  </div>
-                  <div className="extendMain">
-                    <div className="tasksinfo">
-                      <div className="tasksinfo__header">
-                        <img className="tasksinfo__header-img" src={task} />
-                        <h2 className="tasksinfo__header-title">Задачі</h2>
-                      </div>
-                      <div className="tasksinfo__list">
-                        {tasks &&
-                          tasks.map((task) => (
-                            <InformationByTask key={task._id} task={task} />
-                          ))}
-                      </div>
-                      <div className="tasksinfo__button">
-                        <button
-                          onClick={this.toggleAddFormTaskModal}
-                          className="tasksinfo__button-button"
-                        >
-                          Додати задачу +
-                        </button>
+                    <div className="extendMain">
+                      <div className="tasksinfo">
+                        <div className="tasksinfo__header">
+                          <img className="tasksinfo__header-img" src={task} />
+                          <h2 className="tasksinfo__header-title">Задачі</h2>
+                        </div>
+                        <div className="tasksinfo__list">
+                          {tasks &&
+                            tasks.map((task) => (
+                              <InformationByTask key={task._id} task={task} />
+                            ))}
+                        </div>
+                        <div className="tasksinfo__button">
+                          <button
+                            onClick={this.toggleAddFormTaskModal}
+                            className="tasksinfo__button-button"
+                          >
+                            Додати задачу +
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
