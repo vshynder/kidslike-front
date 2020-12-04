@@ -13,6 +13,7 @@ class AddFormHabit extends Component {
     bal: '',
     childId: '',
     children: [],
+    checkAllInput: true,
   };
 
   componentDidMount() {
@@ -28,6 +29,7 @@ class AddFormHabit extends Component {
   };
 
   handleChoseChild = (e) => {
+    console.log('e.target.value---', e.target.value);
     this.setState({ childId: e.target.value });
   };
 
@@ -41,6 +43,10 @@ class AddFormHabit extends Component {
 
   handleSave = () => {
     const { title, bal, childId } = this.state;
+    if (!title || !bal || !childId) {
+      this.setState({ checkAllInput: false });
+      return;
+    }
 
     this.props.onAddHabit({
       nameHabbit: title,
@@ -49,6 +55,7 @@ class AddFormHabit extends Component {
     });
 
     this.setState({ title: '', bal: '', childId: '' });
+    this.props.onClose();
   };
 
   handleSubmit = (e) => {
@@ -82,7 +89,7 @@ class AddFormHabit extends Component {
           <label htmlFor="name">Назва</label>
           <input
             className={styles.changehabbit__inputLong}
-            placeholder="Введіть назву"
+            placeholder=" Введіть назву звички"
             value={title}
             onChange={this.handleChangeName}
           />
@@ -95,6 +102,9 @@ class AddFormHabit extends Component {
             value={childId}
             className={styles.changehabbit__inputLong}
           >
+            <option value="" disabled>
+              Оберіть дитину
+            </option>
             {children.map((child) => (
               <option
                 key={child._id ? child._id : child.id}
@@ -122,7 +132,7 @@ class AddFormHabit extends Component {
             type="number"
             min="0"
             max="99"
-            placeholder="00"
+            placeholder="——"
             onChange={this.handleChangeBall}
           />
           <img
@@ -131,6 +141,9 @@ class AddFormHabit extends Component {
             alt="star"
           />
         </div>
+        <p style={{ color: 'red', height: '12px', fontWeight: '700' }}>
+          {!this.state.checkAllInput && 'Заповніть всі поля!'}
+        </p>
 
         <div className={styles.changehabbit__btns}>
           <button

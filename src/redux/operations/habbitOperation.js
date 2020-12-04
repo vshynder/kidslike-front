@@ -10,6 +10,7 @@ const addHabit = (value) => (dispatch, getState) => {
     getState().user.accessToken
   }`;
 
+  console.log('addHabit value ------', value);
   axios
     .post('https://kidslike-back-end.herokuapp.com/api/habbits', value)
     .then((res) => {
