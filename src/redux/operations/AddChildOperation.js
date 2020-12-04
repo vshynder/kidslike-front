@@ -21,7 +21,6 @@ const addChild = (name, gender) => (dispatch, getState) => {
 
   token.set(acToken);
   dispatch(addChildActions.addChildRequest());
-  console.log(name, gender);
   axios
     .post(
       'https://kidslike-back-end.herokuapp.com/api/children/addchild',

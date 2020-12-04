@@ -34,7 +34,6 @@ class AddFormPresent extends Component {
   };
 
   onSelectImageHandler = (e) => {
-    console.log(e.target.files[0]);
     this.setState({ selectedFile: e.target.files[0] });
   };
   handleCloseWindow = (e) => {

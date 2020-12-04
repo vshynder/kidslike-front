@@ -13,19 +13,13 @@ const AddFormTask = ({ children, addTask, onClose }) => {
   const [reward, setReward] = useState('');
   const [time, setTime] = useState('');
 
-  const handleCloseClick = () => {
-    console.log('Close mark clicked');
-  };
+  const handleCloseClick = () => {};
 
-  const handleCancel = () => {
-    console.log('cancel');
-  };
+  const handleCancel = () => {};
 
   const handleSave = () => {
-    console.log('save');
-    console.log('child id: ', childId);
     addTask(childId, title, reward, time);
-    onClose()
+    onClose();
   };
 
   return (

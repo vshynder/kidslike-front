@@ -3,8 +3,12 @@ import axios from 'axios';
 
 // axios.defaults.baseURL = 'http://localhost:1717';
 
-const addHabit = (value) => (dispatch) => {
+const addHabit = (value) => (dispatch, getState) => {
   dispatch(action.addHabitRequest());
+
+  axios.defaults.headers.common.Authorization = `Bearer ${
+    getState().user.accessToken
+  }`;
 
   axios
     .post('https://kidslike-back-end.herokuapp.com/api/habbits', value)
@@ -33,18 +37,20 @@ const getAllHabbitsByUser = (value) => (dispatch, getState) => {
 
 const checkHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updateCheckedRequest());
+  axios.defaults.headers.common.Authorization = `Bearer ${
+    getState().user.accessToken
+  }`;
   axios
     .patch(
       'https://kidslike-back-end.herokuapp.com/api/habbits/checkhabbit',
       value,
     )
     .then((response) => {
-      dispatch(
-        action.updateCheckedSuccess({
-          ...response.data,
-          idHabbit: value.idHabbit,
-        }),
-      );
+      const data = {
+        ...response.data,
+        idHabbit: value.idHabbit,
+      };
+      dispatch(action.updateCheckedSuccess(data));
     })
     .catch((err) => dispatch(action.updateCheckedError(err.message)));
 };
@@ -52,6 +58,9 @@ const checkHabbit = (value) => (dispatch, getState) => {
 const delHabbit = (value) => (dispatch, getState) => {
   dispatch(action.deletedRequest());
 
+  axios.defaults.headers.common.Authorization = `Bearer ${
+    getState().user.accessToken
+  }`;
   axios
     .delete('https://kidslike-back-end.herokuapp.com/api/habbits/' + value)
     .then((response) => {
@@ -62,6 +71,10 @@ const delHabbit = (value) => (dispatch, getState) => {
 
 const updateHabbit = (value) => (dispatch, getState) => {
   dispatch(action.updRequest());
+
+  axios.defaults.headers.common.Authorization = `Bearer ${
+    getState().user.accessToken
+  }`;
 
   axios
     .patch(

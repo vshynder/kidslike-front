@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { GoogleProvider, GoogleAuth } from "./firebase";
+import React, { useState, useEffect } from 'react';
+import { GoogleProvider, GoogleAuth } from './firebase';
 
 export default function SignInWithGoogle() {
   const [state, setState] = useState({
-    username: "",
-    url: "",
+    username: '',
+    url: '',
     user: null,
     buttonCheck: false,
   });
@@ -29,7 +29,6 @@ export default function SignInWithGoogle() {
           user: result.user,
           buttonCheck: true,
         });
-        console.log(state);
       })
       .catch(function (error) {
         console.log(error.message);
@@ -40,12 +39,11 @@ export default function SignInWithGoogle() {
     GoogleAuth.signOut()
       .then(() => {
         setState({
-          username: "",
-          url: "",
+          username: '',
+          url: '',
           user: null,
           buttonCheck: false,
         });
-        console.log("Signed Out Successfully");
       })
       .catch((error) => {
         console.log(error);
@@ -59,11 +57,11 @@ export default function SignInWithGoogle() {
           Sign Out
         </button>
       ) : (
-          <button id="google-btn" className="button" onClick={handleLogin}>
-            <i id="google" class="fab fa-google-plus-g"></i>
+        <button id="google-btn" className="button" onClick={handleLogin}>
+          <i id="google" class="fab fa-google-plus-g"></i>
           Увійти за допомогою Google
-          </button>
-        )}
+        </button>
+      )}
     </div>
   );
 }

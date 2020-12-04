@@ -11,7 +11,6 @@ const initState = {
 
 export const authReducer = createReducer(initState, {
   [authActions.loginUserSuccess]: (state, action) => {
-    console.log(action.payload);
     return { ...state, ...action.payload };
   },
   [authActions.registrationUserSuccess]: (state, action) => {
@@ -19,9 +18,8 @@ export const authReducer = createReducer(initState, {
   },
   [authActions.logoutSuccess]: () => initState,
 
-  [authActions.getCurrentUserSuccess]:(state, action) => {
-    console.log(action.payload);
+  [authActions.getCurrentUserSuccess]: (state, action) => {
     return { ...state, ...action.payload };
   },
-  [authActions.getCurrentUserError]: (_,{payload}) => payload,
+  [authActions.getCurrentUserError]: (_, { payload }) => payload,
 });

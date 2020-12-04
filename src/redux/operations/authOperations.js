@@ -3,7 +3,6 @@ import authActions from '../actions/authActions';
 // axios.defaults.baseURL = 'https://kidslike-back-end.herokuapp.com';
 
 const setAuthToken = (token) => {
-  console.log(token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 const unsetAuthToken = (token) => {

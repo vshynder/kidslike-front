@@ -28,22 +28,20 @@ class AddFormHabit extends Component {
   };
 
   handleChoseChild = (e) => {
-    console.log(e.target.value);
     this.setState({ childId: e.target.value });
   };
 
   handleCloseClick = () => {
-    this.props.onClose()
+    this.props.onClose();
   };
 
   handleCancel = () => {
-    this.props.onClose()
+    this.props.onClose();
   };
 
   handleSave = () => {
     const { title, bal, childId } = this.state;
 
-    console.log('valera id', childId);
     this.props.onAddHabit({
       nameHabbit: title,
       priceHabbit: bal,

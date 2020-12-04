@@ -10,7 +10,8 @@ export const habbitsReducer = createReducer([], {
     return (state = action.payload);
   },
   [actions.updateCheckedSuccess]: (state, action) => {
-    state.map((el) =>
+    const workingState = [...state];
+    workingState.map((el) =>
       el._id === action.payload.idHabbit
         ? (el.sprintHabbit = action.payload.newSprintHabbit)
         : el,
