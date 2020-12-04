@@ -40,8 +40,9 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
     .patch(
       `https://kidslike-back-end.herokuapp.com/api/presents/${idPresent}`,
       fD,
-    ) ///  заглушка на end point
+    ) 
     .then((res) => {
+      console.log(res.data);
       dispatch(action.updatePresentSuccess(res.data));
     })
     .catch((error) => dispatch(action.updatePresentError(error)));

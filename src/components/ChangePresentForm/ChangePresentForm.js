@@ -47,10 +47,11 @@ class ChangeFormPresent extends Component {
 
     const { title, reward, childId, selectedFile } = this.state;
     const { idPresent } = this.props;
-    const fD = new FormData();
-    fD.append('files', selectedFile);
-    fD.set('title', title);
-    fD.set('reward', reward);
+    const fD = {title, reward, childId}
+    // new FormData();
+    // fD.append('files', selectedFile);
+    // fD.set('title', title);
+    // fD.set('reward', reward);
     this.props.updatePresent(fD, idPresent);
 
     this.setState({ title: '', reward: '', childId: '', selectedFile: null });
