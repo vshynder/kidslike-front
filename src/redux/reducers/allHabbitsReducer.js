@@ -30,21 +30,7 @@ export const habbitsReducer = createReducer([], {
 
 export default habbitsReducer;
 
-// Для редюсера loader:
-// [actions.getAllHabbitsRequest]:()=>true,
-// [actions.updRequest]:()=>true,
-// [actions.deletedRequest] :()=>true,
-// [actions.deletedRequest]:()=>true,
-// [actions.getAllSuccess]: ()=>false,
-// [actions.updateCheckedSuccess]: ()=>false,
-// [actions.deletedSuccess]: ()=>false,
-// [actions.updSuccess]: ()=>false,
-// [actions.getAllHabbitsError]:()=>false,
-// [actions.updError]:()=>false,
-// [actions.deletedError] :()=>false,
-// [actions.updateCheckedError] :()=>false,
-
-//  Для редюсера error
+//  Для редюсера error если такой будет
 // [actions.getAllHabbitsError] : (state, action) => action.payload,
 // [actions.updError] : (state, action) => action.payload,
 // [actions.deletedError] : (state, action) => action.payload,
