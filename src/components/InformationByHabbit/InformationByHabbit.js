@@ -73,7 +73,7 @@ class InformationByHabbit extends React.Component {
       <>
         {this.state.showModal && (
           <Modal onClose={this.handlesShowModal}>
-            <ChangeHabbitForm />
+            <ChangeHabbitForm onClose={this.handlesShowModal} />
           </Modal>
         )}
         <div className={style.canvas}>

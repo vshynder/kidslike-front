@@ -4,7 +4,7 @@ import styles from './changeHabbitForm.module.scss';
 import star from '../../assets/images/changeHabbitStar.png';
 import select from '../../assets/images/changeHabbitSelect.png';
 
-const ChangeHabbitForm = () => {
+const ChangeHabbitForm = ({ onClose }) => {
   const handleCloseClick = () => {};
 
   const handleDeleteHabbit = () => {};
@@ -15,17 +15,19 @@ const ChangeHabbitForm = () => {
 
   return (
     <div className={styles.changehabbit__form}>
-      <svg
-        onClick={handleCloseClick}
-        className={styles.changehabbit__close}
-        width="12"
-        height="12"
-        viewBox="0 0 12 12"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M1 1L11 11" strokeWidth="2" strokeLinecap="round" />
-        <path d="M1 11L11 0.999999" strokeWidth="2" strokeLinecap="round" />
-      </svg>
+      <div onClick={onClose}>
+        <svg
+          onClick={handleCloseClick}
+          className={styles.changehabbit__close}
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M1 1L11 11" strokeWidth="2" strokeLinecap="round" />
+          <path d="M1 11L11 0.999999" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </div>
 
       <h1 className={styles.changehabbit__title}>Редагування звички</h1>
       <div className={styles.changehabbit__input}>
@@ -95,7 +97,11 @@ const ChangeHabbitForm = () => {
       </div>
 
       <div className={styles.changehabbit__btns}>
-        <button onClick={handleCancel} className={styles.changehabbit__button}>
+        <button
+          onClick={handleCancel}
+          className={styles.changehabbit__button}
+          onClick={onClose}
+        >
           Відміна
         </button>
         <button
