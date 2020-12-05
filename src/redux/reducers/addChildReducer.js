@@ -30,8 +30,10 @@ const childrens = createReducer([], {
     ...state,
     action.payload,
   ],
+
   [getChildrensActions.getAllChildrensSuccess]: (state, action) =>
     (state = action.payload),
+
   [allHabbitsAction.updateCheckedSuccess]: (state, action) => {
     state.map((child) => {
       let x = child.habbits.find((hab) => hab._id === action.payload.idHabbit);
@@ -44,6 +46,7 @@ const childrens = createReducer([], {
       }
     });
   },
+
   [allHabbitsAction.addHabitSuccess]: (state, action) => {
     state.map((child) => {
       if (child._id === action.payload.idChild) {
@@ -53,12 +56,13 @@ const childrens = createReducer([], {
   },
 
   [allHabbitsAction.updSuccess]: (state, action) => {
+    console.log(action.payload);
     state.map((child) =>
       child.habbits.map((hab) =>
         hab._id === action.payload.changeId ? (hab = action.payload.data) : hab,
       ),
     );
-  },
+  }, //// НЕ ОТРАБАВТІВАЕТ!!!!!!!!!!!!!
 });
 
 export default {
