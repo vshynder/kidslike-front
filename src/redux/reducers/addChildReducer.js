@@ -52,13 +52,13 @@ const childrens = createReducer([], {
     });
   },
 
-  // [allHabbitsAction.updSuccess]: (state, action) => {
-  //   state.map((child) =>
-  //     child.map((hab) =>
-  //       hab._id === action.payload.changeId ? (hab = action.payload.data) : hab,
-  //     ),
-  //   );
-  // },
+  [allHabbitsAction.updSuccess]: (state, action) => {
+    state.map((child) =>
+      child.habbits.map((hab) =>
+        hab._id === action.payload.changeId ? (hab = action.payload.data) : hab,
+      ),
+    );
+  },
 });
 
 export default {
