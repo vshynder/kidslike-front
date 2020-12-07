@@ -5,22 +5,24 @@ import closeBtn from '../../assets/images/close.svg';
 import ballImg from '../../assets/images/changeHabbitStar.png';
 import tringl from '../../assets/images/changeHabbitSelect.png';
 import operation from '../../redux/operations/presentOperation';
-import selector from '../../redux/selectors/ChildSelectors';
 import selectorChild from '../../redux/selectors/ChildSelectors';
 
 class ChangeFormPresent extends Component {
   state = {
     title: '',
     reward: 0,
-    childId: '5fc60fbdae9d580017b97052', // заглушка
+    childId: '',
     children: [],
     selectedFile: null,
   };
 
   componentDidMount() {
-    this.setState({ children: this.props.children });
-    this.setState({ reward: this.props.reward });
-    this.setState({ title: this.props.title });
+    this.setState({ 
+      children: this.props.children, 
+        reward: this.props.reward ,
+         title: this.props.title ,
+       childId: this.props.childId
+      })
   }
 
   handleChangeName = (e) => {
@@ -31,6 +33,7 @@ class ChangeFormPresent extends Component {
   };
 
   handleChoseChild = (e) => {
+    console.log(e.target);
     this.setState({ childId: e.target.value });
   };
 
@@ -39,6 +42,7 @@ class ChangeFormPresent extends Component {
   };
   handleCloseWindow = (e) => {
     this.props.onClose();
+    this.setState({ title: '', reward: '', childId: '', selectedFile: null });
     // если закрыть окно должны передать пропы false
   };
 
@@ -46,12 +50,19 @@ class ChangeFormPresent extends Component {
     e.preventDefault();
 
     const { title, reward, childId, selectedFile } = this.state;
-    const { idPresent } = this.props;
-    const fD = {title, reward, childId}
-    // new FormData();
-    // fD.append('files', selectedFile);
-    // fD.set('title', title);
-    // fD.set('reward', reward);
+    const { idPresent } = this.props
+    let fD;
+    if(selectedFile){
+      fD = new FormData();
+      fD.append('file', selectedFile);
+      fD.set('title', title);
+      fD.set('reward', reward);
+      fD.set('childId', childId);
+
+    }else{
+       fD = { title, reward, childId };
+    } 
+
     this.props.updatePresent(fD, idPresent);
 
     this.setState({ title: '', reward: '', childId: '', selectedFile: null });
@@ -59,9 +70,9 @@ class ChangeFormPresent extends Component {
   };
 
   render() {
-    const { children, title, choseChild, reward } = this.state;
+    const { children, title, childId, reward } = this.state;
     const { removePresent, idPresent } = this.props;
-
+   
     return (
       <div className={style.container_presents}>
         <button
@@ -96,14 +107,11 @@ class ChangeFormPresent extends Component {
             <div className={style.present_form__change_child_block}></div>
             <select
               onChange={this.handleChoseChild}
-              value={choseChild}
+              value={childId}
               className={style.present_form__input}
             >
               {children.map((child) => (
-                <option key={child._id} value={child._id}>
-                  {' '}
-                  {child.name}{' '}
-                </option>
+                <option key={child._id} value={child._id}>{child.name}</option>
               ))}
             </select>
           </label>
@@ -200,7 +208,7 @@ class ChangeFormPresent extends Component {
 }
 
 const mapStatetoProps = (state) => ({
-  children: selector.getChildrens(state),
+  children: selectorChild.getChildrens(state),
 });
 
 const mapDispatchToProps = {

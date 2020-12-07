@@ -3,6 +3,7 @@ import getChildrensActions from '../actions/getAllChildrens';
 import { createReducer } from '@reduxjs/toolkit';
 import { act } from 'react-dom/test-utils';
 import allHabbitsAction from '../actions/allHabbitsAction';
+import presentAction from '../actions/presentAction'
 
 // const fakeChildrens = [
 //   // Заглушка
@@ -51,6 +52,13 @@ const childrens = createReducer([], {
       }
     });
   },
+  [presentAction.buyPresentSuccess]: (state,action) => {
+    state.map((child)=> {
+      if(child._id === action.payload.childId){
+        return child.stars =  Number(child.stars) - action.payload.newReward}
+        }
+    )
+  }
 });
 
 export default {

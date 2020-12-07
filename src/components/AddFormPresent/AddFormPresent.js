@@ -30,6 +30,7 @@ class AddFormPresent extends Component {
   };
 
   handleChoseChild = (e) => {
+    console.log('ID Child',e.target.value);
     this.setState({ childId: e.target.value });
   };
 
@@ -45,15 +46,21 @@ class AddFormPresent extends Component {
     e.preventDefault();
 
     const { title, reward, childId, selectedFile } = this.state;
+  let fD;
+    if(selectedFile){
+      console.log('pull');
+      fD = new FormData();
+      fD.append('file', selectedFile);
+      fD.set('title', title);
+      fD.set('reward', reward);
+      fD.set('childId', childId);
 
-    // const fD = new FormData();
-    // fD.append('files', selectedFile);
-    // fD.set('title', title);
-    // fD.set('reward', reward);
-    // fD.set('childId', childId);
-    // console.log(fD);
-    const body = { title, reward, childId };
-    this.props.onAddPresent(body);
+    }else{
+      console.log('epmty');
+       fD = { title, reward, childId };
+    } 
+
+    this.props.onAddPresent(fD);
 
     this.setState({ title: '', reward: '', childId: '', selectedFile: null });
     this.props.isOpenForm();
@@ -61,6 +68,7 @@ class AddFormPresent extends Component {
 
   render() {
     const { children, title, childId } = this.state;
+  
     return (
       <div className={style.container_presents}>
         <button
@@ -93,7 +101,8 @@ class AddFormPresent extends Component {
               onChange={this.handleChoseChild}
               value={childId}
               className={style.present_form__input}
-            >
+            > 
+            <option > Оберіть дитину </option>
               {children.map((child) => (
                 <option key={child._id} value={child._id}>
                   {' '}

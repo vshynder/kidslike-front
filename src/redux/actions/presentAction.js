@@ -18,6 +18,10 @@ const updatePresentRequest = createAction('present/updatePresentRequest');
 const updatePresentSuccess = createAction('present/updatePresentSuccess');
 const updatePresentError = createAction('present/updatePresentError');
 
+const buyPresentRequest = createAction('present/buyPresentRequest');
+const buyPresentSuccess = createAction('present/buyPresentSuccess');
+const buyPresentError = createAction('present/buyPresentError');
+
 
 export default {
     getAllPresentRequest,
@@ -34,5 +38,9 @@ export default {
 
     updatePresentRequest,
     updatePresentSuccess,
-    updatePresentError
+    updatePresentError,
+
+    buyPresentRequest,
+    buyPresentSuccess,
+    buyPresentError
 }
