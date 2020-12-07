@@ -4,31 +4,10 @@ import { createReducer } from '@reduxjs/toolkit';
 import { act } from 'react-dom/test-utils';
 import allHabbitsAction from '../actions/allHabbitsAction';
 
-// const fakeChildrens = [
-//   // Заглушка
-//   {
-//     _id: '5fb7ac03930dc826c4b85a32',
-//     name: 'Эдик',
-//     gender: 'male',
-//     stars: 13,
-//     tasks: [{ title: 'Помыть посуду', reward: 5 }],
-//   },
-//   {
-//     _id: '5fc2b3af43def7b68ce8add0',
-//     name: 'Маша',
-//     gender: 'female',
-//     stars: 33,
-//     tasks: [
-//       { title: 'Помыть посуду', reward: 7 },
-//       { title: 'Помыть посуду', reward: 13 },
-//     ],
-//   },
-// ];
-
 const childrens = createReducer([], {
   [addChildActions.addChildSuccess]: (state, action) => [
     ...state,
-    action.payload,
+    { ...action.payload, _id: action.payload.id },
   ],
 
   [getChildrensActions.getAllChildrensSuccess]: (state, action) =>
@@ -56,13 +35,22 @@ const childrens = createReducer([], {
   },
 
   [allHabbitsAction.updSuccess]: (state, action) => {
-    console.log(action.payload);
-    state.map((child) =>
-      child.habbits.map((hab) =>
-        hab._id === action.payload.changeId ? (hab = action.payload.data) : hab,
-      ),
-    );
-  }, //// НЕ ОТРАБАВТІВАЕТ!!!!!!!!!!!!!
+    state.map((child) => {
+      // child.habbits.filter((hab) => hab._id !== action.payload.changeId); // ??? Не отрабатывает
+      let habbitForDel = child.habbits.find(
+        (hab) => hab._id === action.payload.changeId,
+      );
+      if (habbitForDel) {
+        let idx = child.habbits.indexOf(habbitForDel);
+
+        child.habbits.splice(idx, 1);
+      }
+      child.habbits.map((e) => console.log(1, e.nameHabbit));
+      if (child._id === action.payload.data.idChild) {
+        child.habbits.push(action.payload.data);
+      }
+    });
+  },
 });
 
 export default {
