@@ -67,8 +67,9 @@ class AddFormPresent extends Component {
   };
 
   render() {
-    const { children, title, childId } = this.state;
-  
+    const { children, title, childId, selectedFile } = this.state;
+    const changeFileTitle = selectedFile ? `${selectedFile.name}` :'Оберіть файл'
+
     return (
       <div className={style.container_presents}>
         <button
@@ -135,8 +136,7 @@ class AddFormPresent extends Component {
                 className={style.present_form__upload_box_input}
               />
               <p className={style.present_form__upload_box_text}>
-                {' '}
-                Оберіть файл{' '}
+                  {changeFileTitle}
               </p>
               <span className={style.present_form__upload_box_btn}>
                 {' '}
@@ -146,20 +146,20 @@ class AddFormPresent extends Component {
           </label>
 
           <div className={style.present_form__box_botton}>
-            <button
-              className={style.present_form__box_botton__save}
-              type="submit"
-            >
-              {' '}
-              Зберегти{' '}
-            </button>
-            <button
+          <button
               className={style.present_form__box_botton__canceling}
               type="button"
               onClick={this.handleCloseWindow}
             >
               {' '}
               Відміна{' '}
+            </button>
+            <button
+              className={style.present_form__box_botton__save}
+              type="submit"
+            >
+              {' '}
+              Зберегти{' '}
             </button>
           </div>
         </form>

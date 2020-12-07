@@ -70,9 +70,9 @@ class ChangeFormPresent extends Component {
   };
 
   render() {
-    const { children, title, childId, reward } = this.state;
+    const { children, title, childId, reward, selectedFile} = this.state;
     const { removePresent, idPresent } = this.props;
-   
+    const changeFileTitle = selectedFile ? `${selectedFile.name}` :'Оберіть файл'
     return (
       <div className={style.container_presents}>
         <button
@@ -144,8 +144,7 @@ class ChangeFormPresent extends Component {
                 className={style.present_form__upload_box_input}
               />
               <p className={style.present_form__upload_box_text}>
-                {' '}
-                Оберіть файл{' '}
+                {changeFileTitle}
               </p>
               <span className={style.present_form__upload_box_btn}>
                 {' '}
@@ -185,20 +184,20 @@ class ChangeFormPresent extends Component {
             </button>
           </label>
           <div className={style.present_form__box_botton}>
-            <button
-              className={style.present_form__box_botton__save}
-              type="submit"
-            >
-              {' '}
-              Зберегти{' '}
-            </button>
-            <button
+          <button
               className={style.present_form__box_botton__canceling}
               type="button"
               onClick={this.handleCloseWindow}
             >
               {' '}
               Видмина{' '}
+            </button>
+            <button
+              className={style.present_form__box_botton__save}
+              type="submit"
+            >
+              {' '}
+              Зберегти{' '}
             </button>
           </div>
         </form>
