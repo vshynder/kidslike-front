@@ -109,9 +109,15 @@ class MainPosition extends Component {
                         </div>
                         <div className="tasksinfo__list">
                           {tasks &&
-                            tasks.map((task) => (
-                              <InformationByTask key={task._id} task={task} />
-                            ))}
+                            tasks.map(
+                              (task) =>
+                                task.isCompleted === 'active' && (
+                                  <InformationByTask
+                                    key={task._id}
+                                    task={task}
+                                  />
+                                ),
+                            )}
                         </div>
                         <div className="tasksinfo__button">
                           <button

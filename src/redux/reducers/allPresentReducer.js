@@ -30,11 +30,14 @@ const newPresent = (state, action) => {
 };
 
 const removePresent = (state, action) => {
-  return state.filter((present) => present._id !== action.payload);
+  return state.filter((idPresent) => idPresent._id !== action.payload);
 };
 
 const updatePresent = (state, action) => {
-  return [...state, action.payload];
+  return [...state.map((el) => el._id === action.payload._id 
+        ? (el = action.payload) 
+        : el 
+  )]
 };
 
 const presents = createReducer(null, {

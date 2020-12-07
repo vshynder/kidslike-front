@@ -100,7 +100,7 @@ class InformationByTask extends Component {
         </div>
         {isRenderModal && (
           <Modal onClose={this.handleCloseModal}>
-            <ChangeTaskForm onClose={this.handleCloseModal} />
+            <ChangeTaskForm child={this.props.task} onClose={this.handleCloseModal} />
           </Modal>
         )}
       </>
