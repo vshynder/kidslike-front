@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import presentSelector from '../../redux/selectors/presentSelector';
 import operationPresent from '../../redux/operations/presentOperation'
 
-const InformationListByPresent = ({ presents ,getPresents}) => {
+const InformationListByPresent = ({ presents ,getPresents, deletePresent,buyPresent}) => {
 
   useEffect(() => {
     getPresents();
@@ -28,7 +28,7 @@ const InformationListByPresent = ({ presents ,getPresents}) => {
           <li className={style.presentItem_item} key={present._id}>
             <InformItemByPresent
               idPresent={present._id}
-              childId={present._id}
+              childId={present.childId}
               gender={present.gender}
               reward={present.reward}
               title={
@@ -37,6 +37,8 @@ const InformationListByPresent = ({ presents ,getPresents}) => {
                   : present.title
               }
               image={present.image}
+              deletePresent={deletePresent}
+              buyPresent={buyPresent}
             />
           </li>
         ))}
@@ -51,6 +53,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getPresents:operationPresent.getAllPresents ,
+  getPresents:operationPresent.getAllPresents,
+  deletePresent:operationPresent.removePresent,
+  buyPresent:operationPresent.buyPresentById
 };
 export default connect(mapStateToProps, mapDispatchToProps)(InformationListByPresent);
