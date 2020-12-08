@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getAllComplitedTasksActions from '../actions/getAllComplitedTasks';
+import {BACKEND_URI} from '../../constans.js';
 
 const token = {
   set(token) {
@@ -21,7 +22,7 @@ const getTasks = (childId) => (dispatch, getState) => {
   token.set(acToken);
   dispatch(getAllComplitedTasksActions.getAllTasksRequest());
   axios
-    .get(`https://kidslike-back-end.herokuapp.com/api/tasks/${childId}`)
+    .get(`${BACKEND_URI}/tasks/${childId}`)
     .then((response) => {
       token.set(response.data.token);
       dispatch(getAllComplitedTasksActions.getAllTasksSuccess(response.data));

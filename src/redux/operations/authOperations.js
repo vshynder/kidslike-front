@@ -1,6 +1,7 @@
 import axios from 'axios';
 import authActions from '../actions/authActions';
 // axios.defaults.baseURL = 'https://kidslike-back-end.herokuapp.com';
+import {BACKEND_URI} from '../../constans.js';
 
 const setAuthToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -13,7 +14,7 @@ const loginUser = (user) => (dispatch) => {
   dispatch(authActions.loginUserRequest());
 
   axios
-    .post('https://kidslike-back-end.herokuapp.com/api/auth/login', user)
+    .post(`${BACKEND_URI}/auth/login`, user)
     .then((response) => {
       setAuthToken(response.data.accessToken);
       dispatch(authActions.loginUserSuccess(response.data));
@@ -24,7 +25,7 @@ const loginUser = (user) => (dispatch) => {
 const registrationUser = (user) => (dispatch) => {
   dispatch(authActions.registrationUserRequest());
   axios
-    .post('https://kidslike-back-end.herokuapp.com/api/auth/register', user)
+    .post(`${BACKEND_URI}/auth/register`, user)
     .then((response) => {
       setAuthToken(response.data.accessToken);
       dispatch(authActions.registrationUserSuccess(response.data));
@@ -43,7 +44,7 @@ const logOut = () => (dispatch, getState) => {
   dispatch(authActions.logoutRequest());
 
   axios
-    .delete('https://kidslike-back-end.herokuapp.com/api/auth/logout')
+    .delete(`${BACKEND_URI}/auth/logout`)
     .then(() => {
       unsetAuthToken();
       dispatch(authActions.logoutSuccess());
@@ -63,7 +64,7 @@ const getCurrentUser = () => (dispatch, getState) => {
   dispatch(authActions.getCurrentUserRequest());
 
   axios
-    .get('http://kidslike-back-end.herokuapp.com/api/auth/current')
+    .get(`${BACKEND_URI}/auth/current`)
     .then((response) => {
       return dispatch(authActions.getCurrentUserSuccess(response.data));
     })

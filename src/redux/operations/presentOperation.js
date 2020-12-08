@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import action from '../actions/presentAction';
+import {BACKEND_URI} from '../../constans.js';
 
 const setAuthToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -19,7 +20,7 @@ const addPresent = (fD) => (dispatch, getState) => {
   dispatch(action.addPresentRequest());
   console.dir(fD);
   axios
-    .post('https://kidslike-back-end.herokuapp.com/api/presents/', fD)
+    .post(`${BACKEND_URI}/presents/`, fD)
     .then((res) => {
       dispatch(action.addPresentSuccess(res.data));
     })
@@ -38,7 +39,7 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
   dispatch(action.updatePresentRequest());
   axios
     .patch(
-      `https://kidslike-back-end.herokuapp.com/api/presents/${idPresent}`,
+      `${BACKEND_URI}/presents/${idPresent}`,
       fD,
     ) 
     .then((res) => {
@@ -58,7 +59,7 @@ const removePresent = (id) => (dispatch, getState) => {
   setAuthToken(acToken);
   dispatch(action.removePresentRequest());
   axios
-    .delete(`https://kidslike-back-end.herokuapp.com/api/presents/${id}`) // временна заглушка .. передаем id present для удаления
+    .delete(`${BACKEND_URI}/presents/${id}`) // временна заглушка .. передаем id present для удаления
     .then(() => dispatch(action.removePresentSuccess(id)))
     .catch((error) => dispatch(action.removePresentError(error)));
 };
@@ -73,7 +74,7 @@ const getAllPresents = () => (dispatch, getState) => {
   setAuthToken(acToken);
   dispatch(action.getAllPresentRequest());
   axios
-    .get(`https://kidslike-back-end.herokuapp.com/api/presents`) // временна заглушка .. передаем id present для удаления
+    .get(`${BACKEND_URI}/presents`) // временна заглушка .. передаем id present для удаления
     .then((res) => {
       dispatch(action.getAllPresentSuccess(res.data));
     })

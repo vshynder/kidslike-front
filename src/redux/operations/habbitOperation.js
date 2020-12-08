@@ -1,5 +1,6 @@
 import action from '../actions/allHabbitsAction';
 import axios from 'axios';
+import {BACKEND_URI} from '../../constans.js';
 
 // axios.defaults.baseURL = 'http://localhost:1717';
 
@@ -11,7 +12,7 @@ const addHabit = (value) => (dispatch, getState) => {
   }`;
 
   axios
-    .post('https://kidslike-back-end.herokuapp.com/api/habbits', value)
+    .post(`${BACKEND_URI}/habbits`, value)
     .then((res) => {
       dispatch(action.addHabitSuccess(res.data));
     })
@@ -26,7 +27,7 @@ const getAllHabbitsByUser = (value) => (dispatch, getState) => {
   }`; // При авторизации токен не был записан в axios.defaults.headers.common.Authorization
 
   axios
-    .get('https://kidslike-back-end.herokuapp.com/api/habbits')
+    .get(`${BACKEND_URI}/habbits`)
     .then((response) => {
       dispatch(action.getAllSuccess(response.data));
     })
@@ -42,7 +43,7 @@ const checkHabbit = (value) => (dispatch, getState) => {
   }`;
   axios
     .patch(
-      'https://kidslike-back-end.herokuapp.com/api/habbits/checkhabbit',
+      `${BACKEND_URI}/habbits/checkhabbit`,
       value,
     )
     .then((response) => {
@@ -62,7 +63,7 @@ const delHabbit = (value) => (dispatch, getState) => {
     getState().user.accessToken
   }`;
   axios
-    .delete('https://kidslike-back-end.herokuapp.com/api/habbits/' + value)
+    .delete(`${BACKEND_URI}/habbits/` + value)
     .then((response) => {
       dispatch(action.deletedSuccess({ idHabbit: value }));
     })
@@ -78,7 +79,7 @@ const updateHabbit = (value) => (dispatch, getState) => {
 
   axios
     .patch(
-      'https://kidslike-back-end.herokuapp.com/api/habbits/updatehabbit',
+      `${BACKEND_URI}/habbits/updatehabbit`,
       value,
     )
     .then((response) => {

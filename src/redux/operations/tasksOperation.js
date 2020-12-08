@@ -1,5 +1,6 @@
 import axios from 'axios';
 import taskAction from '../actions/tasksAction';
+import {BACKEND_URI} from '../../constans.js';
 
 // axios.defaults.baseURL = 'http://kidslike-back-end.herokuapp.com';
 
@@ -23,7 +24,7 @@ const getAllTasks = () => (dispatch, getState) => {
   token.set(acToken);
   dispatch(taskAction.getAllTasksRequest());
 
-  const url = 'http://kidslike-back-end.herokuapp.com/api/tasks';
+  const url = `${BACKEND_URI}/tasks`;
   axios
     .get(url, {
       headers: {
@@ -47,7 +48,7 @@ const сonfirmTask = (id) => (dispatch, getState) => {
   token.set(acToken);
   dispatch(taskAction.confirmTaskRequest());
 
-  const url = `http://kidslike-back-end.herokuapp.com/api/tasks/confirm/${id}`;
+  const url = `${BACKEND_URI}/tasks/confirm/${id}`;
 
   axios
     .patch(url, {
@@ -69,7 +70,7 @@ const notConfirmTask = (id) => (dispatch, getState) => {
   token.set(acToken);
   dispatch(taskAction.notconfirmTaskRequest());
 
-  const url = `http://kidslike-back-end.herokuapp.com/api/tasks/notconfirm/${id}`;
+  const url = `${BACKEND_URI}/tasks/notconfirm/${id}`;
 
   axios
     .patch(url, {
@@ -92,7 +93,7 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
 
   dispatch(taskAction.addTaskRequest());
 
-  const url = 'http://kidslike-back-end.herokuapp.com/api/tasks/' + childId;
+  const url = `${BACKEND_URI}/tasks/` + childId;
   const body = {
     title,
     reward,
@@ -119,7 +120,7 @@ const deleteTask = (taskId) => (dispatch, getState) => {
     return;
   }
   dispatch(taskAction.deleteTaskRequest());
-  const url = 'http://kidslike-back-end.herokuapp.com/api/tasks/' + taskId;
+  const url = `${BACKEND_URI}/tasks/` + taskId;
 
   axios
     .delete(url, {
@@ -142,7 +143,7 @@ const repeatTask = (taskId) => (dispatch, getState) => {
   dispatch(taskAction.repeatTaskRequest());
 
   const url =
-    'http://kidslike-back-end.herokuapp.com' + '/api/tasks/repeat/' + taskId;
+    `${BACKEND_URI}` + '/tasks/repeat/' + taskId;
 
   axios
     .patch(
