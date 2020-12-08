@@ -49,6 +49,7 @@ const checkHabbit = (value) => (dispatch, getState) => {
       const data = {
         ...response.data,
         idHabbit: value.idHabbit,
+        confirmed: value.confirmed,
       };
       dispatch(action.updateCheckedSuccess(data));
     })
