@@ -1,5 +1,6 @@
 import axios from 'axios';
 import addChildActions from '../../components/AddChildForm/AddChildActions';
+import {BACKEND_URI} from '../../constants.js';
 
 const token = {
   set(token) {
@@ -23,7 +24,7 @@ const addChild = (name, gender) => (dispatch, getState) => {
   dispatch(addChildActions.addChildRequest());
   axios
     .post(
-      'https://kidslike-back-end.herokuapp.com/api/children/addchild',
+      `${BACKEND_URI}/children/addchild`,
       {
         name,
         gender,

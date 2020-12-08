@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getChildrensActions from '../actions/getAllChildrens';
+import {BACKEND_URI} from '../../constants.js';
 
 const token = {
   set(token) {
@@ -21,7 +22,7 @@ const getChildrens = () => (dispatch, getState) => {
   token.set(acToken);
   dispatch(getChildrensActions.getAllChildrensRequest());
   axios
-    .get(`https://kidslike-back-end.herokuapp.com/api/children/allChildrens`)
+    .get(`${BACKEND_URI}/children/allChildrens`)
     .then((response) => {
       token.set(response.data.token);
       dispatch(getChildrensActions.getAllChildrensSuccess(response.data));
