@@ -1,5 +1,6 @@
 import axios from 'axios';
 import action from '../actions/presentAction';
+import {BACKEND_URI} from '../../constants.js';
 
 const setAuthToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -17,7 +18,7 @@ const addPresent = (fD ) => (dispatch, getState) => {
   setAuthToken(acToken);
   dispatch(action.addPresentRequest());
   axios
-    .post('https://kidslike-back-end.herokuapp.com/api/presents/', fD)
+    .post(`${BACKEND_URI}/presents/`, fD)
     .then((res) => {
       dispatch(action.addPresentSuccess(res.data));
     })
@@ -36,7 +37,7 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
   dispatch(action.updatePresentRequest());
   axios
     .patch(
-      `https://kidslike-back-end.herokuapp.com/api/presents/${idPresent}`,
+      `${BACKEND_URI}/presents/${idPresent}`,
       fD,
     ) 
     .then((res) => {
@@ -56,7 +57,7 @@ const removePresent = (id) => (dispatch, getState) => {
   setAuthToken(acToken);
   dispatch(action.removePresentRequest());
   axios
-    .delete(`https://kidslike-back-end.herokuapp.com/api/presents/${id}`)
+    .delete(`${BACKEND_URI}/presents/${id}`)
     .then(() => dispatch(action.removePresentSuccess(id)))
     .catch((error) => dispatch(action.removePresentError(error)));
 };
@@ -71,7 +72,7 @@ const getAllPresents = () => (dispatch, getState) => {
   setAuthToken(acToken);
   dispatch(action.getAllPresentRequest());
   axios
-    .get(`https://kidslike-back-end.herokuapp.com/api/presents`) 
+    .get(`${BACKEND_URI}/presents`) 
     .then((res) => {
       dispatch(action.getAllPresentSuccess(res.data));
     })
@@ -87,7 +88,7 @@ const buyPresentById = (idPresent, reward,childId) => (dispatch, getState) => {
   }
   setAuthToken(acToken);
   dispatch(action.buyPresentRequest());
-  axios.patch(`https://kidslike-back-end.herokuapp.com/api/presents/buy/${idPresent}`)
+  axios.patch(`${BACKEND_URI}/presents/buy/${idPresent}`)
     .then(response => {
       const refreshData = {
         newReward:reward,
