@@ -19,7 +19,7 @@ import authOperation from './redux/operations/authOperations';
 import taskOperations from './redux/operations/tasksOperation';
 import presentOperations from './redux/operations/presentOperation';
 import habbitsOperations from './redux/operations/habbitOperation';
-import childrenOperation from './redux/operations/getAllChildrens'
+import childrenOperation from './redux/operations/getAllChildrens';
 
 const App = ({
   userToken,
@@ -27,10 +27,9 @@ const App = ({
   onGetCurrentUser,
   getAllTasks,
   getAllPresents,
-  getAllChildren
+  getAllChildren,
 }) => {
   useEffect(() => {
-
     onGetCurrentUser();
     if (userToken) {
       getAllChildren();
@@ -66,7 +65,7 @@ const mapDispatchProps = (dispatch) => ({
   getAllTasks: () => dispatch(taskOperations.getAllTasks()),
   getAllPresents: () => dispatch(presentOperations.getAllPresents()),
   getAllHabbits: () => dispatch(habbitsOperations.getAllHabbitsByUser()),
-  getAllChildren: ()=>dispatch(childrenOperation.getChildrens())
+  getAllChildren: () => dispatch(childrenOperation.getChildrens()),
 });
 
 export default connect(mapStateToProps, mapDispatchProps)(App);

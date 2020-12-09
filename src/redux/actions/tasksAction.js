@@ -9,8 +9,8 @@ const confirmTaskSuccess = createAction('present/confirmTask');
 const confirmTaskError = createAction('present/confirmTask');
 
 const notconfirmTaskRequest = createAction('tasks/confirmTask');
-const notconfirmTaskSuccess = createAction('present/confirmTask');
-const notconfirmTaskError = createAction('present/confirmTask');
+const notconfirmTaskSuccess = createAction('tasks/confirmTask');
+const notconfirmTaskError = createAction('tasks/notconfirmTask');
 
 const addTaskRequest = createAction('tasks/addRequest');
 const addTaskSuccess = createAction('tasks/addSucces');

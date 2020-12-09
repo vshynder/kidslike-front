@@ -1,6 +1,6 @@
 import axios from 'axios';
 import taskAction from '../actions/tasksAction';
-import {BACKEND_URI} from '../../constants.js';
+import { BACKEND_URI } from '../../constants.js';
 
 // axios.defaults.baseURL = 'http://kidslike-back-end.herokuapp.com';
 
@@ -56,7 +56,7 @@ const сonfirmTask = (id) => (dispatch, getState) => {
         Authorization: 'Bearer ' + acToken,
       },
     })
-    .then(() => dispatch(taskAction.confirmTaskSuccess()))
+    .then((response) => dispatch(taskAction.confirmTaskSuccess(id)))
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
 const notConfirmTask = (id) => (dispatch, getState) => {
@@ -78,7 +78,7 @@ const notConfirmTask = (id) => (dispatch, getState) => {
         Authorization: 'Bearer ' + acToken,
       },
     })
-    .then(() => dispatch(taskAction.notconfirmTaskSuccess()))
+    .then(() => dispatch(taskAction.notconfirmTaskSuccess(id)))
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
@@ -142,8 +142,7 @@ const repeatTask = (taskId) => (dispatch, getState) => {
   }
   dispatch(taskAction.repeatTaskRequest());
 
-  const url =
-    `${BACKEND_URI}` + '/tasks/repeat/' + taskId;
+  const url = `${BACKEND_URI}` + '/tasks/repeat/' + taskId;
 
   axios
     .patch(
@@ -155,7 +154,7 @@ const repeatTask = (taskId) => (dispatch, getState) => {
         },
       },
     )
-    .then((response) => dispatch(taskAction.repeatTaskSuccess(response.data)))
+    .then((response) => dispatch(taskAction.repeatTaskSuccess(taskId)))
     .catch((error) => console.log(error));
 };
 

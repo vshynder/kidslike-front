@@ -20,6 +20,7 @@ class InformationList extends Component {
   render() {
     const { modal } = this.state;
     const { childrens, onClick, tasks } = this.props;
+
     return (
       <>
         {modal && (

@@ -29,14 +29,20 @@ export default class MainPosition extends Component {
               {matches.small && (
                 <div className="tasksinfo">
                   <div className="tasksinfo">
-                    <TaskContainer match={this.props.match} />
+                    <TaskContainer
+                      match={this.props.match}
+                      location={this.props.location}
+                    />
                   </div>
                 </div>
               )}
               {matches.medium && (
                 <div className="tasksinfo">
                   <div className="tasksinfo">
-                    <TaskContainer match={this.props.match} />
+                    <TaskContainer
+                      match={this.props.match}
+                      location={this.props.location}
+                    />
                   </div>
                 </div>
               )}
@@ -46,7 +52,10 @@ export default class MainPosition extends Component {
                     <Slider></Slider>
                   </div>
                   <div className="tasksinfo">
-                    <TaskContainer match={this.props.match} />
+                    <TaskContainer
+                      match={this.props.match}
+                      location={this.props.location}
+                    />
                   </div>
                 </div>
               )}
