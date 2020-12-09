@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authActions from '../actions/authActions';
-// axios.defaults.baseURL = 'https://kidslike-back-end.herokuapp.com';
-import {BACKEND_URI} from '../../constants.js';
+import { BACKEND_URI } from '../../constants.js';
+import { refreshJWTmiddleware } from '../refresh';
 
 const setAuthToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -34,17 +34,29 @@ const registrationUser = (user) => (dispatch) => {
 };
 const logOut = () => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
   if (!acToken) {
     return;
   }
-  setAuthToken(acToken);
+  // setAuthToken(acToken);
 
   dispatch(authActions.logoutRequest());
 
-  axios
-    .delete(`${BACKEND_URI}/auth/logout`)
+  // axios
+  //   .delete(`${BACKEND_URI}/auth/logout`)
+  const url = `${BACKEND_URI}/auth/logout`;
+  refreshJWTmiddleware(
+    {
+      method: 'delete',
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then(() => {
       unsetAuthToken();
       dispatch(authActions.logoutSuccess());
@@ -54,17 +66,29 @@ const logOut = () => (dispatch, getState) => {
 
 const getCurrentUser = () => (dispatch, getState) => {
   const {
-    user: { accessToken: accessToken },
+    user: { accessToken: accessToken, refreshToken },
   } = getState();
+
   if (!accessToken) {
     return;
   }
-
-  setAuthToken(accessToken);
+  // setAuthToken(accessToken);
   dispatch(authActions.getCurrentUserRequest());
 
-  axios
-    .get(`${BACKEND_URI}/auth/current`)
+  // axios
+  //   .get(`${BACKEND_URI}/auth/current`)
+  const url = `${BACKEND_URI}/auth/current`;
+  refreshJWTmiddleware(
+    {
+      method: 'get',
+      headers: {
+        Authorization: 'Bearer ' + accessToken,
+      },
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then((response) => {
       return dispatch(authActions.getCurrentUserSuccess(response.data));
     })
