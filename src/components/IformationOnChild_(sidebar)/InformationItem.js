@@ -13,10 +13,6 @@ const InformationItem = ({
   male,
   name,
   balance,
-  // firstTask,
-  // costFirstTask,
-  // secondTask,
-  // costSecondTask,
   getTasksRequest,
   tasks,
 }) => {
@@ -25,8 +21,6 @@ const InformationItem = ({
       return task;
     }
   });
-  //Надо понять почему при перезагрузке страницы возвращается всего одна таска
-  // console.log(`/childTasks/${name}/${male}`);
   return (
     <ul className={style.informItem_container}>
       <li className={style.informItem_information}>
@@ -44,30 +38,25 @@ const InformationItem = ({
       </li>
       <li className={style.informItem_tasks}>
         <ul className={style.informItem_list__tasks}>
-          <li className={style.informItem_oneTask}>
-            <p className={style.informItem_text}>
-              {tasksCurrentChild.length > 0 && tasksCurrentChild[0]
-                ? tasksCurrentChild[0].title
-                : ''}
-            </p>
-            <p className={style.informItem_text}>
-              {tasksCurrentChild.length > 0 && tasksCurrentChild[0]
-                ? `+ ${tasksCurrentChild[0].reward}`
-                : ''}
-            </p>
-          </li>
-          <li className={style.informItem_oneTask}>
-            <p className={style.informItem_text}>
-              {tasksCurrentChild.length > 0 && tasksCurrentChild[1]
-                ? tasksCurrentChild[1].title
-                : ''}
-            </p>
-            <p className={style.informItem_text}>
-              {tasksCurrentChild.length > 0 && tasksCurrentChild[1]
-                ? `+ ${tasksCurrentChild[1].reward}`
-                : ''}
-            </p>
-          </li>
+          {tasksCurrentChild.length > 2 ? (tasksCurrentChild.slice(-2).map(item => (
+            <li className={style.informItem_oneTask} key={item._id}>
+              <p className={style.informItem_text}>
+                {item.title.length > 22 ? `${item.title.slice(0, 22)}...` : item.title}
+              </p>
+              <p className={style.informItem_text}>
+                +{item.reward}
+              </p>
+            </li>
+          ))) : (tasksCurrentChild.map(item => (
+            <li className={style.informItem_oneTask} key={item._id}>
+              <p className={style.informItem_text}>
+              {item.title.length > 22 ? `${item.title.slice(0, 22)}...` : item.title}
+              </p>
+              <p className={style.informItem_text}>
+                +{item.reward}
+              </p>
+            </li>
+          )))}
         </ul>
       </li>
       <li
