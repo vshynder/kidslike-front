@@ -18,7 +18,6 @@ const childrens = createReducer([], {
       let x = child.habbits.find((hab) => hab._id === action.payload.idHabbit);
 
       if (x && x.priceHabbit) {
-        console.log(action.payload);
         if (action.payload.confirmed) {
           child.stars = Number(child.stars) + x.priceHabbit;
         }
