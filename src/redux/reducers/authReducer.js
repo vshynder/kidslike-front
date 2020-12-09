@@ -21,5 +21,5 @@ export const authReducer = createReducer(initState, {
   [authActions.getCurrentUserSuccess]: (state, action) => {
     return { ...state, ...action.payload };
   },
-  [authActions.getCurrentUserError]: (_, { payload }) => payload,
+  [authActions.getCurrentUserError]: () => initState,
 });

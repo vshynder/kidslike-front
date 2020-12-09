@@ -1,36 +1,31 @@
 import axios from 'axios';
 import taskAction from '../actions/tasksAction';
-import {BACKEND_URI} from '../../constants.js';
-
-// axios.defaults.baseURL = 'http://kidslike-back-end.herokuapp.com';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+import { BACKEND_URI } from '../../constants.js';
+import { refreshJWTmiddleware } from '../refresh';
 
 const getAllTasks = () => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
-
   if (!acToken) {
     return;
   }
-  token.set(acToken);
+
   dispatch(taskAction.getAllTasksRequest());
 
   const url = `${BACKEND_URI}/tasks`;
-  axios
-    .get(url, {
+
+  refreshJWTmiddleware(
+    {
+      method: 'get',
       headers: {
         Authorization: 'Bearer ' + acToken,
       },
-    })
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then((response) => {
       return dispatch(taskAction.getAllTasksSuccess(response.data));
     })
@@ -39,52 +34,72 @@ const getAllTasks = () => (dispatch, getState) => {
 
 const сonfirmTask = (id) => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
-
   if (!acToken) {
     return;
   }
-  token.set(acToken);
+  // token.set(acToken);
   dispatch(taskAction.confirmTaskRequest());
 
   const url = `${BACKEND_URI}/tasks/confirm/${id}`;
 
-  axios
-    .patch(url, {
+  // axios
+  //   .patch(url, {
+  //     headers: {
+  //       Authorization: 'Bearer ' + acToken,
+  //     },
+  //   })
+  refreshJWTmiddleware(
+    {
+      method: 'patch',
       headers: {
         Authorization: 'Bearer ' + acToken,
       },
-    })
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then(() => dispatch(taskAction.confirmTaskSuccess()))
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
 const notConfirmTask = (id) => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
-
   if (!acToken) {
     return;
   }
-  token.set(acToken);
+  // token.set(acToken);
   dispatch(taskAction.notconfirmTaskRequest());
 
   const url = `${BACKEND_URI}/tasks/notconfirm/${id}`;
 
-  axios
-    .patch(url, {
+  // axios
+  //   .patch(url, {
+  //     headers: {
+  //       Authorization: 'Bearer ' + acToken,
+  //     },
+  //   })
+  refreshJWTmiddleware(
+    {
+      method: 'patch',
       headers: {
         Authorization: 'Bearer ' + acToken,
       },
-    })
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then(() => dispatch(taskAction.notconfirmTaskSuccess()))
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
 const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
 
   if (!acToken) {
@@ -99,12 +114,24 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
     reward,
     daysToDo,
   };
-  axios
-    .post(url, body, {
+  // axios
+  //   .post(url, body, {
+  //     headers: {
+  //       Authorization: 'Bearer ' + acToken,
+  //     },
+  //   })
+  refreshJWTmiddleware(
+    {
+      method: 'post',
       headers: {
         Authorization: 'Bearer ' + acToken,
       },
-    })
+      url,
+      data: body,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then((response) => {
       dispatch(taskAction.addTaskSuccess(response.data));
     })
@@ -113,28 +140,38 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
 
 const deleteTask = (taskId) => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
-
   if (!acToken) {
     return;
   }
   dispatch(taskAction.deleteTaskRequest());
   const url = `${BACKEND_URI}/tasks/` + taskId;
 
-  axios
-    .delete(url, {
+  // axios
+  //   .delete(url, {
+  //     headers: {
+  //       Authorization: 'Bearer ' + acToken,
+  //     },
+  //   })
+  refreshJWTmiddleware(
+    {
+      method: 'delete',
       headers: {
         Authorization: 'Bearer ' + acToken,
       },
-    })
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then(() => dispatch(taskAction.deleteTaskSuccess(taskId)))
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
 const repeatTask = (taskId) => (dispatch, getState) => {
   const {
-    user: { accessToken: acToken },
+    user: { accessToken: acToken, refreshToken },
   } = getState();
 
   if (!acToken) {
@@ -142,19 +179,29 @@ const repeatTask = (taskId) => (dispatch, getState) => {
   }
   dispatch(taskAction.repeatTaskRequest());
 
-  const url =
-    `${BACKEND_URI}` + '/tasks/repeat/' + taskId;
+  const url = `${BACKEND_URI}` + '/tasks/repeat/' + taskId;
 
-  axios
-    .patch(
-      url,
-      {},
-      {
-        headers: {
-          Authorization: 'Bearer ' + acToken,
-        },
+  // axios
+  //   .patch(
+  //     url,
+  //     {},
+  //     {
+  //       headers: {
+  //         Authorization: 'Bearer ' + acToken,
+  //       },
+  //     },
+  //   )
+  refreshJWTmiddleware(
+    {
+      method: 'patch',
+      headers: {
+        Authorization: 'Bearer ' + acToken,
       },
-    )
+      url,
+    },
+    refreshToken,
+    dispatch,
+  )
     .then((response) => dispatch(taskAction.repeatTaskSuccess(response.data)))
     .catch((error) => console.log(error));
 };
