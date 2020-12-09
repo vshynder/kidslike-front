@@ -61,7 +61,7 @@ const сonfirmTask = (id) => (dispatch, getState) => {
     refreshToken,
     dispatch,
   )
-    .then(() => dispatch(taskAction.confirmTaskSuccess()))
+    .then(() => dispatch(taskAction.confirmTaskSuccess(id)))
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
 const notConfirmTask = (id) => (dispatch, getState) => {
@@ -93,7 +93,7 @@ const notConfirmTask = (id) => (dispatch, getState) => {
     refreshToken,
     dispatch,
   )
-    .then(() => dispatch(taskAction.notconfirmTaskSuccess()))
+    .then(() => dispatch(taskAction.notconfirmTaskSuccess(id)))
     .catch((err) => dispatch(taskAction.notconfirmTaskError(err)));
 };
 
@@ -202,7 +202,7 @@ const repeatTask = (taskId) => (dispatch, getState) => {
     refreshToken,
     dispatch,
   )
-    .then((response) => dispatch(taskAction.repeatTaskSuccess(response.data)))
+    .then((response) => dispatch(taskAction.repeatTaskSuccess(taskId)))
     .catch((error) => console.log(error));
 };
 
