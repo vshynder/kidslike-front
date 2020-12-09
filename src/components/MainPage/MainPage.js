@@ -46,9 +46,6 @@ class MainPosition extends Component {
 
     return (
       <div className="container">
-        <header className="header">
-          <Header></Header>
-        </header>
         {addFormHabit && (
           <Modal onClose={this.toggleAddFormHabitModal}>
             <AddFormHabit onClose={this.toggleAddFormHabitModal}></AddFormHabit>
@@ -82,9 +79,7 @@ class MainPosition extends Component {
               )}
               {matches.large && (
                 <div className="main">
-                  <div className="familynfo">
-                    <Slider onClick={this.toggleModal}></Slider>
-                  </div>
+                  <div className="familynfo"></div>
                   <div className="habitsInfo">
                     <div className="habitsInfo_header">
                       <img className="habitsInfo_header-img" src={habit} />

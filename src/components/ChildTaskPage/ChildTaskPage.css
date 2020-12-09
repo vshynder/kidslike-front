@@ -9,10 +9,11 @@ body {
 
   display: flex;
   flex-direction: column;
-  /* padding: 0 40px 0 40px; */
+  padding: 0 40px 0 40px;
 
   align-items: center;
 }
+
 .taskheader {
   width: 280px;
   display: flex;

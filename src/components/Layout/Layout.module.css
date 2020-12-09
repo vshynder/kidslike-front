@@ -1,0 +1,51 @@
+body {
+  background-color: #e5e5e5;
+}
+
+.header {
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.extendMain {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.familynfo {
+  position: absolute;
+  top: 135px;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .header {
+    width: 687px;
+    margin-bottom: 49px;
+  }
+}
+
+@media (min-width: 1250px) {
+  /* .container {
+    width: 540px;
+  } */
+
+  .header {
+    width: 1219px;
+    margin-bottom: 50px;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    width: 1119px;
+  }
+}
