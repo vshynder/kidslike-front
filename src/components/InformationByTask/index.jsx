@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import profilePhoto from './profile-example.png';
+import avaBoy from '../../assets/images/childtask_boy.png';
+import avaGirl from '../../assets/images/childtask_girl.png';
 import styles from './InformationByTask.module.css';
 import stylingStar from './../../assets/images/Star11.svg';
 import iconconfirm from './../../assets/images/confirm.svg';
@@ -30,14 +32,19 @@ class InformationByTask extends Component {
   render() {
     const { isRenderModal, isRenderSubmenu } = this.state;
     const { title, reward, daysToDo } = this.props.task;
+
+    const { gender } = this.props.children.find(
+      (child) => child._id === this.props.task.childId,
+    );
+    console.log(gender);
     return (
       <>
         <div className={styles.container}>
           <span className={styles.firstSmallContainer}>
             <span className={styles.childPhotoContainer}>
               <img
-                src={profilePhoto}
-                alt="profile-image"
+                src={gender === 'male' ? avaBoy : avaGirl}
+                alt="ava"
                 className={styles.userPhoto}
               />
             </span>
@@ -94,13 +101,21 @@ class InformationByTask extends Component {
               >
                 Редагувати
               </button>
-              <button onClick={this.props.onDelete} className={styles.submenuItem}>Видалити</button>
+              <button
+                onClick={this.props.onDelete}
+                className={styles.submenuItem}
+              >
+                Видалити
+              </button>
             </div>
           )}
         </div>
         {isRenderModal && (
           <Modal onClose={this.handleCloseModal}>
-            <ChangeTaskForm child={this.props.task} onClose={this.handleCloseModal} />
+            <ChangeTaskForm
+              child={this.props.task}
+              onClose={this.handleCloseModal}
+            />
           </Modal>
         )}
       </>
@@ -112,7 +127,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onConfirmTask: () => dispatch(tasksOperation.сonfirmTask(ownProps.task._id)),
   onNotConfirmTask: () =>
     dispatch(tasksOperation.notConfirmTask(ownProps.task._id)),
-    onDelete: () => dispatch(tasksOperation.deleteTask(ownProps.task._id))
+  onDelete: () => dispatch(tasksOperation.deleteTask(ownProps.task._id)),
 });
 
-export default connect(null, mapDispatchToProps)(InformationByTask);
+export default connect(
+  (state) => ({ children: state.childrens }),
+  mapDispatchToProps,
+)(InformationByTask);

@@ -22,7 +22,7 @@ export const loaderReducer = createReducer(false, {
   [actions.updateCheckedError]: () => false,
   [actions.updateCheckedRequest]: () => false,
 
-  [addChildAction.getAllTasksRequest]: () =>true,
+  [addChildAction.getAllTasksRequest]: () => true,
   [addChildAction.getAllTasksSuccess]: () => false,
   [addChildAction.getAllTasksError]: () => false,
 
@@ -81,7 +81,7 @@ export const loaderReducer = createReducer(false, {
   [taskActions.addTaskRequest]: () => true,
   [taskActions.addTaskSuccess]: () => false,
   [taskActions.addTaskError]: () => false,
-  
+
   [taskActions.deleteTaskRequest]: () => true,
   [taskActions.deleteTaskSuccess]: () => false,
   [taskActions.deleteTaskError]: () => false,

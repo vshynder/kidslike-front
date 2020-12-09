@@ -6,7 +6,15 @@ import getAllTasksSelector from '../../redux/selectors/allTasksCurrentChildSelec
 import { connect } from 'react-redux';
 import style from './tasksContainer.module.css';
 
-const TasksContainer = ({ match, allTasks }) => {
+const TasksContainer = ({ match, allTasks, tasks, location }) => {
+  const currentChildTasks = () => {
+    return [...tasks].filter(
+      (task) =>
+        task.childId === location.state.childId &&
+        task.isCompleted !== 'active',
+    );
+  };
+
   return (
     <div className={style.tasksContainer_container}>
       <div className={style.tasksContainer_header}>
@@ -17,9 +25,10 @@ const TasksContainer = ({ match, allTasks }) => {
         <p className={style.tasksContainer_name}>{match.params.name}</p>
       </div>
       <div className={style.tasksContainer_allTasks}>
-        {allTasks !== null && allTasks.length > 0 ? (
-          allTasks.map((task) => (
+        {currentChildTasks().length > 0 ? (
+          currentChildTasks().map((task) => (
             <ChildTask
+              key={task._id}
               id={task._id}
               gender={match.params.gender}
               daysToDo={task.daysToDo}
@@ -39,6 +48,7 @@ const TasksContainer = ({ match, allTasks }) => {
 
 const mapStateToProps = (state) => ({
   allTasks: getAllTasksSelector.getAllTasksCurrentChildren(state),
+  tasks: state.tasks,
 });
 
 export default connect(mapStateToProps, null)(TasksContainer);
