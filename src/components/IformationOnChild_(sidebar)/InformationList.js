@@ -19,7 +19,7 @@ class InformationList extends Component {
 
   render() {
     const { modal } = this.state;
-    const { childrens, onClick, tasks } = this.props;
+    const { childrens } = this.props;
     return (
       <>
         {modal && (
@@ -44,51 +44,6 @@ class InformationList extends Component {
                   male={children.gender}
                   name={children.name}
                   balance={children.stars ? children.stars : 0}
-                  // firstTasks={
-                  //   tasks.length > 0
-                  //     ? tasks.filter((item) => {
-                  //       let arr = []
-                  //       if(children.id === item.childId) {
-                  //         arr.push(item)
-                  //       }
-                  //         if (arr[0].tittle) {
-                  //           return arr[0].tittle;
-                  //         }
-                  //       })
-                  //     : ''
-                  // }
-                  // firstTask={
-                  //   children.tasks
-                  //     ? children.tasks[0]
-                  //     : // ? children.tasks[0].title.length > 22
-                  //       //   ? `${children.tasks[0].title.slice(0, 22)}...`
-                  //       //   : children.tasks[0].title
-                  //       // : ''
-                  //       ''
-                  // }
-                  // costFirstTask={
-                  //   children.tasks
-                  //     ? children.tasks[0]
-                  //       ? `+ ${children.tasks[0].reward}`
-                  //       : ''
-                  //     : ''
-                  // }
-                  // secondTask={
-                  //   children.tasks
-                  //     ? children.tasks[1]
-                  //       ? children.tasks[1].title.length > 22
-                  //         ? `${children.tasks[1].title.slice(0, 22)}...`
-                  //         : children.tasks[1].title
-                  //       : ''
-                  //     : ''
-                  // }
-                  // costSecondTask={
-                  //   children.tasks
-                  //     ? children.tasks[1]
-                  //       ? `+ ${children.tasks[1].reward}`
-                  //       : ''
-                  //     : ''
-                  // }
                 />
               </li>
             ))}
@@ -107,8 +62,7 @@ class InformationList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  childrens: childrenSelectors.getChildrens(state),
-  tasks: tasksSelector.getTasks(state),
+  childrens: childrenSelectors.getChildrens(state)
 });
 
 export default connect(mapStateToProps, null)(InformationList);
