@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import authOperations from '../../redux/operations/authOperations';
 import { connect } from 'react-redux';
 import { operations } from '../../redux';
@@ -28,27 +28,27 @@ const {
   login__link,
 } = styles;
 
-function SiginInForm({loginUser, isUserLoggedIn}) {
+function SiginInForm({ loginUser, isUserLoggedIn }) {
   const dispatch = useDispatch();
-  const LoginSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email('E-mail введено некоректно')
-      .required("Обов'язкове поле"),
-    password: yup
-      .string()
-      .min(6, 'Пароль повинен містити не менше 6-ти символів')
-      .max(20, 'Максимальна кількість символів 20')
-      .required("Обов'язкове поле"),
-  });
+  // const LoginSchema = yup.object().shape({
+  //   email: yup
+  //     .string()
+  //     .email('E-mail введено некоректно')
+  //     .required("Обов'язкове поле"),
+  //   password: yup
+  //     .string()
+  //     .min(6, 'Пароль повинен містити не менше 6-ти символів')
+  //     .max(20, 'Максимальна кількість символів 20')
+  //     .required("Обов'язкове поле"),
+  // });
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
   const history = useHistory();
 
-  const handleAuthorize = () => {
-    loginUser({ email, password });
-  };
+  // const handleAuthorize = () => {
+  //   loginUser({ email, password });
+  // };
 
   useEffect(() => {
     if (isUserLoggedIn) {
@@ -60,10 +60,30 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
     <div className={container}>
       <h2 className={siginUpTitel}>Вхід</h2>
       <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={LoginSchema}
+        // initialValues={{ email: '', password: '' }}
+        // validationSchema={LoginSchema}
+        // onSubmit={(values, { resetForm }) => {
+        //   setTimeout(() => {
+        //     dispatch(authOperations.loginUser(values));
+        //     resetForm();
+        //   }, 400);
+        // }}
+        initialValues={{
+          password: '',
+          email: '',
+        }}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .email('E-mail введено некоректно')
+            .required("Обов'язкове поле"),
+          password: Yup.string()
+            .min(6, 'Пароль повинен містити не менше 6-ти символів')
+            .max(20, 'Максимальна кількість символів 20')
+            .required("Обов'язкове поле"),
+        })}
         onSubmit={(values, { resetForm }) => {
           setTimeout(() => {
+            console.log(JSON.stringify(values, null, 2));
             dispatch(authOperations.loginUser(values));
             resetForm();
           }, 400);
@@ -80,14 +100,12 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
               type="email"
               name="email"
               placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
             <div className={error}>
               <ErrorMessage
                 className={form__error}
                 name="email"
-                component="div"
+                component={'div'}
               />
             </div>
             <p className={form__titel}>Введіть пароль</p>
@@ -99,8 +117,6 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
               type="password"
               name="password"
               placeholder="-----------"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
             />
             <div className={error}>
               <ErrorMessage
@@ -114,7 +130,6 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
                 className={btnContainer__formBtn}
                 type="submit"
                 disabled={isSubmitting}
-                onClick={handleAuthorize}
               >
                 Увійти
               </button>
@@ -136,7 +151,7 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
       </Formik>
       <p className={login}>
         Немає акаунту?{' '}
-        <Link className={login__link} to={"/register"}>
+        <Link className={login__link} to={'/register'}>
           Зареєструватись
         </Link>
       </p>
@@ -148,10 +163,4 @@ const mapStateToProps = (state) => ({
   isUserLoggedIn: state.user.accessToken,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  loginUser: (user) => dispatch(operations.authOperations.loginUser(user)),
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SiginInForm);
-
+export default connect(mapStateToProps, null)(SiginInForm);

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import authOperations from '../../redux/operations/authOperations';
 
 // Styles
@@ -28,28 +28,28 @@ const {
 
 function SiginUpForm() {
   const dispatch = useDispatch();
-  const RegistrationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email('E-mail введено некоректно')
-      .required("Обов'язкове поле"),
-    password: yup
-      .string()
-      .min(6, 'Пароль повинен містити не менше 6-ти символів')
-      .max(20, 'Максимальна кількість символів 20')
-      .required("Обов'язкове поле"),
-    name: yup.string(),
-  });
-
   return (
     <div className={container}>
       <h2 className={siginUpTitel}>Реєстрація</h2>
       <Formik
-        initialValues={{ email: '', password: '', username: '' }}
-        validationSchema={RegistrationSchema}
+        initialValues={{
+          password: '',
+          email: '',
+          username: '',
+        }}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .email('E-mail введено некоректно')
+            .required("Обов'язкове поле"),
+          password: Yup.string()
+            .min(6, 'Пароль повинен містити не менше 6-ти символів')
+            .max(20, 'Максимальна кількість символів 20')
+            .required("Обов'язкове поле"),
+          username: Yup.string().required("Обов'язкове поле"),
+        })}
         onSubmit={(values, { resetForm }) => {
           setTimeout(() => {
-            // console.log(JSON.stringify(values, null, 2));
+            console.log(JSON.stringify(values, null, 2));
             dispatch(authOperations.registrationUser(values));
             resetForm();
           }, 400);
@@ -68,11 +68,7 @@ function SiginUpForm() {
               placeholder="E-mail"
             />
             <div className={error}>
-              <ErrorMessage
-                className={form__error}
-                name="email"
-                component="div"
-              />
+                <ErrorMessage className={form__error} name="email" component={"div"} />
             </div>
             <p className={form__titel}>Введіть пароль</p>
             <Field
@@ -85,19 +81,21 @@ function SiginUpForm() {
               placeholder="-----------"
             />
             <div className={error}>
-              <ErrorMessage
-                className={form__error}
-                name="password"
-                component="div"
-              />
+                <ErrorMessage className={form__error} name="password" component={"div"} />
             </div>
             <p className={form__titel}>Ваше ім’я</p>
             <Field
-              className={form__input}
+              className={[
+                form__input,
+                errors.name ? form__inputError : '',
+              ].join(' ')}
               type="username"
               name="username"
               placeholder="Ім’я"
             />
+            <div className={error}>
+              <ErrorMessage className={form__error} name="username" component={"div"} />
+            </div>
             <div className={btnContainer}>
               <button
                 className={btnContainer__formBtn}
@@ -124,7 +122,7 @@ function SiginUpForm() {
       </Formik>
       <p className={login}>
         Уже є аккаунт?{' '}
-        <Link className={login__link} to={"/login"}>
+        <Link className={login__link} to={'/login'}>
           Увійти
         </Link>
       </p>
