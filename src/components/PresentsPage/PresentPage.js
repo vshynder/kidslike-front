@@ -30,9 +30,6 @@ export default class PresentPosition extends Component {
 
     return (
       <div className="presentcontainer">
-        <header className="presentheader">
-          <Header />
-        </header>
         {modal && (
           <Modal onClose={this.toggleModal}>
             <AddFamilyForm></AddFamilyForm>
@@ -40,7 +37,9 @@ export default class PresentPosition extends Component {
         )}
         {addFormPresent && (
           <Modal onClose={this.toggleAddFormPresentModal}>
-            <AddFormPresent isOpenForm={this.toggleAddFormPresentModal}></AddFormPresent>
+            <AddFormPresent
+              isOpenForm={this.toggleAddFormPresentModal}
+            ></AddFormPresent>
           </Modal>
         )}
 
@@ -97,9 +96,7 @@ export default class PresentPosition extends Component {
               )}
               {matches.large && (
                 <div className="presentmain">
-                  <div className="presentfamilynfo">
-                    <Slider onClick={this.toggleModal}></Slider>
-                  </div>
+                  <div className="presentfamilynfo"></div>
                   <div className="presents">
                     <div className="presents_header">
                       <img className="presents_header-img" src={PresentsIcon} />
