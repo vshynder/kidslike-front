@@ -3,6 +3,16 @@
 }
 .container {
   padding-bottom: 50px;
+  width: 100%;
+  min-width: 320px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px 0 40px;
+
+  align-items: center;
 }
 
 .habitsInfo_button {

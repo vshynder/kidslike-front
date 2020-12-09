@@ -64,7 +64,7 @@ const InformationItem = ({
         className={style.informItem_block__link}
       >
         <Link
-          to={`/childTasks/${name}/${male}`}
+          to={{ pathname: `/childTasks/${name}/${male}`, state: { childId } }}
           className={style.informItem_link}
         >
           <p className={style.informItem_linkName}>До виконаних задач</p>
