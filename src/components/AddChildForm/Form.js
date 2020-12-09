@@ -43,7 +43,10 @@ class AddChildForm extends Component {
     const { addChildRequest, onClose } = this.props;
     return (
       <div className={style.addChildForm_container}>
-        <button onClick={onClose} className={style.addChildForm_button__close} />
+        <button
+          onClick={onClose}
+          className={style.addChildForm_button__close}
+        />
         <h2 className={style.addChildForm_title}>Додавання дитини</h2>
         <form onSubmit={this.preventSubmit}>
           <label className={style.addChildForm_label__name}>

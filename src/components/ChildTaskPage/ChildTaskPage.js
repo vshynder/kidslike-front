@@ -13,10 +13,6 @@ export default class MainPosition extends Component {
   render() {
     return (
       <div className="taskcontainer">
-        <header className="taskheader">
-          <Header />
-        </header>
-
         <Media
           queries={{
             small: '(max-width: 767px)',
@@ -42,9 +38,7 @@ export default class MainPosition extends Component {
               )}
               {matches.large && (
                 <div className="taskmain">
-                  <div className="familynfo">
-                    <Slider></Slider>
-                  </div>
+                  <div className="familynfo"></div>
                   <div className="tasksinfo">
                     <TaskContainer match={this.props.match} />
                   </div>

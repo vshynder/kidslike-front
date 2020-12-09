@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import Media from 'react-media';
 
 import { connect } from 'react-redux';
 
@@ -28,50 +29,85 @@ function TasksPage({ tasks, habbits, getTasks, getHabbits, getChildren }) {
 
   return (
     <>
-      <div className={`container ${styles.container}`}>
-        <Header />
+      <div className="container">
+        <Media
+          queries={{
+            small: '(max-width: 767px)',
+            medium: '(min-width: 768px) and (max-width: 1250px)',
+            large: '(min-width: 1250px)',
+          }}
+        >
+          {(matches) => (
+            <Fragment>
+              {matches.small && <div className="familynfo"></div>}
+              {matches.medium && <div className="familynfo"></div>}
+              {matches.large && (
+                <div className="main">
+                  <div className="familynfo"></div>
+                  <div className="habitsInfo">
+                    <div className="habitsInfo_list">
+                      <div>
+                        <div className={styles.spacer}></div>
 
-        <div className={styles.spacer}></div>
+                        {tasks.length
+                          ? tasks.map((task) => (
+                              <InformationByTask key={task._id} task={task} />
+                            ))
+                          : null}
+                        <div className={styles.habitsInfo_button}>
+                          <button
+                            onClick={() => setIsTasksModal(true)}
+                            className={styles.habitsInfo_button__button}
+                          >
+                            Додати задачу +
+                          </button>
+                        </div>
+                        <div className={styles.spacer}></div>
 
-        {tasks.length
-          ? tasks.map((task) => (
-              <InformationByTask key={task._id} task={task} />
-            ))
-          : null}
-        <div className={styles.habitsInfo_button}>
-          <button
-            onClick={() => setIsTasksModal(true)}
-            className={styles.habitsInfo_button__button}
-          >
-            Додати задачу +
-          </button>
-        </div>
-        <div className={styles.spacer}></div>
+                        {habbits.length
+                          ? habbits.map((habbit) => (
+                              <InformationByHabbit key={habbit._id} />
+                            ))
+                          : null}
+                        <div className={styles.habitsInfo_button}>
+                          <button
+                            onClick={() => setIsHabbitsModal(true)}
+                            className={styles.habitsInfo_button__button}
+                          >
+                            Додати звичку +
+                          </button>
+                        </div>
+                      </div>
 
-        {habbits.length
-          ? habbits.map((habbit) => <InformationByHabbit key={habbit._id} />)
-          : null}
-        <div className={styles.habitsInfo_button}>
-          <button
-            onClick={() => setIsHabbitsModal(true)}
-            className={styles.habitsInfo_button__button}
-          >
-            Додати звичку +
-          </button>
-        </div>
+                      {isHabbitsModal && (
+                        <Modal onClose={() => setIsHabbitsModal(false)}>
+                          <AddFormHabit
+                            onClose={() => setIsHabbitsModal(false)}
+                          ></AddFormHabit>
+                        </Modal>
+                      )}
+
+                      {isTasksModal && (
+                        <Modal onClose={() => setIsTasksModal(false)}>
+                          <AddFormTask
+                            onClose={() => setIsTasksModal(false)}
+                          ></AddFormTask>
+                        </Modal>
+                      )}
+                    </div>
+                    <div className="habitsInfo_button"></div>
+                    <div className="extendMain">
+                      <div className="tasksinfo">
+                        <div className="tasksinfo__header"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Fragment>
+          )}
+        </Media>
       </div>
-
-      {isHabbitsModal && (
-        <Modal onClose={() => setIsHabbitsModal(false)}>
-          <AddFormHabit onClose={() => setIsHabbitsModal(false)}></AddFormHabit>
-        </Modal>
-      )}
-
-      {isTasksModal && (
-        <Modal onClose={() => setIsTasksModal(false)}>
-          <AddFormTask onClose={() => setIsTasksModal(false)}></AddFormTask>
-        </Modal>
-      )}
     </>
   );
 }

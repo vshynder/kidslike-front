@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
@@ -28,7 +28,7 @@ const {
   login__link,
 } = styles;
 
-function SiginInForm({loginUser, isUserLoggedIn}) {
+function SiginInForm({ loginUser, isUserLoggedIn }) {
   const dispatch = useDispatch();
   const LoginSchema = yup.object().shape({
     email: yup
@@ -52,7 +52,11 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
 
   useEffect(() => {
     if (isUserLoggedIn) {
+      console.log('before');
+
       history.push('/main');
+
+      console.log('after');
     }
   }, [isUserLoggedIn]);
 
@@ -136,7 +140,7 @@ function SiginInForm({loginUser, isUserLoggedIn}) {
       </Formik>
       <p className={login}>
         Немає акаунту?{' '}
-        <Link className={login__link} to={"/register"}>
+        <Link className={login__link} to={'/register'}>
           Зареєструватись
         </Link>
       </p>
@@ -152,6 +156,4 @@ const mapDispatchToProps = (dispatch) => ({
   loginUser: (user) => dispatch(operations.authOperations.loginUser(user)),
 });
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(SiginInForm);
-
