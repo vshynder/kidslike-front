@@ -39,22 +39,36 @@ export default class InformItemByPresent extends Component {
   };
 
   render() {
-    const { gender, image, title, reward, childId ,idPresent,deletePresent,buyPresent} = this.props;
+    const {
+      gender,
+      image,
+      title,
+      reward,
+      childId,
+      idPresent,
+      deletePresent,
+      buyPresent,
+    } = this.props;
     const { display, modal } = this.state;
     return (
       <>
         {modal && (
-          <Modal children={<ChangeFormPresent 
+          <Modal
+            children={
+              <ChangeFormPresent
+                onClose={this.onClose}
+                childId={childId}
+                title={title}
+                reward={reward}
+                idPresent={idPresent}
+              />
+            }
             onClose={this.onClose}
-             childId={childId}
-             title={title}
-             reward={reward}
-             idPresent={idPresent}
-             />} onClose={this.onClose} />
+          />
         )}
         <ul className={styles.presentItem_container}>
           <li className={styles.presentItem_changePresent}>
-            <button
+            <div
               className={styles.presentItem_button__submenu}
               onClick={this.onChangeSubmenu}
             >
@@ -76,14 +90,15 @@ export default class InformItemByPresent extends Component {
                   </button>
                 </li>
                 <li>
-                  <button 
-                  onClick={()=> deletePresent(idPresent)}
-                  className={styles.presentItem_subMenu__button}>
+                  <button
+                    onClick={() => deletePresent(idPresent)}
+                    className={styles.presentItem_subMenu__button}
+                  >
                     Видалити
                   </button>
                 </li>
               </ul>
-            </button>
+            </div>
           </li>
           <li className={styles.presentItem_images}>
             <img
@@ -103,10 +118,14 @@ export default class InformItemByPresent extends Component {
               </div>
             </div>
             <div className={styles.presentItem_block__button}>
-              <button 
-              onClick={()=> {
-                return buyPresent(idPresent, reward,childId )}}
-              className={styles.presentItem_button}>Придбати</button>
+              <button
+                onClick={() => {
+                  return buyPresent(idPresent, reward, childId);
+                }}
+                className={styles.presentItem_button}
+              >
+                Придбати
+              </button>
             </div>
           </li>
         </ul>

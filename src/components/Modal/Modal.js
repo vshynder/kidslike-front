@@ -4,6 +4,7 @@ import './Modal.css';
 export default class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
+    window.scrollTo({ top: 0 });
   }
 
   handleKeyDown = (e) => {
