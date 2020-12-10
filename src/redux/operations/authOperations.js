@@ -96,4 +96,14 @@ const getCurrentUser = () => (dispatch, getState) => {
     .catch((error) => dispatch(authActions.getCurrentUserError(error)));
 };
 
-export default { loginUser, registrationUser, logOut, getCurrentUser };
+const setTokenState = (accessToken) => (dispatch) => {
+  dispatch(authActions.loginUserSuccess(accessToken));
+};
+
+export default {
+  loginUser,
+  registrationUser,
+  logOut,
+  getCurrentUser,
+  setTokenState,
+};

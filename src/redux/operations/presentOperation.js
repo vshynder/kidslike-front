@@ -48,6 +48,7 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
     return;
   }
   // setAuthToken(acToken);
+  console.log(fD);
   dispatch(action.updatePresentRequest());
   // axios
   //   .patch(`${BACKEND_URI}/presents/${idPresent}`, fD)
@@ -59,12 +60,15 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
         Authorization: 'Bearer ' + acToken,
       },
       url,
-      fD,
+      data: fD,
     },
     refreshToken,
     dispatch,
   )
-    .then((res) => dispatch(action.updatePresentSuccess(res.data)))
+    .then((res) => {
+      console.log(res.data);
+      return dispatch(action.updatePresentSuccess(res.data));
+    })
     // .catch((error) => dispatch(action.updatePresentError(error)));
     .catch((error) => console.log(error));
 };
