@@ -29,8 +29,9 @@ const tasks = createReducer([], {
   [tasksAction.confirmTaskSuccess]: changeConfirmTask,
   [tasksAction.notconfirmTaskRequest]: changeNotConfirmTask,
   [tasksAction.deleteTaskSuccess]: (state, action) =>
-    state.filter((task) => task._id !== action.payload),
-
+    state.filter((task) => {
+      return task._id !== action.payload;
+    }),
   [tasksAction.addTaskSuccess]: (state, action) => {
     return [...state, action.payload];
   },

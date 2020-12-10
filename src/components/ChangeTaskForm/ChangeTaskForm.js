@@ -36,7 +36,7 @@ const {
 function ChangeTaskForm({ onClose, child }) {
   const handleDeleteTask = () => {};
 
-  const [thanks, setThanks] = useState(true);
+  const [thanks, setThanks] = useState(false);
   return (
     <>
       {thanks ? (
