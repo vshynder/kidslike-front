@@ -3,6 +3,7 @@ import authAction from './actions/authActions';
 import { BACKEND_URI } from '../constants';
 
 export const refreshJWTmiddleware = async (req, refreshToken, dispatch) => {
+  console.log(req);
   const response = await axios(req)
     .then((res) => res)
     .catch((err) => {
