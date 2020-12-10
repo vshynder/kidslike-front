@@ -1,35 +1,46 @@
 import { loaderReducer } from './laoderReducer';
+import { notifyReducer } from './notifyReducer';
 import habbitsReducer from './allHabbitsReducer';
 import addChildReducer from './addChildReducer';
 import allPresentReducer from './allPresentReducer';
 import AllTasksCurrentChild from './allTasksCurrentChild';
 import { authReducer } from './authReducer';
-import {persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist'
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import tasksReducer from './tasksReducer';
-import {configureStore,getDefaultMiddleware} from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
 
 const authPersistConfig = {
-  key:'auth',
+  key: 'auth',
   storage,
-  whitelist:['accessToken','refreshToken']
-}
+  whitelist: ['accessToken', 'refreshToken'],
+};
 
 export const store = configureStore({
-  reducer:{
+  reducer: {
+    notify: notifyReducer,
     loader: loaderReducer,
     childrens: addChildReducer.childrens,
     habbits: habbitsReducer, // Для тестирования, логику нужно переиспользовать
     presents: allPresentReducer.presents,
     currentChildTasks: AllTasksCurrentChild.allTasksCurrentChild,
-    tasks:tasksReducer.tasks,
-    user: persistReducer(authPersistConfig,authReducer),
+    tasks: tasksReducer.tasks,
+    user: persistReducer(authPersistConfig, authReducer),
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-    }
-  })
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
