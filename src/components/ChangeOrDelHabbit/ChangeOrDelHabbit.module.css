@@ -28,3 +28,6 @@
   background-color: #ffbe9d;
   color: #fff;
 }
+.btn__modal:focus {
+  outline: none;
+}

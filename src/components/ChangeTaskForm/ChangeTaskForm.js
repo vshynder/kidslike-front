@@ -35,8 +35,10 @@ const {
 
 function ChangeTaskForm({ onClose, child }) {
   const handleDeleteTask = () => {};
+  const [name, setName] = useState('');
 
-  const [thanks, setThanks] = useState(true);
+  const [thanks, setThanks] = useState(false);
+  console.log(1, name);
   return (
     <>
       {thanks ? (
@@ -62,8 +64,9 @@ function ChangeTaskForm({ onClose, child }) {
                     <Field
                       className={form__input}
                       type="text"
-                      //   name="task"
-                      value={child.title}
+                      // name="text"
+                      // id="text"
+
                       placeholder="Введіть назву"
                     />
                   </div>

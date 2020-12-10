@@ -81,7 +81,7 @@ const AddFormTask = ({ children, addTask, onClose }) => {
           type="number"
           min="0"
           max="99"
-          placeholder="00"
+          placeholder="--"
           onChange={(e) => setReward(e.target.value)}
         />
         <img className={styles.changehabbit__inputStar} src={star} alt="star" />
@@ -94,7 +94,7 @@ const AddFormTask = ({ children, addTask, onClose }) => {
           type="number"
           min="0"
           max="99"
-          placeholder="00"
+          placeholder="--"
           onChange={(e) => setTime(e.target.value)}
         />
       </div>

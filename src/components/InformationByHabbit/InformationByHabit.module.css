@@ -77,6 +77,12 @@
   background-color: #ffdfcf;
   cursor: pointer;
 }
+.btnfailure:focus {
+  outline: none;
+}
+.btnconfirm:focus {
+  outline: none;
+}
 
 .btnchange {
   position: absolute;
@@ -94,6 +100,9 @@
 }
 .btnchange:hover {
   cursor: pointer;
+}
+.btnchange:focus {
+  outline: none;
 }
 
 .conteiner {
