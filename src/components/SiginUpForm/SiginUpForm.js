@@ -4,6 +4,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import authOperations from '../../redux/operations/authOperations';
+import { connect } from 'react-redux';
+import Notify from '../Notify/Notify';
+import notifySelector from '../../redux/selectors/registerNotifySelector';
+import notifyAction from '../../redux/actions/notifyAction';
+import { CSSTransition } from 'react-transition-group';
 
 // Styles
 import styles from './SiginUpForm.module.css';
@@ -26,10 +31,23 @@ const {
   login__link,
 } = styles;
 
-function SiginUpForm() {
+function SiginUpForm({ notification, setNotifyFalse }) {
   const dispatch = useDispatch();
+  if (notification.load === true) {
+    setTimeout(() => {
+      setNotifyFalse();
+    }, 7500);
+  }
   return (
     <div className={container}>
+      <CSSTransition
+        in={notification.load === true}
+        timeout={250}
+        classNames={styles}
+        unmountOnExit
+      >
+        <Notify children={notification.message} />
+      </CSSTransition>
       <h2 className={siginUpTitel}>Реєстрація</h2>
       <Formik
         initialValues={{
@@ -68,7 +86,11 @@ function SiginUpForm() {
               placeholder="E-mail"
             />
             <div className={error}>
-                <ErrorMessage className={form__error} name="email" component={"div"} />
+              <ErrorMessage
+                className={form__error}
+                name="email"
+                component={'div'}
+              />
             </div>
             <p className={form__titel}>Введіть пароль</p>
             <Field
@@ -81,7 +103,11 @@ function SiginUpForm() {
               placeholder="-----------"
             />
             <div className={error}>
-                <ErrorMessage className={form__error} name="password" component={"div"} />
+              <ErrorMessage
+                className={form__error}
+                name="password"
+                component={'div'}
+              />
             </div>
             <p className={form__titel}>Ваше ім’я</p>
             <Field
@@ -94,7 +120,11 @@ function SiginUpForm() {
               placeholder="Ім’я"
             />
             <div className={error}>
-              <ErrorMessage className={form__error} name="username" component={"div"} />
+              <ErrorMessage
+                className={form__error}
+                name="username"
+                component={'div'}
+              />
             </div>
             <div className={btnContainer}>
               <button
@@ -130,4 +160,12 @@ function SiginUpForm() {
   );
 }
 
-export default SiginUpForm;
+const mapStateToProps = (state) => ({
+  notification: notifySelector.getNotify(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setNotifyFalse: () => dispatch(notifyAction.showNotifyFalse()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SiginUpForm);
