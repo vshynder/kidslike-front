@@ -7,11 +7,15 @@ import maleImage from '../../assets/informationByPresent/Group 292.png';
 import femaleImage from '../../assets/informationByPresent/Group 291.png';
 import subMenu_disable from '../../assets/informationByPresent/Group 280.svg';
 import subMenu_active from '../../assets/informationByPresent/Group 281.svg';
+import { connect } from 'react-redux';
+import ChildSelectors from '../../redux/selectors/ChildSelectors';
+import { FastField } from 'formik';
 
-export default class InformItemByPresent extends Component {
+class InformItemByPresent extends Component {
   state = {
     display: 'none',
     modal: false,
+    alertFalse: false,
   };
 
   onChangeSubmenu = () => {
@@ -38,19 +42,51 @@ export default class InformItemByPresent extends Component {
     });
   };
 
+  handleBuyPreset = (idPresent, reward, childId) => {
+    console.log('shell');
+    const { children } = this.props;
+    const child = children.find((child) => child._id === childId);
+    console.log(child);
+    if (child.stars < reward) {
+      console.log('lacks reward');
+      this.setState({ alertFalse: true });
+      setTimeout(() => {
+        this.setState({ alertFalse: false });
+      }, 1000);
+    } else {
+      this.props.buyPresent(idPresent, reward, childId);
+    }
+  };
+
   render() {
-    const { gender, image, title, reward, childId ,idPresent,deletePresent,buyPresent} = this.props;
-    const { display, modal } = this.state;
+    const {
+      gender,
+      image,
+      title,
+      reward,
+      childId,
+      idPresent,
+      deletePresent,
+    } = this.props;
+    const { display, modal, alertFalse } = this.state;
+
     return (
       <>
+        {alertFalse && alert('не хватает звезд')}
+
         {modal && (
-          <Modal children={<ChangeFormPresent 
+          <Modal
+            children={
+              <ChangeFormPresent
+                onClose={this.onClose}
+                childId={childId}
+                title={title}
+                reward={reward}
+                idPresent={idPresent}
+              />
+            }
             onClose={this.onClose}
-             childId={childId}
-             title={title}
-             reward={reward}
-             idPresent={idPresent}
-             />} onClose={this.onClose} />
+          />
         )}
         <ul className={styles.presentItem_container}>
           <li className={styles.presentItem_changePresent}>
@@ -76,9 +112,10 @@ export default class InformItemByPresent extends Component {
                   </button>
                 </li>
                 <li>
-                  <button 
-                  onClick={()=> deletePresent(idPresent)}
-                  className={styles.presentItem_subMenu__button}>
+                  <button
+                    onClick={() => deletePresent(idPresent)}
+                    className={styles.presentItem_subMenu__button}
+                  >
                     Видалити
                   </button>
                 </li>
@@ -103,10 +140,12 @@ export default class InformItemByPresent extends Component {
               </div>
             </div>
             <div className={styles.presentItem_block__button}>
-              <button 
-              onClick={()=> {
-                return buyPresent(idPresent, reward,childId )}}
-              className={styles.presentItem_button}>Придбати</button>
+              <button
+                onClick={() => this.handleBuyPreset(idPresent, reward, childId)}
+                className={styles.presentItem_button}
+              >
+                Придбати
+              </button>
             </div>
           </li>
         </ul>
@@ -114,3 +153,8 @@ export default class InformItemByPresent extends Component {
     );
   }
 }
+const mapSatateToProps = (state) => ({
+  children: ChildSelectors.getChildrens(state),
+});
+
+export default connect(mapSatateToProps, null)(InformItemByPresent);

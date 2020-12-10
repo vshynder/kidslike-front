@@ -159,7 +159,10 @@ const buyPresentById = (idPresent, reward, childId) => (dispatch, getState) => {
         newReward: reward,
         childId: childId,
       };
-      return dispatch(action.buyPresentSuccess(refreshData));
+      return dispatch(
+        action.buyPresentSuccess(refreshData),
+        dispatch(action.removePresentSuccess(idPresent)),
+      );
     })
     .catch((error) => dispatch(action.buyPresentError(error)));
 };

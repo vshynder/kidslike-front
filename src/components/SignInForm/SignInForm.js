@@ -112,13 +112,13 @@ function SiginInForm({ isUserLoggedIn }) {
               </button>
               <a
                 className={[btnContainer__socialBtn, google].join(' ')}
-                href="https://kidslike-back-end.herokuapp.com/api/auth/google"
+                href="http://localhost:1717/api/auth/google"
               >
                 Увійти за допомогою Google
               </a>
               <a
                 className={[btnContainer__socialBtn, facebook].join(' ')}
-                href="https://kidslike-back-end.herokuapp.com/api/auth/facebook"
+                href="http://localhost:1717/api/auth/facebook"
               >
                 Увійти за допомогою Facebook
               </a>

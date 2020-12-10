@@ -36,9 +36,9 @@ const App = ({
   const accessToken = Cookie.get('accessToken');
   const refreshToken = Cookie.get('refreshToken');
 
-  useEffect(() => {
+  useEffect(async () => {
     if (accessToken || refreshToken) {
-      setTokenState({ accessToken, refreshToken });
+      await setTokenState({ accessToken, refreshToken });
     }
     onGetCurrentUser();
     if (userToken) {
