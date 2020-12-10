@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Cookie from 'js-cookie';
 
 import navigation from './components/AuthPageNavigation/navigation';
 import SiginUpPage from './components/SiginUpPage/SiginUpPage';
@@ -21,6 +22,7 @@ import presentOperations from './redux/operations/presentOperation';
 import habbitsOperations from './redux/operations/habbitOperation';
 import childrenOperation from './redux/operations/getAllChildrens';
 import Layout from './components/Layout/Layout';
+import authSelectors from './redux/selectors/authSelectors';
 
 const App = ({
   userToken,
@@ -29,8 +31,15 @@ const App = ({
   getAllTasks,
   getAllPresents,
   getAllChildren,
+  setTokenState,
 }) => {
+  const accessToken = Cookie.get('accessToken');
+  const refreshToken = Cookie.get('refreshToken');
+
   useEffect(() => {
+    if (accessToken || refreshToken) {
+      setTokenState({ accessToken, refreshToken });
+    }
     onGetCurrentUser();
     if (userToken) {
       getAllChildren();
@@ -38,6 +47,8 @@ const App = ({
       getAllPresents();
       getAllHabbits();
     }
+    Cookie.remove('accessToken');
+    Cookie.remove('refreshToken');
   }, []);
   return (
     <>
@@ -94,6 +105,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchProps = (dispatch) => ({
+  setTokenState: (tokens) => dispatch(authOperation.setTokenState(tokens)),
   onGetCurrentUser: () => dispatch(authOperation.getCurrentUser()),
   getAllTasks: () => dispatch(taskOperations.getAllTasks()),
   getAllPresents: () => dispatch(presentOperations.getAllPresents()),
