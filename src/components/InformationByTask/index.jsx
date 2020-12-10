@@ -36,7 +36,7 @@ class InformationByTask extends Component {
     const { gender } = this.props.children.find(
       (child) => child._id === this.props.task.childId,
     );
-    console.log(gender);
+
     return (
       <>
         <div className={styles.container}>
@@ -63,7 +63,7 @@ class InformationByTask extends Component {
           <span className={styles.secondSmallContainer}>
             <span className={styles.timeContainer}>
               <p className={styles.greyTitle}>Час на виконання:</p>
-              <p className={styles.taskDayText}>{daysToDo} день</p>
+              <p className={styles.taskDayText}>{daysToDo} день(-ів)</p>
             </span>
             <span>
               <p className={styles.greyTitle}>Підтвердження</p>
@@ -87,23 +87,23 @@ class InformationByTask extends Component {
             className={styles.additionButton}
             onFocus={this.handleOpenSubmenu}
           >
-            ...
+            <sup className={styles.idx}>...</sup>
           </button>
           {isRenderSubmenu && (
             <div
               ref={this.submenu}
-              className={styles.submenu}
+              className={styles.modalmini}
               onMouseLeave={this.handleCloseSubmenu}
             >
               <button
-                className={styles.submenuItem}
+                className={styles.btn__modal}
                 onClick={this.handleOpenModal}
               >
                 Редагувати
               </button>
               <button
                 onClick={this.props.onDelete}
-                className={styles.submenuItem}
+                className={styles.btn__modal}
               >
                 Видалити
               </button>
