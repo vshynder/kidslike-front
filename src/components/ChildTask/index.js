@@ -8,7 +8,15 @@ import boyImage from '../../assets/images/childtask_boy.png';
 import taskOperations from '../../redux/operations/tasksOperation';
 import { connect } from 'react-redux';
 
-function ChildTask({ onTaskRepeat, gender, daysToDo, reward, title, id }) {
+function ChildTask({
+  onTaskRepeat,
+  gender,
+  daysToDo,
+  reward,
+  title,
+  id,
+  taskCurrent,
+}) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -24,6 +32,7 @@ function ChildTask({ onTaskRepeat, gender, daysToDo, reward, title, id }) {
         <div className={styles.childtask__dots_dot}></div>
         {isFocused && (
           <DropDown
+            taskCurrent={taskCurrent}
             mouseLeave={() => {
               setIsFocused(false);
             }}
