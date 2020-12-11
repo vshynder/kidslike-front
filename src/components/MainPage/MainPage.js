@@ -105,22 +105,6 @@ class MainPosition extends Component {
                           <h2 className="tasksinfo__header-title">Задачі</h2>
                         </div>
                         <div className="tasksinfo__list">
-                          {/* <TransitionGroup component="ul" className={styles.contactList}>
-			{filteredArr.map((item) => {
-				return (
-					<CSSTransition key={item.id}
-					timeout={250}
-					classNames={styles}
-					unmountOnExit
-					>
-                    <List 
-					id={item.id}
-					/>
-					</CSSTransition>
-					
-				);
-			})}
-		</TransitionGroup> */}
                           {tasks && (
                             <TransitionGroup
                               component="ul"
@@ -129,7 +113,7 @@ class MainPosition extends Component {
                               {tasks.map(
                                 (task) =>
                                   task.isCompleted === 'active' && (
-                                    <CSSTransition classNames={trStyle} key={task._id} timeout={250}>
+                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
                                       <InformationByTask
                                         key={task._id}
                                         task={task}
