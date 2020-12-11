@@ -18,14 +18,6 @@ const InformationListByPresent = ({
 
   return (
     <div className={style.presentItem_container}>
-      {/* <div className={style.presentItem_header}>
-        <img
-          className={style.presentItem_present}
-          src={present}
-          alt="present"
-        />
-        <h2 className={style.presentItem_title}>Подарунки</h2>
-      </div> */}
       <ul className={style.presentItem_childrens}>
         {presents &&
           presents.map((present) => (
@@ -47,7 +39,6 @@ const InformationListByPresent = ({
             </li>
           ))}
       </ul>
-      {/* <button className={style.presentItem_button}>Додати подарунок +</button> */}
     </div>
   );
 };

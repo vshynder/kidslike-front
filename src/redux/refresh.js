@@ -6,7 +6,6 @@ export const refreshJWTmiddleware = async (req, refreshToken, dispatch) => {
   const response = await axios(req)
     .then((res) => res)
     .catch((err) => {
-      console.log(err);
       if (err.response.status === 401) {
         return;
       }

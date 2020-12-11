@@ -9,7 +9,6 @@ import subMenu_disable from '../../assets/informationByPresent/Group 280.svg';
 import subMenu_active from '../../assets/informationByPresent/Group 281.svg';
 import { connect } from 'react-redux';
 import ChildSelectors from '../../redux/selectors/ChildSelectors';
-import { FastField } from 'formik';
 
 class InformItemByPresent extends Component {
   state = {
@@ -46,9 +45,8 @@ class InformItemByPresent extends Component {
     console.log('shell');
     const { children } = this.props;
     const child = children.find((child) => child._id === childId);
-    console.log(child);
+
     if (child.stars < reward) {
-      console.log('lacks reward');
       this.setState({ alertFalse: true });
       setTimeout(() => {
         this.setState({ alertFalse: false });
@@ -72,7 +70,7 @@ class InformItemByPresent extends Component {
 
     return (
       <>
-        {alertFalse && alert('не хватает звезд')}
+        {alertFalse}
 
         {modal && (
           <Modal
