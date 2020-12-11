@@ -12,12 +12,17 @@ const AddFormTask = ({ children, addTask, onClose }) => {
   const [title, setTitle] = useState('');
   const [reward, setReward] = useState('');
   const [time, setTime] = useState('');
+  const [checkAllInput, setCheckAllInput] = useState(true);
 
-  const handleCloseClick = () => {};
+  // const handleCloseClick = () => {};
 
-  const handleCancel = () => {};
+  // const handleCancel = () => {};
 
   const handleSave = () => {
+    if (!childId || !title || !reward || !time) {
+      setCheckAllInput(false);
+      return;
+    }
     addTask(childId, title, reward, time);
     onClose();
   };
@@ -56,7 +61,9 @@ const AddFormTask = ({ children, addTask, onClose }) => {
           id="task"
           onChange={(e) => setChildId(e.target.value)}
         >
-          <option>Оберіть дитину</option>
+          <option value="" disabled>
+            Оберіть дитину
+          </option>
           {children &&
             children.map((child) => (
               <option key={child._id} value={child._id}>
@@ -79,7 +86,7 @@ const AddFormTask = ({ children, addTask, onClose }) => {
           className={`${styles.changehabbit__inputLong} ${styles.changehabbit__inputShort}`}
           id="grade"
           type="number"
-          min="0"
+          min="1"
           max="99"
           placeholder="--"
           onChange={(e) => setReward(e.target.value)}
@@ -98,7 +105,9 @@ const AddFormTask = ({ children, addTask, onClose }) => {
           onChange={(e) => setTime(e.target.value)}
         />
       </div>
-
+      <p style={{ color: 'red', height: '12px', fontWeight: '700' }}>
+        {!checkAllInput && 'Заповніть всі поля!'}
+      </p>
       <div className={styles.changehabbit__btns}>
         <button onClick={onClose} className={styles.changehabbit__button}>
           Відміна

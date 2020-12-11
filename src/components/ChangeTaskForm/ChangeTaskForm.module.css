@@ -3,6 +3,18 @@
   min-width: 575px;
 }
 
+.changetask__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  stroke: #bdbdbd;
+  transition: 250ms;
+}
+.changetask__close:hover {
+  cursor: pointer;
+  stroke: black;
+}
+
 .taskTitel {
   padding-top: 54px;
   font-family: Rubik;
@@ -39,6 +51,7 @@
   line-height: 14px;
   color: #828282;
   padding: 20px 0 10px;
+  text-align: start;
 }
 
 .form__input {

@@ -127,6 +127,8 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
   //       Authorization: 'Bearer ' + acToken,
   //     },
   //   })
+  console.log(222222, childId, body);
+
   refreshJWTmiddleware(
     {
       method: 'post',
@@ -213,6 +215,38 @@ const repeatTask = (taskId) => (dispatch, getState) => {
     .catch((error) => console.log(error));
 };
 
+const updateTask = (value, currentTask) => (dispatch, getState) => {
+  const {
+    user: { accessToken: acToken, refreshToken },
+  } = getState();
+  if (!acToken) {
+    return;
+  }
+
+  // console.log(555, value, currentTask);
+
+  dispatch(taskAction.updateTaskRequest());
+
+  const url = `${BACKEND_URI}/tasks/` + currentTask._id;
+
+  refreshJWTmiddleware(
+    {
+      method: 'patch',
+      headers: {
+        Authorization: 'Bearer ' + acToken,
+      },
+      url,
+      data: value,
+    },
+    refreshToken,
+    dispatch,
+  )
+    .then(() =>
+      dispatch(taskAction.updateTaskSuccess({ ...currentTask, ...value })),
+    )
+    .catch((err) => dispatch(taskAction.updateTaskError(err.message)));
+};
+
 export default {
   getAllTasks,
   сonfirmTask,
@@ -220,4 +254,5 @@ export default {
   addTask,
   deleteTask,
   repeatTask,
+  updateTask,
 };
