@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 function ChildTask({ onTaskRepeat, gender, daysToDo, reward, title, id }) {
   const [isFocused, setIsFocused] = useState(false);
-
   return (
     <div className={styles.childtask}>
       <div
@@ -24,6 +23,7 @@ function ChildTask({ onTaskRepeat, gender, daysToDo, reward, title, id }) {
         <div className={styles.childtask__dots_dot}></div>
         {isFocused && (
           <DropDown
+            taskId={id}
             mouseLeave={() => {
               setIsFocused(false);
             }}

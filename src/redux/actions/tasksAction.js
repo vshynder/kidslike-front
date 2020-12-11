@@ -24,6 +24,8 @@ const repeatTaskRequest = createAction('tasks/repeat/request');
 const repeatTaskSuccess = createAction('tasks/repeat/success');
 const repeatTaskError = createAction('tasks/repeat/error');
 
+const successRewaedTask = createAction('task/successRewaedTask')
+
 export default {
   getAllTasksRequest,
   getAllTasksSuccess,
@@ -43,4 +45,5 @@ export default {
   repeatTaskRequest,
   repeatTaskSuccess,
   repeatTaskError,
+  successRewaedTask,
 };

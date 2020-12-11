@@ -7,7 +7,7 @@ const getTasks = (state, action) => {
 
 const changeConfirmTask = (state, action) => {
   state.map((task) => {
-    if (action.payload === task._id) {
+    if (action.payload.id === task._id) {
       task.isCompleted = 'done';
       return task;
     }

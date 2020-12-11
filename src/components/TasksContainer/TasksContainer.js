@@ -5,6 +5,8 @@ import femaleImage from '../../assets/InformationOnChild-Images/image14.svg';
 import getAllTasksSelector from '../../redux/selectors/allTasksCurrentChildSelector';
 import { connect } from 'react-redux';
 import style from './tasksContainer.module.css';
+import trStyles from './trStyles.module.css';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const TasksContainer = ({ match, allTasks, tasks, location }) => {
   const currentChildTasks = () => {
@@ -26,7 +28,10 @@ const TasksContainer = ({ match, allTasks, tasks, location }) => {
       </div>
       <div className={style.tasksContainer_allTasks}>
         {currentChildTasks().length > 0 ? (
-          currentChildTasks().map((task) => (
+          <TransitionGroup component="ul" >
+          {currentChildTasks().map((task) => (
+            <CSSTransition in={true} appear={true} timeout={300} classNames={trStyles} key={task._id} unmountOnExit>
+              <li key={task._id}>
             <ChildTask
               key={task._id}
               id={task._id}
@@ -35,8 +40,10 @@ const TasksContainer = ({ match, allTasks, tasks, location }) => {
               reward={task.reward}
               title={task.title}
             />
-          ))
-        ) : (
+            </li>
+            </CSSTransition>
+            
+          ))}</TransitionGroup>) : (
           <p className={style.tasksContainer_alternative}>
             Немає виконаних задач
           </p>

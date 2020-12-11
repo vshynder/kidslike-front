@@ -124,7 +124,7 @@ class InformationByTask extends Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onConfirmTask: () => dispatch(tasksOperation.сonfirmTask(ownProps.task._id)),
+  onConfirmTask: () => dispatch(tasksOperation.сonfirmTask(ownProps.task._id, ownProps.task.reward, ownProps.task.childId)),
   onNotConfirmTask: () =>
     dispatch(tasksOperation.notConfirmTask(ownProps.task._id)),
   onDelete: () => dispatch(tasksOperation.deleteTask(ownProps.task._id)),
