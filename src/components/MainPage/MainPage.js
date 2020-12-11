@@ -6,6 +6,7 @@ import Slider from '../IformationOnChild_(sidebar)/InformationList';
 import InformationByHabbit from '../ContainerForAllHabbits/ContainerForAllHabbits';
 import InformationByTask from '../InformationByTask';
 import './MainPage.css';
+import trStyle from './mainStyles.module.css';
 import Modal from '../Modal/Modal';
 import AddFamilyForm from '../AddChildForm/Form';
 import Header from '../Header';
@@ -16,6 +17,7 @@ import AddFormTask from '../AddFormTask';
 import tasksOperation from '../../redux/operations/tasksOperation';
 import habitsOperation from '../../redux/operations/habbitOperation';
 import getChildrensOperation from '../../redux/operations/getAllChildrens';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class MainPosition extends Component {
   state = { modal: false, addFormHabit: false, addFromTask: false };
@@ -103,16 +105,24 @@ class MainPosition extends Component {
                           <h2 className="tasksinfo__header-title">Задачі</h2>
                         </div>
                         <div className="tasksinfo__list">
-                          {tasks &&
-                            tasks.map(
-                              (task) =>
-                                task.isCompleted === 'active' && (
-                                  <InformationByTask
-                                    key={task._id}
-                                    task={task}
-                                  />
-                                ),
-                            )}
+                          {tasks && (
+                            <TransitionGroup
+                              component="ul"
+                              className={trStyle}
+                            >
+                              {tasks.map(
+                                (task) =>
+                                  task.isCompleted === 'active' && (
+                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
+                                      <InformationByTask
+                                        key={task._id}
+                                        task={task}
+                                      />
+                                    </CSSTransition>
+                                  ),
+                              )}
+                            </TransitionGroup>
+                          )}
                         </div>
                         <div className="tasksinfo__button">
                           <button

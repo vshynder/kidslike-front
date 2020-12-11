@@ -1,3 +1,21 @@
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.appear {
+  opacity: 0;
+}
+
+.appearActive {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
 .childrenSidebar_header {
   display: flex;
   flex-direction: row;

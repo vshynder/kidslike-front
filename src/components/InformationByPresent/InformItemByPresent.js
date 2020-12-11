@@ -65,9 +65,15 @@ class InformItemByPresent extends Component {
       childId,
       idPresent,
       deletePresent,
+<<<<<<< HEAD
     } = this.props;
     const { display, modal, alertFalse } = this.state;
 
+=======
+      buyPresent,
+    } = this.props;
+    const { display, modal } = this.state;
+>>>>>>> 669893305d1f4c7f3243c09f50f2f9b26e024755
     return (
       <>
         {alertFalse}
@@ -88,7 +94,7 @@ class InformItemByPresent extends Component {
         )}
         <ul className={styles.presentItem_container}>
           <li className={styles.presentItem_changePresent}>
-            <button
+            <div
               className={styles.presentItem_button__submenu}
               onClick={this.onChangeSubmenu}
             >
@@ -118,7 +124,7 @@ class InformItemByPresent extends Component {
                   </button>
                 </li>
               </ul>
-            </button>
+            </div>
           </li>
           <li className={styles.presentItem_images}>
             <img
@@ -139,7 +145,13 @@ class InformItemByPresent extends Component {
             </div>
             <div className={styles.presentItem_block__button}>
               <button
+<<<<<<< HEAD
                 onClick={() => this.handleBuyPreset(idPresent, reward, childId)}
+=======
+                onClick={() => {
+                  return buyPresent(idPresent, reward, childId);
+                }}
+>>>>>>> 669893305d1f4c7f3243c09f50f2f9b26e024755
                 className={styles.presentItem_button}
               >
                 Придбати
