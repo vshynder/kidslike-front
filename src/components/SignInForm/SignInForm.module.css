@@ -1,4 +1,23 @@
+.enter {
+  transform: translateX(300%);
+}
+
+.enterActive {
+  transform: translateX(0);
+  transition: transform 250ms linear;
+}
+
+.exit {
+  transform: translateX(0);
+}
+
+.exitActive {
+  transform: translateX(300%);
+  transition: transform 250ms linear;
+}
+
 .container {
+  position: relative;
   max-width: 320px;
   background-color: #ffffff;
   margin: 0 auto;

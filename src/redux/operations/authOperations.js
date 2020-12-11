@@ -19,7 +19,7 @@ const loginUser = (user) => (dispatch) => {
       setAuthToken(response.data.accessToken);
       dispatch(authActions.loginUserSuccess(response.data));
     })
-    .catch((error) => console.log(error));
+    .catch((error) => dispatch(authActions.loginUserError(error)));
 };
 
 const registrationUser = (user) => (dispatch) => {

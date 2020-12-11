@@ -16,7 +16,9 @@ import Modal from '../Modal/Modal';
 // import tasksOperation from '../../redux/operations/tasksOperation';
 // import habitsOperation from '../../redux/operations/habbitOperation';
 // import getChildrensOperation from '../../redux/operations/getAllChildrens';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import taskStyles from './index.module.css';
+import trStyle from './trStyle.module.css';
 //
 
 function TasksPage({ tasks }) {
@@ -89,16 +91,24 @@ function TasksPage({ tasks }) {
                             </h2>
                           </div>
                           <div className={taskStyles.tasksinfo__list}>
-                            {tasks &&
-                              tasks.map(
+                          {tasks && (
+                            <TransitionGroup
+                              component="ul"
+                              className={trStyle}
+                            >
+                              {tasks.map(
                                 (task) =>
                                   task.isCompleted === 'active' && (
-                                    <InformationByTask
-                                      key={task._id}
-                                      task={task}
-                                    />
+                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
+                                      <InformationByTask
+                                        key={task._id}
+                                        task={task}
+                                      />
+                                    </CSSTransition>
                                   ),
                               )}
+                            </TransitionGroup>
+                          )}
                           </div>
                           <div className={taskStyles.tasksinfo__button}>
                             <button
@@ -149,16 +159,24 @@ function TasksPage({ tasks }) {
                           </h2>
                         </div>
                         <div className={taskStyles.tasksinfo__list}>
-                          {tasks &&
-                            tasks.map(
-                              (task) =>
-                                task.isCompleted === 'active' && (
-                                  <InformationByTask
-                                    key={task._id}
-                                    task={task}
-                                  />
-                                ),
-                            )}
+                        {tasks && (
+                            <TransitionGroup
+                              component="ul"
+                              className={trStyle}
+                            >
+                              {tasks.map(
+                                (task) =>
+                                  task.isCompleted === 'active' && (
+                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
+                                      <InformationByTask
+                                        key={task._id}
+                                        task={task}
+                                      />
+                                    </CSSTransition>
+                                  ),
+                              )}
+                            </TransitionGroup>
+                          )}
                         </div>
                         <div className={taskStyles.tasksinfo__button}>
                           <button

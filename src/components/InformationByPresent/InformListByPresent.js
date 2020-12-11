@@ -2,9 +2,11 @@ import React, { Component, useEffect } from 'react';
 import InformItemByPresent from './InformItemByPresent';
 import present from '../../assets/informationByPresent/image 16.svg';
 import style from './informListByPresent.module.css';
+import trStyle from './trStyle.module.css';
 import { connect } from 'react-redux';
 import presentSelector from '../../redux/selectors/presentSelector';
 import operationPresent from '../../redux/operations/presentOperation';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const InformationListByPresent = ({
   presents,
@@ -18,18 +20,17 @@ const InformationListByPresent = ({
 
   return (
     <div className={style.presentItem_container}>
-      {/* <div className={style.presentItem_header}>
-        <img
-          className={style.presentItem_present}
-          src={present}
-          alt="present"
-        />
-        <h2 className={style.presentItem_title}>Подарунки</h2>
-      </div> */}
-      <ul className={style.presentItem_childrens}>
-        {presents &&
-          presents.map((present) => (
+        {presents && (
+        <TransitionGroup component="ul" className={style.presentItem_childrens}>
+          {presents.map((present) => (
             <li className={style.presentItem_item} key={present._id}>
+              <CSSTransition
+                    in={true}
+                    appear={true}
+                    classNames={trStyle}
+                    key={present._id}
+                    timeout={250}
+                  >
               <InformItemByPresent
                 idPresent={present._id}
                 childId={present.childId}
@@ -44,10 +45,11 @@ const InformationListByPresent = ({
                 deletePresent={deletePresent}
                 buyPresent={buyPresent}
               />
+              </CSSTransition>
             </li>
           ))}
-      </ul>
-      {/* <button className={style.presentItem_button}>Додати подарунок +</button> */}
+          </TransitionGroup>
+        )}
     </div>
   );
 };

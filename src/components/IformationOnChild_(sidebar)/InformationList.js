@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Modal from '../Modal/Modal';
 import AddFamilyForm from '../AddChildForm/Form';
 import childrenSelectors from '../../redux/selectors/ChildSelectors';
-import tasksSelector from '../../redux/selectors/tasksSelector';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class InformationList extends Component {
   state = {
@@ -37,16 +37,20 @@ class InformationList extends Component {
             <h2 className={style.childrenSidebar_title}>Сім'я</h2>
           </div>
           <ul className={style.childrenSidebar_childrens}>
-            {childrens.map((children) => (
-              <li className={style.childrenSidebar_item} key={children._id}>
-                <InformationItem
-                  childId={children._id}
-                  male={children.gender}
-                  name={children.name}
-                  balance={children.stars ? children.stars : 0}
-                />
-              </li>
-            ))}
+            <TransitionGroup component="ul" className={style.childrenSidebar_childrens}>
+              {childrens.map((children) => (
+                 <CSSTransition in={true} appear={true} timeout={300} classNames={style} key={children._id}>
+                  <li className={style.childrenSidebar_item} key={children._id}>
+                    <InformationItem
+                      childId={children._id}
+                      male={children.gender}
+                      name={children.name}
+                      balance={children.stars ? children.stars : 0}
+                    />
+                  </li>
+                  </CSSTransition>
+              ))}
+            </TransitionGroup>
           </ul>
 
           <button
@@ -62,7 +66,7 @@ class InformationList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  childrens: childrenSelectors.getChildrens(state)
+  childrens: childrenSelectors.getChildrens(state),
 });
 
 export default connect(mapStateToProps, null)(InformationList);
