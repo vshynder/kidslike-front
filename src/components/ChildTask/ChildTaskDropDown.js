@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import ChangeTaskForm from '../ChangeTaskForm/ChangeTaskForm';
 import styles from '../InformationByTask/InformationByTask.module.css';
+import taskOperations from '../../redux/operations/tasksOperation';
+import { connect } from 'react-redux';
 
-export default function ChildTaskDropDown({ mouseLeave, taskCurrent }) {
+function ChildTaskDropDown({ mouseLeave, taskCurrent, onTaskDelete, taskId }) {
   const [isRenderModal, setIsRenderModal] = useState(false);
   console.log(999999, taskCurrent);
   return (
@@ -24,9 +26,9 @@ export default function ChildTaskDropDown({ mouseLeave, taskCurrent }) {
         >
           Редагувати
         </button>
-        <button onClick={() => {}} className={styles.btn__modal}>
+        <div onClick={() => onTaskDelete(taskId)} className={styles.btn__modal}>
           Видалити
-        </button>
+        </div>
       </div>
       {isRenderModal && (
         <Modal onClose={() => setIsRenderModal(false)}>
@@ -39,3 +41,9 @@ export default function ChildTaskDropDown({ mouseLeave, taskCurrent }) {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  onTaskDelete: (taskId) => dispatch(taskOperations.deleteTask(taskId)),
+});
+
+export default connect(null, mapDispatchToProps)(ChildTaskDropDown);

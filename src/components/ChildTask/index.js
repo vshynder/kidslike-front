@@ -18,7 +18,6 @@ function ChildTask({
   taskCurrent,
 }) {
   const [isFocused, setIsFocused] = useState(false);
-
   return (
     <div className={styles.childtask}>
       <div
@@ -33,6 +32,7 @@ function ChildTask({
         {isFocused && (
           <DropDown
             taskCurrent={taskCurrent}
+            taskId={id}
             mouseLeave={() => {
               setIsFocused(false);
             }}

@@ -5,6 +5,9 @@ import { act } from 'react-dom/test-utils';
 import allHabbitsAction from '../actions/allHabbitsAction';
 import presentAction from '../actions/presentAction';
 
+import tasksAction from '../actions/tasksAction';
+
+
 const childrens = createReducer([], {
   [addChildActions.addChildSuccess]: (state, action) => [
     ...state,
@@ -55,6 +58,7 @@ const childrens = createReducer([], {
       }
     });
   },
+
   [presentAction.buyPresentSuccess]: (state, action) => {
     state.map((child) => {
       if (child._id === action.payload.childId) {
@@ -65,6 +69,15 @@ const childrens = createReducer([], {
       }
     });
   },
+
+  [tasksAction.confirmTaskSuccess]: (state, action) => {
+    state.map((child)=> {
+      // console.log(action.payload)
+      if(child._id === action.payload.childId){
+        return child.stars = Number(child.stars) + action.payload.reward}
+        }
+    )
+  }
 });
 
 export default {
