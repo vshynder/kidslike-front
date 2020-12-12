@@ -33,7 +33,7 @@ function ChildTaskDropDown({
           className={styles.btn__modal}
         >
           Видалити
-        </div>
+        </button>
       </div>
     </div>
   );
