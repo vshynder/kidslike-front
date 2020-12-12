@@ -129,7 +129,8 @@ function SiginInForm({ isUserLoggedIn, notification, setNotifyFalse }) {
               </button>
               <a
                 className={[btnContainer__socialBtn, google].join(' ')}
-                href="https://kidslike-back-end.herokuapp.com/api/auth/google"
+                // href="https://kidslike-back-end.herokuapp.com/api/auth/google"
+                href="http://localhost:1717/api/auth/google"
               >
                 Увійти за допомогою Google
               </a>

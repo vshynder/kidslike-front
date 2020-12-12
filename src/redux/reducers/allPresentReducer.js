@@ -9,7 +9,6 @@ const getAllPresents = (state, action) => {
 };
 
 const newPresent = (state, action) => {
-  console.log(action.payload);
   return [...state, action.payload];
 };
 

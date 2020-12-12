@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SignInForm from '../SignInForm/SignInForm';
 import styles from './SignInPage.module.css';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import authOperation from '../../redux/operations/authOperations';
 
 const {
   container,
@@ -16,7 +19,15 @@ const {
   authSasha,
 } = styles;
 
-function SignInPage() {
+function SignInPage({ userToken, onGetCurrentUser }) {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (userToken) {
+      onGetCurrentUser();
+      history.push('/main');
+    }
+  }, [userToken]);
   return (
     <div className={container}>
       <section className={signIn}>
@@ -42,4 +53,12 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+const mapStateToProps = (state) => ({
+  userToken: state.user.accessToken,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGetCurrentUser: () => dispatch(authOperation.getCurrentUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);

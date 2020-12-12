@@ -7,6 +7,7 @@ const getAllTasks = () => (dispatch, getState) => {
   const {
     user: { accessToken: acToken, refreshToken },
   } = getState();
+
   if (!acToken) {
     return;
   }
@@ -45,9 +46,9 @@ const сonfirmTask = (id, reward, childId) => (dispatch, getState) => {
   const url = `${BACKEND_URI}/tasks/confirm/${id}`;
   const body = {
     reward,
-    childId
-  }
-  console.log()
+    childId,
+  };
+  console.log();
 
   // axios
   //   .patch(url, {
@@ -68,7 +69,9 @@ const сonfirmTask = (id, reward, childId) => (dispatch, getState) => {
     refreshToken,
     dispatch,
   )
-    .then(() => dispatch(taskAction.confirmTaskSuccess({reward, childId, id})))
+    .then(() =>
+      dispatch(taskAction.confirmTaskSuccess({ reward, childId, id })),
+    )
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
 const notConfirmTask = (id) => (dispatch, getState) => {

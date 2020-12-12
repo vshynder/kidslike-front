@@ -164,7 +164,7 @@ class InformItemByPresent extends Component {
               onMouseEnter={this.onMouseMoveEnter}
               onMouseLeave={this.onMouseMoveLeave}
               className={styles.presentItem_genderImage}
-              src={child === 'male' ? maleImage : femaleImage} //  не вовремя подгружает .!!! надо иправить
+              src={child.gender === 'male' ? maleImage : femaleImage} //  не вовремя подгружает .!!! надо иправить
             ></img>
           </li>
           <li className={styles.presentItem_titleAndButton}>
@@ -196,10 +196,7 @@ class InformItemByPresent extends Component {
     );
   }
 }
-const mapSatateToProps = (state, ownProps) => ({
-  child: state.childrens.find((child) => {
-    return child._id === ownProps.childId;
-  }),
+const mapSatateToProps = (state) => ({
   children: ChildSelectors.getChildrens(state),
 });
 
