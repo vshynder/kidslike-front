@@ -14,8 +14,8 @@ const loginUser = (user) => (dispatch) => {
   dispatch(authActions.loginUserRequest());
 
   axios
-    // .post(`${BACKEND_URI}/auth/login`, user)
-    .post(`http:localhost:1717/api/auth/login`, user)
+    .post(`${BACKEND_URI}/auth/login`, user)
+    // .post(`http:localhost:1717/api/auth/login`, user)
 
     .then((response) => {
       setAuthToken(response.data.accessToken);
@@ -71,15 +71,15 @@ const getCurrentUser = () => (dispatch, getState) => {
     user: { accessToken: accessToken, refreshToken },
   } = getState();
 
-  if (!accessToken || refreshToken) {
+  if (!accessToken) {
     return;
   }
   dispatch(authActions.getCurrentUserRequest());
 
   // axios
   //   .get(`${BACKEND_URI}/auth/current`)
-  // const url = `${BACKEND_URI}/auth/current`;
-  const url = `http://localhost:1717/api/auth/current`;
+  const url = `${BACKEND_URI}/auth/current`;
+  // const url = `http://localhost:1717/api/auth/current`;
 
   refreshJWTmiddleware(
     {

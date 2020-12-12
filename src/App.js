@@ -47,8 +47,8 @@ const App = ({
       getAllPresents();
       getAllHabbits();
     }
-    // Cookie.remove('accessToken');
-    // Cookie.remove('refreshToken');
+    Cookie.remove('accessToken');
+    Cookie.remove('refreshToken');
   }, []);
   return (
     <>
