@@ -103,11 +103,7 @@
   width: 40px;
   height: 40px;
   position: absolute;
-<<<<<<< HEAD
   z-index: 3;
-=======
-  z-index: 0;
->>>>>>> f803487c1caa52c69929854c9decbc36dc6c8553
   top: 5px;
   left: 15px;
 }
@@ -217,14 +213,14 @@
 .name_child {
   position:absolute;
   top: 0;
-  left: 8px;
+  left: 6px;
   /* width: 220px; */
   height: 40px;
   border-radius: 20px;
   background-color:#fff;
   z-index: 5;
   color: #333333;
-  padding: 4px 30px 4px 30px;
+  padding: 4px 34px 4px 34px;
   text-align: center;
   font-size: 20px;
   font-weight: 400;

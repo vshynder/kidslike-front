@@ -157,16 +157,15 @@ class InformItemByPresent extends Component {
                 timeout={500}
                 unmountOnExit
               >
-                <p className={styles.name_child}>{mess}</p>
+                <span className={styles.name_child}>{mess}</span>
               </CSSTransition>
             </div>
             <img
               onMouseEnter={this.onMouseMoveEnter}
               onMouseLeave={this.onMouseMoveLeave}
               className={styles.presentItem_genderImage}
-              src={child.gender === 'male' ? maleImage : femaleImage}
+              src={child === 'male' ? maleImage : femaleImage} //  не вовремя подгружает .!!! надо иправить
             ></img>
-            {/* <div className={styles.container_info_child}></div> */}
           </li>
           <li className={styles.presentItem_titleAndButton}>
             <div className={styles.presentItem_title}>

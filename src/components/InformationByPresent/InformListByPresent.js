@@ -14,23 +14,11 @@ const InformationListByPresent = ({
   getPresents,
   deletePresent,
   buyPresent,
-  children,
 }) => {
   const [child, setChild] = useState('');
-  // onChangeName = () => {
 
-  //   const child = children
-  //     .filter((child) => {
-  //       return child._id === childId;
-  //     })
-  //     .map((el) => ({ name: el.name, gender: el.gender }));
-  //   this.setState({ childName: child.name });
-  //   this.setState({ childGender: child.gender });
-  //   return child;
-  // };
   useEffect(() => {
     getPresents();
-    // onChangeName();
   }, []);
 
   return (
@@ -59,7 +47,6 @@ const InformationListByPresent = ({
                   image={present.image}
                   deletePresent={deletePresent}
                   buyPresent={buyPresent}
-                  // nameChild={child}
                 />
               </li>
             </CSSTransition>
@@ -71,7 +58,6 @@ const InformationListByPresent = ({
 };
 
 const mapStateToProps = (state) => ({
-  children: ChildSelectors.getChildrens(state),
   presents: presentSelector.getPresents(state),
 });
 
