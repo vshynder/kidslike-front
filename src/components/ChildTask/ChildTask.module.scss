@@ -14,10 +14,13 @@
 
   &__dots {
     position: absolute;
-    top: 16px;
+
+    top: 10px;
     right: 15px;
     display: flex;
     width: 16px;
+    height: 16px;
+    padding-top: 8px;
     justify-content: space-between;
     cursor: pointer;
 
@@ -88,7 +91,7 @@
         font-family: 'Rubik';
         font-style: normal;
         font-weight: normal;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 14px;
         color: #828282;
       }
@@ -100,6 +103,7 @@
         font-size: 22px;
         line-height: 26px;
         color: #333333;
+        align-self: center;
       }
     }
 
@@ -113,14 +117,14 @@
         font-family: 'Rubik';
         font-style: normal;
         font-weight: normal;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 14px;
         color: #828282;
       }
 
       &_buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
 
         &_btn {
           background: none;

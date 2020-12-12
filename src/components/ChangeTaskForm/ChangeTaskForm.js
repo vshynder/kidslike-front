@@ -42,8 +42,6 @@ function ChangeTaskForm({
   updateTask,
   deleteTask,
 }) {
-  // const handleDeleteTask = () => {};
-
   const [name, setName] = useState(currentTask.title);
   const [chooseChild, setChooseChild] = useState(currentTask.childId);
   const [stars, setStars] = useState(currentTask.reward);
@@ -106,7 +104,7 @@ function ChangeTaskForm({
                   placeholder="Введіть назву"
                 />
               </div>
-              <label className={form__titel}>Призначення звички</label>
+              <label className={form__titel}>Призначення </label>
               <div className={form_select}>
                 <Field
                   className={form__input}

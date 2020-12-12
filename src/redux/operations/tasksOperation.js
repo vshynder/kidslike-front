@@ -127,7 +127,6 @@ const addTask = (childId, title, reward, daysToDo) => (dispatch, getState) => {
   //       Authorization: 'Bearer ' + acToken,
   //     },
   //   })
-  console.log(222222, childId, body);
 
   refreshJWTmiddleware(
     {

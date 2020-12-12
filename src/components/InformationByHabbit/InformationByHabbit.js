@@ -169,7 +169,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   onCheckHabbit: habbitOperation.checkHabbit,
-  //updateHabbit: habbitOperation.updateHabbit, // !!! ДЛЯ передачи в ChangeHabbitForm, или подписаться  на updateHabbit в ней
 };
 
 export default connect(
