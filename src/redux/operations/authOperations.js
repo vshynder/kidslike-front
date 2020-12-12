@@ -69,9 +69,6 @@ const getCurrentUser = () => (dispatch, getState) => {
     user: { accessToken: accessToken, refreshToken },
   } = getState();
 
-  if (!accessToken) {
-    return;
-  }
   // setAuthToken(accessToken);
   dispatch(authActions.getCurrentUserRequest());
 

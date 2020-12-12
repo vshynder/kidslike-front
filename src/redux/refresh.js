@@ -14,7 +14,7 @@ export const refreshJWTmiddleware = async (req, refreshToken, dispatch) => {
   if (response) {
     return response;
   }
-
+  console.log(refreshToken);
   axios.defaults.headers.common.Authorization = `Bearer ` + refreshToken;
   const tokens = await axios
     .post(`${BACKEND_URI}/token/token_refresh/`)

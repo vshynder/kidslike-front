@@ -91,24 +91,31 @@ function TasksPage({ tasks }) {
                             </h2>
                           </div>
                           <div className={taskStyles.tasksinfo__list}>
-                          {tasks && (
-                            <TransitionGroup
-                              component="ul"
-                              className={trStyle}
-                            >
-                              {tasks.map(
-                                (task) =>
-                                  task.isCompleted === 'active' && (
-                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
-                                      <InformationByTask
+                            {tasks && (
+                              <TransitionGroup
+                                component="ul"
+                                className={trStyle}
+                              >
+                                {tasks.map(
+                                  (task) =>
+                                    task.isCompleted === 'active' && (
+                                      <CSSTransition
+                                        in={true}
+                                        appear={true}
+                                        classNames={trStyle}
                                         key={task._id}
-                                        task={task}
-                                      />
-                                    </CSSTransition>
-                                  ),
-                              )}
-                            </TransitionGroup>
-                          )}
+                                        timeout={250}
+                                        unmountOnExit
+                                      >
+                                        <InformationByTask
+                                          key={task._id}
+                                          task={task}
+                                        />
+                                      </CSSTransition>
+                                    ),
+                                )}
+                              </TransitionGroup>
+                            )}
                           </div>
                           <div className={taskStyles.tasksinfo__button}>
                             <button
@@ -159,15 +166,19 @@ function TasksPage({ tasks }) {
                           </h2>
                         </div>
                         <div className={taskStyles.tasksinfo__list}>
-                        {tasks && (
-                            <TransitionGroup
-                              component="ul"
-                              className={trStyle}
-                            >
+                          {tasks && (
+                            <TransitionGroup component="ul" className={trStyle}>
                               {tasks.map(
                                 (task) =>
                                   task.isCompleted === 'active' && (
-                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
+                                    <CSSTransition
+                                      in={true}
+                                      appear={true}
+                                      classNames={trStyle}
+                                      key={task._id}
+                                      timeout={250}
+                                      unmountOnExit
+                                    >
                                       <InformationByTask
                                         key={task._id}
                                         task={task}

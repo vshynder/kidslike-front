@@ -1,18 +1,17 @@
 .enter {
-    transform: translateX(200%);
-  }
-  
+  transform: scale(0);
+}
+
 .enterActive {
-    transform: translateX(0);
-    transition: transform 250ms linear;
-  }
-  
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
+}
+
 .exit {
-  transform: translateX(0);
-  }
-  
+  transform: scale(1);
+}
+
 .exitActive {
-  transform: translateX(200%);
-  transition: transform 250ms linear;
-  }
-  
+  transform: scale(0);
+  transition: transform 200ms ease-in-out;
+}

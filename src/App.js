@@ -39,7 +39,9 @@ const App = ({
   useEffect(async () => {
     if (accessToken || refreshToken) {
       await setTokenState({ accessToken, refreshToken });
+      console.log(' get token');
     }
+
     onGetCurrentUser();
     if (userToken) {
       getAllChildren();
@@ -47,8 +49,9 @@ const App = ({
       getAllPresents();
       getAllHabbits();
     }
-    Cookie.remove('accessToken');
-    Cookie.remove('refreshToken');
+    console.log('delete cookie');
+    // Cookie.remove('accessToken');
+    // Cookie.remove('refreshToken');
   }, []);
   return (
     <>

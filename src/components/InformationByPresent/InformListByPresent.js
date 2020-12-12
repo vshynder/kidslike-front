@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import InformItemByPresent from './InformItemByPresent';
 import present from '../../assets/informationByPresent/image 16.svg';
 import style from './informListByPresent.module.css';
@@ -7,64 +7,71 @@ import { connect } from 'react-redux';
 import presentSelector from '../../redux/selectors/presentSelector';
 import operationPresent from '../../redux/operations/presentOperation';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import ChildSelectors from '../../redux/selectors/ChildSelectors';
 
 const InformationListByPresent = ({
   presents,
   getPresents,
   deletePresent,
   buyPresent,
+  children,
 }) => {
+  const [child, setChild] = useState('');
+  // onChangeName = () => {
+
+  //   const child = children
+  //     .filter((child) => {
+  //       return child._id === childId;
+  //     })
+  //     .map((el) => ({ name: el.name, gender: el.gender }));
+  //   this.setState({ childName: child.name });
+  //   this.setState({ childGender: child.gender });
+  //   return child;
+  // };
   useEffect(() => {
     getPresents();
+    // onChangeName();
   }, []);
 
   return (
     <div className={style.presentItem_container}>
-<<<<<<< HEAD
-      <ul className={style.presentItem_childrens}>
-        {presents &&
-          presents.map((present) => (
-=======
-        {presents && (
+      {presents && (
         <TransitionGroup component="ul" className={style.presentItem_childrens}>
           {presents.map((present) => (
->>>>>>> 669893305d1f4c7f3243c09f50f2f9b26e024755
-            <li className={style.presentItem_item} key={present._id}>
-              <CSSTransition
-                    in={true}
-                    appear={true}
-                    classNames={trStyle}
-                    key={present._id}
-                    timeout={250}
-                  >
-              <InformItemByPresent
-                idPresent={present._id}
-                childId={present.childId}
-                gender={present.gender}
-                reward={present.reward}
-                title={
-                  present.title.length > 13
-                    ? `${present.title.slice(0, 13)}...`
-                    : present.title
-                }
-                image={present.image}
-                deletePresent={deletePresent}
-                buyPresent={buyPresent}
-              />
-              </CSSTransition>
-            </li>
+            <CSSTransition
+              in={true}
+              // appear={true}
+              classNames={trStyle}
+              key={present._id}
+              timeout={250}
+              unmountOnExit
+            >
+              <li className={style.presentItem_item} key={present._id}>
+                <InformItemByPresent
+                  idPresent={present._id}
+                  childId={present.childId}
+                  reward={present.reward}
+                  title={
+                    present.title.length > 13
+                      ? `${present.title.slice(0, 13)}...`
+                      : present.title
+                  }
+                  image={present.image}
+                  deletePresent={deletePresent}
+                  buyPresent={buyPresent}
+                  // nameChild={child}
+                />
+              </li>
+            </CSSTransition>
           ))}
-<<<<<<< HEAD
-      </ul>
-=======
-          </TransitionGroup>
-        )}
->>>>>>> 669893305d1f4c7f3243c09f50f2f9b26e024755
+        </TransitionGroup>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
+  children: ChildSelectors.getChildrens(state),
   presents: presentSelector.getPresents(state),
 });
 

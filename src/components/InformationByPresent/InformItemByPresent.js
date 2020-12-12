@@ -10,12 +10,21 @@ import subMenu_active from '../../assets/informationByPresent/Group 281.svg';
 import { connect } from 'react-redux';
 import ChildSelectors from '../../redux/selectors/ChildSelectors';
 
+import AlertReward from './alert.js';
+import { CSSTransition } from 'react-transition-group';
+import styleAlert from './styleAlert.module.css';
+import './transition/flash.css';
+
 class InformItemByPresent extends Component {
   state = {
     display: 'none',
     modal: false,
     alertFalse: false,
+    onShowName: false,
+    lacks: 0,
   };
+
+  // componentDidMount() {}
 
   onChangeSubmenu = () => {
     if (this.state.display === 'none') {
@@ -41,16 +50,28 @@ class InformItemByPresent extends Component {
     });
   };
 
+  onMouseMoveEnter = (e) => {
+    this.setState({ onShowName: !this.state.onShowName });
+  };
+
+  onMouseMoveLeave = () => {
+    this.setState({ onShowName: false });
+  };
+
   handleBuyPreset = (idPresent, reward, childId) => {
-    console.log('shell');
     const { children } = this.props;
     const child = children.find((child) => child._id === childId);
 
     if (child.stars < reward) {
+      const lacks = reward - child.stars;
+      this.setState({ lacks });
+      this.onMouseMoveEnter();
       this.setState({ alertFalse: true });
       setTimeout(() => {
         this.setState({ alertFalse: false });
-      }, 1000);
+        this.onMouseMoveEnter();
+      }, 2500);
+      return;
     } else {
       this.props.buyPresent(idPresent, reward, childId);
     }
@@ -58,26 +79,22 @@ class InformItemByPresent extends Component {
 
   render() {
     const {
-      gender,
       image,
       title,
       reward,
       childId,
       idPresent,
       deletePresent,
-<<<<<<< HEAD
+      child,
     } = this.props;
-    const { display, modal, alertFalse } = this.state;
-
-=======
-      buyPresent,
-    } = this.props;
-    const { display, modal } = this.state;
->>>>>>> 669893305d1f4c7f3243c09f50f2f9b26e024755
+    const { display, modal, alertFalse, onShowName, lacks } = this.state;
+    const mess = alertFalse ? (
+      <p className={styles.name_star}>Не вистачає {`${lacks}`}</p>
+    ) : (
+      `${child.name}`
+    );
     return (
       <>
-        {alertFalse}
-
         {modal && (
           <Modal
             children={
@@ -131,10 +148,25 @@ class InformItemByPresent extends Component {
               className={styles.presentItem_mainImage}
               src={image === '' ? defaultImage : image}
             ></img>
+
+            <div className={styles.box_overlay}>
+              <CSSTransition
+                in={onShowName}
+                // appear={true}
+                classNames="flash"
+                timeout={500}
+                unmountOnExit
+              >
+                <p className={styles.name_child}>{mess}</p>
+              </CSSTransition>
+            </div>
             <img
+              onMouseEnter={this.onMouseMoveEnter}
+              onMouseLeave={this.onMouseMoveLeave}
               className={styles.presentItem_genderImage}
-              src={gender === 'male' ? maleImage : femaleImage}
+              src={child.gender === 'male' ? maleImage : femaleImage}
             ></img>
+            {/* <div className={styles.container_info_child}></div> */}
           </li>
           <li className={styles.presentItem_titleAndButton}>
             <div className={styles.presentItem_title}>
@@ -145,16 +177,18 @@ class InformItemByPresent extends Component {
             </div>
             <div className={styles.presentItem_block__button}>
               <button
-<<<<<<< HEAD
                 onClick={() => this.handleBuyPreset(idPresent, reward, childId)}
-=======
-                onClick={() => {
-                  return buyPresent(idPresent, reward, childId);
-                }}
->>>>>>> 669893305d1f4c7f3243c09f50f2f9b26e024755
                 className={styles.presentItem_button}
               >
                 Придбати
+                <CSSTransition
+                  in={alertFalse}
+                  classNames={styleAlert}
+                  timeout={250}
+                  unmountOnExit
+                >
+                  <AlertReward> </AlertReward>
+                </CSSTransition>
               </button>
             </div>
           </li>
@@ -163,7 +197,10 @@ class InformItemByPresent extends Component {
     );
   }
 }
-const mapSatateToProps = (state) => ({
+const mapSatateToProps = (state, ownProps) => ({
+  child: state.childrens.find((child) => {
+    return child._id === ownProps.childId;
+  }),
   children: ChildSelectors.getChildrens(state),
 });
 

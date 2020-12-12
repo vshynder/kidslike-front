@@ -59,7 +59,7 @@ const childrens = createReducer([], {
     state.map((child) => {
       if (child._id === action.payload.childId) {
         return (child.stars =
-          child.stars > action.payload.newReward
+          child.stars >= action.payload.newReward
             ? Number(child.stars) - action.payload.newReward
             : child.stars);
       }
