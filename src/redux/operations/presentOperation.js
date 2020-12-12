@@ -3,11 +3,6 @@ import action from '../actions/presentAction';
 import { BACKEND_URI } from '../../constants.js';
 import { refreshJWTmiddleware } from '../refresh';
 
-const setAuthToken = (token) => {
-  //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
-};
-
 const addPresent = (fD) => (dispatch, getState) => {
   const {
     user: { accessToken: acToken, refreshToken },
@@ -18,11 +13,6 @@ const addPresent = (fD) => (dispatch, getState) => {
 
   dispatch(action.addPresentRequest());
   const url = `${BACKEND_URI}/presents/`;
-  // axios
-  //   .post(`${BACKEND_URI}/presents/`, fD)
-  //   .then((res) => {
-  //     dispatch(action.addPresentSuccess(res.data));
-  //   })
   refreshJWTmiddleware(
     {
       method: 'post',
@@ -36,8 +26,7 @@ const addPresent = (fD) => (dispatch, getState) => {
     dispatch,
   )
     .then((res) => dispatch(action.addPresentSuccess(res.data)))
-    // .catch((error) => dispatch(action.addPresentError(error)));
-    .catch((error) => console.log(error));
+    .catch((error) => dispatch(action.addPresentError(error)));
 };
 
 const updatePresent = (fD, idPresent) => (dispatch, getState) => {
@@ -47,11 +36,7 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
   if (!acToken) {
     return;
   }
-  // setAuthToken(acToken);
-  console.log(fD);
   dispatch(action.updatePresentRequest());
-  // axios
-  //   .patch(`${BACKEND_URI}/presents/${idPresent}`, fD)
   const url = `${BACKEND_URI}/presents/${idPresent}`;
   refreshJWTmiddleware(
     {
@@ -69,8 +54,7 @@ const updatePresent = (fD, idPresent) => (dispatch, getState) => {
       console.log(res.data);
       return dispatch(action.updatePresentSuccess(res.data));
     })
-    // .catch((error) => dispatch(action.updatePresentError(error)));
-    .catch((error) => console.log(error));
+    .catch((error) => dispatch(action.updatePresentError(error)));
 };
 
 const removePresent = (id) => (dispatch, getState) => {
@@ -80,10 +64,7 @@ const removePresent = (id) => (dispatch, getState) => {
   if (!acToken) {
     return;
   }
-  // setAuthToken(acToken);
   dispatch(action.removePresentRequest());
-  // axios
-  //   .delete(`${BACKEND_URI}/presents/${id}`)
   const url = `${BACKEND_URI}/presents/${id}`;
   refreshJWTmiddleware(
     {
@@ -97,7 +78,6 @@ const removePresent = (id) => (dispatch, getState) => {
     dispatch,
   )
     .then(() => dispatch(action.removePresentSuccess(id)))
-    // .catch((error) => dispatch(action.removePresentError(error)));
     .catch((error) => console.log(error));
 };
 
@@ -108,11 +88,9 @@ const getAllPresents = () => (dispatch, getState) => {
   if (!acToken) {
     return;
   }
-  // setAuthToken(acToken);
+
   dispatch(action.getAllPresentRequest());
   const url = `${BACKEND_URI}/presents`;
-  // axios
-  //   .get(`${BACKEND_URI}/presents`)
   refreshJWTmiddleware(
     {
       method: 'get',
@@ -127,8 +105,7 @@ const getAllPresents = () => (dispatch, getState) => {
     .then((res) => {
       return dispatch(action.getAllPresentSuccess(res.data));
     })
-    // .catch((error) => dispatch(action.getAllPresentError(error)));
-    .catch((error) => console.log(error));
+    .catch((error) => dispatch(action.getAllPresentError(error)));
 };
 
 const buyPresentById = (idPresent, reward, childId) => (dispatch, getState) => {
@@ -138,10 +115,8 @@ const buyPresentById = (idPresent, reward, childId) => (dispatch, getState) => {
   if (!acToken) {
     return;
   }
-  // setAuthToken(acToken);
+
   dispatch(action.buyPresentRequest());
-  // axios
-  //   .patch(`${BACKEND_URI}/presents/buy/${idPresent}`)
   const url = `${BACKEND_URI}/presents/buy/${idPresent}`;
   refreshJWTmiddleware(
     {
@@ -159,7 +134,10 @@ const buyPresentById = (idPresent, reward, childId) => (dispatch, getState) => {
         newReward: reward,
         childId: childId,
       };
-      return dispatch(action.buyPresentSuccess(refreshData));
+      return dispatch(
+        action.buyPresentSuccess(refreshData),
+        dispatch(action.removePresentSuccess(idPresent)),
+      );
     })
     .catch((error) => dispatch(action.buyPresentError(error)));
 };

@@ -1,10 +1,8 @@
-import {createAction} from '@reduxjs/toolkit';
-
+import { createAction } from '@reduxjs/toolkit';
 
 const getAllPresentRequest = createAction('present/getAllPresentRequest');
 const getAllPresentSuccess = createAction('present/getAllPresentSuccess');
 const getAllPresentError = createAction('present/getAllPresentError');
-
 
 const addPresentRequest = createAction('present/addPresentRequest');
 const addPresentSuccess = createAction('present/addPresentSuccess');
@@ -22,25 +20,27 @@ const buyPresentRequest = createAction('present/buyPresentRequest');
 const buyPresentSuccess = createAction('present/buyPresentSuccess');
 const buyPresentError = createAction('present/buyPresentError');
 
+const lacksRewardPresent = createAction('present/lacksRewardPresent');
 
 export default {
-    getAllPresentRequest,
-    getAllPresentSuccess,
-    getAllPresentError,
-    
-    addPresentRequest,
-    addPresentSuccess,
-    addPresentError,
+  getAllPresentRequest,
+  getAllPresentSuccess,
+  getAllPresentError,
 
-    removePresentRequest,
-    removePresentSuccess,
-    removePresentError,
+  addPresentRequest,
+  addPresentSuccess,
+  addPresentError,
 
-    updatePresentRequest,
-    updatePresentSuccess,
-    updatePresentError,
+  removePresentRequest,
+  removePresentSuccess,
+  removePresentError,
 
-    buyPresentRequest,
-    buyPresentSuccess,
-    buyPresentError
-}
+  updatePresentRequest,
+  updatePresentSuccess,
+  updatePresentError,
+
+  buyPresentRequest,
+  buyPresentSuccess,
+  buyPresentError,
+  lacksRewardPresent,
+};

@@ -103,7 +103,7 @@
   width: 40px;
   height: 40px;
   position: absolute;
-  z-index: 0;
+  z-index: 3;
   top: 5px;
   left: 15px;
 }
@@ -148,6 +148,30 @@
   top: 5px;
 }
 
+.name_star {
+  padding:4px 2px 2px 2px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: center;
+  color:red;
+  position: relative;
+}
+
+
+.name_star::after {
+  content: '';
+  background: url('../../assets/InformationOnChild-Images/Star11.svg') no-repeat;
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  right: -28px;
+  top: 3px;
+  z-index: 10;
+}
+
 .presentItem_button {
   align-self: center;
   width: 120px;
@@ -175,6 +199,35 @@
   background: #ffdfcf;
   transition: 250ms;
 }
+
+.box_overlay {  
+  position:absolute;
+  top: 5px;
+  left: 16px;
+  width: 220px;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 2;
+}
+.name_child {
+  position:absolute;
+  top: 0;
+  left: 6px;
+  /* width: 220px; */
+  height: 40px;
+  border-radius: 20px;
+  background-color:#fff;
+  z-index: 5;
+  color: #333333;
+  padding: 4px 34px 4px 34px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+
+
 
 @media (min-width: 768px) {
   .presentItem_container {

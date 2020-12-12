@@ -3,7 +3,10 @@ import getChildrensActions from '../actions/getAllChildrens';
 import { createReducer } from '@reduxjs/toolkit';
 import { act } from 'react-dom/test-utils';
 import allHabbitsAction from '../actions/allHabbitsAction';
-import presentAction from '../actions/presentAction'
+import presentAction from '../actions/presentAction';
+
+import tasksAction from '../actions/tasksAction';
+
 
 const childrens = createReducer([], {
   [addChildActions.addChildSuccess]: (state, action) => [
@@ -55,10 +58,23 @@ const childrens = createReducer([], {
       }
     });
   },
-  [presentAction.buyPresentSuccess]: (state,action) => {
+
+  [presentAction.buyPresentSuccess]: (state, action) => {
+    state.map((child) => {
+      if (child._id === action.payload.childId) {
+        return (child.stars =
+          child.stars >= action.payload.newReward
+            ? Number(child.stars) - action.payload.newReward
+            : child.stars);
+      }
+    });
+  },
+
+  [tasksAction.confirmTaskSuccess]: (state, action) => {
     state.map((child)=> {
+      // console.log(action.payload)
       if(child._id === action.payload.childId){
-        return child.stars =  Number(child.stars) - action.payload.newReward}
+        return child.stars = Number(child.stars) + action.payload.reward}
         }
     )
   }
