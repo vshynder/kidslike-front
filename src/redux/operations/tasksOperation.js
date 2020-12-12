@@ -32,7 +32,7 @@ const getAllTasks = () => (dispatch, getState) => {
     .catch((err) => dispatch(taskAction.getAllTasksError(err)));
 };
 
-const сonfirmTask = (id) => (dispatch, getState) => {
+const сonfirmTask = (id, reward, childId) => (dispatch, getState) => {
   const {
     user: { accessToken: acToken, refreshToken },
   } = getState();
@@ -43,6 +43,11 @@ const сonfirmTask = (id) => (dispatch, getState) => {
   dispatch(taskAction.confirmTaskRequest());
 
   const url = `${BACKEND_URI}/tasks/confirm/${id}`;
+  const body = {
+    reward,
+    childId
+  }
+  console.log()
 
   // axios
   //   .patch(url, {
@@ -50,6 +55,7 @@ const сonfirmTask = (id) => (dispatch, getState) => {
   //       Authorization: 'Bearer ' + acToken,
   //     },
   //   })
+  // console.log(id, reward, childId)
   refreshJWTmiddleware(
     {
       method: 'patch',
@@ -57,11 +63,12 @@ const сonfirmTask = (id) => (dispatch, getState) => {
         Authorization: 'Bearer ' + acToken,
       },
       url,
+      data: body,
     },
     refreshToken,
     dispatch,
   )
-    .then(() => dispatch(taskAction.confirmTaskSuccess(id)))
+    .then(() => dispatch(taskAction.confirmTaskSuccess({reward, childId, id})))
     .catch((err) => dispatch(taskAction.confirmTaskError(err)));
 };
 const notConfirmTask = (id) => (dispatch, getState) => {
