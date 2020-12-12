@@ -34,6 +34,7 @@ const TasksContainer = ({ match, allTasks, tasks, location }) => {
               daysToDo={task.daysToDo}
               reward={task.reward}
               title={task.title}
+              taskCurrent={task}
             />
           ))
         ) : (

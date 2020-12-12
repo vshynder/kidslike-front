@@ -44,6 +44,11 @@ const tasks = createReducer([], {
       return task;
     });
   },
+  [tasksAction.updateTaskSuccess]: (state, action) => {
+    return state.map((task) =>
+      task._id === action.payload._id ? action.payload : task,
+    );
+  },
 });
 
 export default {
