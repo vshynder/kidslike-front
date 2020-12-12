@@ -162,4 +162,4 @@ const mapDispatchToProps = (dispatch) => ({
   setNotifyFalse: () => dispatch(notifyAction.showNotifyFalse()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiginInForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SiginInForm);

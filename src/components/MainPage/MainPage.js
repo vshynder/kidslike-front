@@ -106,14 +106,18 @@ class MainPosition extends Component {
                         </div>
                         <div className="tasksinfo__list">
                           {tasks && (
-                            <TransitionGroup
-                              component="ul"
-                              className={trStyle}
-                            >
+                            <TransitionGroup component="ul" className={trStyle}>
                               {tasks.map(
                                 (task) =>
                                   task.isCompleted === 'active' && (
-                                    <CSSTransition in={true} appear={true} classNames={trStyle} key={task._id} timeout={250}>
+                                    <CSSTransition
+                                      in={true}
+                                      appear={true}
+                                      classNames={trStyle}
+                                      key={task._id}
+                                      timeout={250}
+                                      unmountOnExit
+                                    >
                                       <InformationByTask
                                         key={task._id}
                                         task={task}

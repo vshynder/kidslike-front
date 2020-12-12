@@ -17,12 +17,12 @@ class ChangeFormPresent extends Component {
   };
 
   componentDidMount() {
-    this.setState({ 
-      children: this.props.children, 
-        reward: this.props.reward ,
-         title: this.props.title ,
-       childId: this.props.childId
-      })
+    this.setState({
+      children: this.props.children,
+      reward: this.props.reward,
+      title: this.props.title,
+      childId: this.props.childId,
+    });
   }
 
   handleChangeName = (e) => {
@@ -50,18 +50,17 @@ class ChangeFormPresent extends Component {
     e.preventDefault();
 
     const { title, reward, childId, selectedFile } = this.state;
-    const { idPresent } = this.props
+    const { idPresent } = this.props;
     let fD;
-    if(selectedFile){
+    if (selectedFile) {
       fD = new FormData();
       fD.append('file', selectedFile);
       fD.set('title', title);
       fD.set('reward', reward);
       fD.set('childId', childId);
-
-    }else{
-       fD = { title, reward, childId };
-    } 
+    } else {
+      fD = { title, reward, childId };
+    }
 
     this.props.updatePresent(fD, idPresent);
 
@@ -70,9 +69,11 @@ class ChangeFormPresent extends Component {
   };
 
   render() {
-    const { children, title, childId, reward, selectedFile} = this.state;
+    const { children, title, childId, reward, selectedFile } = this.state;
     const { removePresent, idPresent } = this.props;
-    const changeFileTitle = selectedFile ? `${selectedFile.name}` :'Оберіть файл'
+    const changeFileTitle = selectedFile
+      ? `${selectedFile.name}`
+      : 'Оберіть файл';
     return (
       <div className={style.container_presents}>
         <button
@@ -111,7 +112,9 @@ class ChangeFormPresent extends Component {
               className={style.present_form__input}
             >
               {children.map((child) => (
-                <option key={child._id} value={child._id}>{child.name}</option>
+                <option key={child._id} value={child._id}>
+                  {child.name}
+                </option>
               ))}
             </select>
           </label>
@@ -184,13 +187,13 @@ class ChangeFormPresent extends Component {
             </button>
           </label>
           <div className={style.present_form__box_botton}>
-          <button
+            <button
               className={style.present_form__box_botton__canceling}
               type="button"
               onClick={this.handleCloseWindow}
             >
               {' '}
-              Видмина{' '}
+              Відмина{' '}
             </button>
             <button
               className={style.present_form__box_botton__save}

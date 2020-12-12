@@ -154,7 +154,7 @@ body {
   }
 
   .presents_list {
-    max-height: 285px;
-    overflow-y: scroll;
+    /* max-height: 285px; */
+    /* overflow-y: scroll; */
   }
 }
