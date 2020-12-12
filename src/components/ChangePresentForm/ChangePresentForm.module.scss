@@ -113,6 +113,7 @@
         background-color: transparent;
         color: #828282;
         font-size: 14px;
+        cursor: pointer;
     };
 
     &__delete_img {
@@ -155,10 +156,16 @@
             background-color: #FF8626;
             border: none;
             border-radius: 0 15px 15px 0;
+            outline: none;
+            cursor: pointer;
+            
         };
     }
 
     &__box_botton {
+        font-size: 16px;
+        font-family: Rubik;
+        font-weight: normal;
         padding-top: 10px;
         width: 100%;
         display: flex;
@@ -173,10 +180,13 @@
             width: 220px;
             height: 44px;
             margin-bottom: 15px;
+            outline: none;
+            cursor: pointer;
             &:hover {
+                transition: ease-in-out 200ms ;
                 background-color: #FF8626;
                 color: #fff;
-                border: none;
+                // border: none;
             }
         };
         &__canceling {
@@ -188,10 +198,13 @@
             width: 220px;
             height: 44px;
             margin-bottom: 15px;
+            outline: none;
+            cursor: pointer;
             &:hover {
+                transition: ease-in-out 200ms ;
                 background-color: #FF8626;
                 color: #fff;
-                border: none;
+                // border: none;
             }
         };
     };
