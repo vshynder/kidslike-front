@@ -129,13 +129,13 @@ function SiginInForm({ isUserLoggedIn, notification, setNotifyFalse }) {
               </button>
               <a
                 className={[btnContainer__socialBtn, google].join(' ')}
-                href="http://localhost:1717/api/auth/google"
+                href="https://kidslike-back-end.herokuapp.com/api/auth/google"
               >
                 Увійти за допомогою Google
               </a>
               <a
                 className={[btnContainer__socialBtn, facebook].join(' ')}
-                href="http://localhost:1717/api/auth/facebook"
+                href="https://kidslike-back-end.herokuapp.com/api/auth/facebook"
               >
                 Увійти за допомогою Facebook
               </a>
@@ -162,4 +162,4 @@ const mapDispatchToProps = (dispatch) => ({
   setNotifyFalse: () => dispatch(notifyAction.showNotifyFalse()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiginInForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SiginInForm);
