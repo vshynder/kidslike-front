@@ -1,12 +1,11 @@
 import addChildActions from '../../components/AddChildForm/AddChildActions';
 import getChildrensActions from '../actions/getAllChildrens';
 import { createReducer } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
+
 import allHabbitsAction from '../actions/allHabbitsAction';
 import presentAction from '../actions/presentAction';
 
 import tasksAction from '../actions/tasksAction';
-
 
 const childrens = createReducer([], {
   [addChildActions.addChildSuccess]: (state, action) => [
@@ -52,7 +51,7 @@ const childrens = createReducer([], {
 
         child.habbits.splice(idx, 1);
       }
-      child.habbits.map((e) => console.log(1, e.nameHabbit));
+
       if (child._id === action.payload.data.idChild) {
         child.habbits.push(action.payload.data);
       }
@@ -71,13 +70,12 @@ const childrens = createReducer([], {
   },
 
   [tasksAction.confirmTaskSuccess]: (state, action) => {
-    state.map((child)=> {
-      // console.log(action.payload)
-      if(child._id === action.payload.childId){
-        return child.stars = Number(child.stars) + action.payload.reward}
-        }
-    )
-  }
+    state.map((child) => {
+      if (child._id === action.payload.childId) {
+        return (child.stars = Number(child.stars) + action.payload.reward);
+      }
+    });
+  },
 });
 
 export default {
