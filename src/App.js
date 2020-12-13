@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Cookie from 'js-cookie';
+import { withCookies, useCookies } from 'react-cookie';
 
 import navigation from './components/AuthPageNavigation/navigation';
 import SiginUpPage from './components/SiginUpPage/SiginUpPage';
@@ -32,12 +33,17 @@ const App = ({
   getAllChildren,
   setTokenState,
 }) => {
-  const accessToken = Cookie.get('accessToken');
-  const refreshToken = Cookie.get('refreshToken');
-
+  const [cookies, setCookie, removeCookie] = useCookies(
+    'accessToken',
+    'refreshToken',
+  );
+  console.log(cookies);
   useEffect(() => {
-    if (accessToken && refreshToken) {
-      setTokenState({ accessToken, refreshToken });
+    if (cookies.accessToken) {
+      setTokenState({
+        accessToken: cookies.accessToken,
+        refreshToken: cookies.refreshToken,
+      });
     }
 
     onGetCurrentUser();
@@ -47,9 +53,11 @@ const App = ({
       getAllPresents();
       getAllHabbits();
     }
-    Cookie.remove('accessToken');
-    Cookie.remove('refreshToken');
+
+    removeCookie('accessToken');
+    removeCookie('refreshToken');
   }, []);
+
   return (
     <>
       <Switch>
@@ -113,4 +121,4 @@ const mapDispatchProps = (dispatch) => ({
   getAllChildren: () => dispatch(childrenOperation.getChildrens()),
 });
 
-export default connect(mapStateToProps, mapDispatchProps)(App);
+export default connect(mapStateToProps, mapDispatchProps)(withCookies(App));
