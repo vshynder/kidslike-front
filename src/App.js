@@ -33,19 +33,20 @@ const App = ({
   getAllChildren,
   setTokenState,
 }) => {
-  const [cookies, setCookie, removeCookie] = useCookies(
+  console.log(document.cookie);
+  const [cookies, setCookie, removeCookie] = useCookies([
     'accessToken',
     'refreshToken',
-  );
-  console.log(cookies);
+  ]);
+  // console.log(useCookies);
   useEffect(() => {
+    console.log(cookies);
     if (cookies.accessToken) {
       setTokenState({
         accessToken: cookies.accessToken,
         refreshToken: cookies.refreshToken,
       });
     }
-
     onGetCurrentUser();
     if (userToken) {
       getAllChildren();
@@ -54,8 +55,9 @@ const App = ({
       getAllHabbits();
     }
 
-    removeCookie('accessToken');
-    removeCookie('refreshToken');
+    // console.log(cookies);
+    // removeCookie('accessToken');
+    // removeCookie('refreshToken');
   }, []);
 
   return (
