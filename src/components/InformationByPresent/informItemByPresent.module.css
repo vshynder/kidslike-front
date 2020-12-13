@@ -18,6 +18,7 @@
   display: flex;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .presentItem_image__subMenu {
@@ -28,10 +29,11 @@
 
 .presentItem_subMenu {
   position: absolute;
+  padding:5px;
   z-index: 2;
-  width: 133px;
-  height: 88px;
-  top: 28px;
+  /* width: 133px;
+  height: 88px; */
+  top: 26px;
   right: 16px;
   background-color: #fff;
   display: flex;
@@ -71,9 +73,11 @@
   line-height: 19px;
   text-align: center;
   color: #828282;
+  cursor: pointer;
 }
 
 .presentItem_subMenu__button:hover {
+  color: #fff;
   background: #ffbe9d;
   transition: 250ms;
 }
@@ -188,6 +192,7 @@
   color: #ff8626;
   background-color: #fff;
   outline: none;
+  cursor: pointer;
 }
 
 .presentItem_block__button {

@@ -66,6 +66,7 @@
     padding-left: 20px;
     padding-right: 20px;
     font-size: 16px;
+    cursor: pointer;
   }
 
   &__change_child {
@@ -112,6 +113,7 @@
     background-color: transparent;
     color: #828282;
     font-size: 14px;
+    cursor: pointer;
   }
 
   &__delete_img {
@@ -154,6 +156,8 @@
       background-color: #ff8626;
       border: none;
       border-radius: 0 15px 15px 0;
+      outline: none;
+      cursor: pointer;
     }
   }
 
@@ -172,6 +176,8 @@
       width: 220px;
       height: 44px;
       margin-bottom: 15px;
+      outline: none;
+      cursor: pointer;
       &:hover {
         background-color: #ff8626;
         color: #fff;
@@ -187,6 +193,8 @@
       width: 220px;
       height: 44px;
       margin-bottom: 15px;
+      outline: none;
+      cursor: pointer;
       &:hover {
         background-color: #ff8626;
         color: #fff;

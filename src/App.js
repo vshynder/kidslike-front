@@ -22,7 +22,6 @@ import presentOperations from './redux/operations/presentOperation';
 import habbitsOperations from './redux/operations/habbitOperation';
 import childrenOperation from './redux/operations/getAllChildrens';
 import Layout from './components/Layout/Layout';
-import authSelectors from './redux/selectors/authSelectors';
 
 const App = ({
   userToken,
@@ -36,10 +35,9 @@ const App = ({
   const accessToken = Cookie.get('accessToken');
   const refreshToken = Cookie.get('refreshToken');
 
-  useEffect(async () => {
-    if (accessToken || refreshToken) {
-      await setTokenState({ accessToken, refreshToken });
-      console.log(' get token');
+  useEffect(() => {
+    if (accessToken && refreshToken) {
+      setTokenState({ accessToken, refreshToken });
     }
 
     onGetCurrentUser();
@@ -49,9 +47,8 @@ const App = ({
       getAllPresents();
       getAllHabbits();
     }
-    console.log('delete cookie');
-    // Cookie.remove('accessToken');
-    // Cookie.remove('refreshToken');
+    Cookie.remove('accessToken');
+    Cookie.remove('refreshToken');
   }, []);
   return (
     <>
