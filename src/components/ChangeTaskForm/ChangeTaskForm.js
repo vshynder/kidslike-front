@@ -71,7 +71,7 @@ function ChangeTaskForm({
     }
 
     updateTask(objForSend, currentTask);
-    console.log(objForSend);
+    
     onClose();
   }
 

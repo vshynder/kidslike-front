@@ -7,7 +7,6 @@ import iconcross from './img/Vector_104_cross.svg';
 import { connect } from 'react-redux';
 import ChangeOrDelHabbit from '../ChangeOrDelHabbit/ChangeOrDelHabbit';
 import habbitOperation from '../../redux/operations/habbitOperation';
-
 import ChangeHabbitForm from '../ChangeHabbitForm';
 import Modal from '../Modal/Modal';
 
@@ -70,7 +69,7 @@ class InformationByHabbit extends React.Component {
 
   render() {
     return (
-      <>
+      <li className={style.item__habit}>
         {this.state.showModal && (
           <Modal onClose={this.handlesShowModal}>
             <ChangeHabbitForm
@@ -157,21 +156,22 @@ class InformationByHabbit extends React.Component {
             </div>
           )}
         </div>
-      </>
+      </li>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const habbit = state.habbits.find((el) => el._id === ownProps.id);
-  return { habbit };
-};
+// const mapStateToProps = (state, ownProps) => {
+//   const habbit = state.habbits.find((el) => el._id === ownProps.id);
+//   return { habbit };
+// };
 
 const mapDispatchToProps = {
   onCheckHabbit: habbitOperation.checkHabbit,
 };
 
 export default connect(
-  mapStateToProps,
+  // mapStateToProps,
+  null,
   mapDispatchToProps,
 )(InformationByHabbit);

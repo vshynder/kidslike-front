@@ -9,9 +9,11 @@
   padding: 25px;
   opacity: 0.9;
   border-radius: 20px;
+}
+.item__habit {
   margin: 0 auto 15px;
 }
-.canvas:nth-last-child(1) {
+.item__habit:nth-last-child(1) {
   margin: 0 auto;
 }
 

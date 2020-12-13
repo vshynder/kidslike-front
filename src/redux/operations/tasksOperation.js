@@ -48,7 +48,6 @@ const сonfirmTask = (id, reward, childId) => (dispatch, getState) => {
     reward,
     childId,
   };
-  console.log();
 
   // axios
   //   .patch(url, {
@@ -56,7 +55,7 @@ const сonfirmTask = (id, reward, childId) => (dispatch, getState) => {
   //       Authorization: 'Bearer ' + acToken,
   //     },
   //   })
-  // console.log(id, reward, childId)
+
   refreshJWTmiddleware(
     {
       method: 'patch',
@@ -224,8 +223,6 @@ const updateTask = (value, currentTask) => (dispatch, getState) => {
   if (!acToken) {
     return;
   }
-
-  // console.log(555, value, currentTask);
 
   dispatch(taskAction.updateTaskRequest());
 

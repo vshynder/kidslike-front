@@ -6,7 +6,7 @@ import getAllComplitedTasksAction from '../actions/getAllComplitedTasks';
 import presentActions from '../actions/presentAction';
 import taskActions from '../actions/tasksAction';
 import { createReducer } from '@reduxjs/toolkit';
-console.log('sdsadasdsafsadfaFf');
+
 export const loaderReducer = createReducer(false, {
   [actions.getAllHabbitsRequest]: () => true,
   [actions.updRequest]: () => true,
