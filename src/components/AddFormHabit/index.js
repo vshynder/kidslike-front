@@ -70,7 +70,7 @@ class AddFormHabit extends Component {
   render() {
     const { children, title, childId } = this.state;
     return (
-      <div className={styles.changehabbit__form}>
+      <div className={styles.addform}>
         <svg
           onClick={this.handleCloseClick}
           className={styles.changehabbit__close}
