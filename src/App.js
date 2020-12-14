@@ -38,9 +38,9 @@ const App = ({
   const loc = window.location.search;
   const token = queryString.parse(loc);
   // console.log(token);
+
   useEffect(() => {
-    if (token) {
-      // console.log(token);
+    if (token.refreshToken) {
       setTokenState({
         accessToken: token.token,
         refreshToken: token.refreshToken,
@@ -53,10 +53,6 @@ const App = ({
       getAllPresents();
       getAllHabbits();
     }
-
-    // console.log(cookies);
-    // removeCookie('accessToken');
-    // removeCookie('refreshToken');
   }, []);
 
   return (
