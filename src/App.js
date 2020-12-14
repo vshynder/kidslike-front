@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Cookie from 'js-cookie';
 import { withCookies, useCookies } from 'react-cookie';
+import queryString from 'query-string';
 
 import navigation from './components/AuthPageNavigation/navigation';
 import SiginUpPage from './components/SiginUpPage/SiginUpPage';
@@ -33,18 +34,16 @@ const App = ({
   getAllChildren,
   setTokenState,
 }) => {
-  console.log(document.cookie);
-  const [cookies, setCookie, removeCookie] = useCookies([
-    'accessToken',
-    'refreshToken',
-  ]);
-  // console.log(useCookies);
+  // const [token, setToken] = useState(['']);
+  const loc = window.location.search;
+  const token = queryString.parse(loc);
+  // console.log(token);
   useEffect(() => {
-    console.log(cookies);
-    if (cookies.accessToken) {
+    if (token) {
+      // console.log(token);
       setTokenState({
-        accessToken: cookies.accessToken,
-        refreshToken: cookies.refreshToken,
+        accessToken: token.token,
+        refreshToken: token.refreshToken,
       });
     }
     onGetCurrentUser();
